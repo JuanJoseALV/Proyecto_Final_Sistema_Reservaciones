@@ -1,4 +1,29 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Mis_Reservaciones.aspx.cs" Inherits="Proyecto_Final_Sistema_Reservaciones.Pages.Mis_Reservaciones" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Mis_Reservaciones.aspx.cs" Inherits="Proyecto_Final_Sistema_Reservaciones.Pages.Mis_Reservaciones1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Label ID="Label1" runat="server" Text="Hola wes a la verga funcionaaa!!!!!"></asp:Label>
+        <div class="container" style="margin-top: 10%; margin-right: auto; margin-bottom: auto; margin-left: 30%;">
+        <div>
+
+        </div>
+        <div>
+            <asp:GridView ID="GVW_Reservaciones" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnRowDataBound="GVW_Reservaciones_RowDataBound">
+                <AlternatingRowStyle BackColor="#CCCCCC" />
+                <Columns>
+                    <asp:BoundField DataField="idReservacion" HeaderText="# de reservacion" />
+                    <asp:BoundField DataField="nombre" HeaderText="Hotel" />
+                    <asp:BoundField DataField="fechaEntrada" HeaderText="Fecha entrada" />
+                    <asp:BoundField DataField="fechaSalida" HeaderText="Fecha salida" />
+                    <asp:BoundField HeaderText="Costo" DataField="costoTotal" />
+                    <asp:TemplateField HeaderText="Estado"></asp:TemplateField>
+                </Columns>
+                <FooterStyle BackColor="#CCCCCC" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#808080" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#383838" />
+            </asp:GridView>
+        </div>
+    </div>
 </asp:Content>

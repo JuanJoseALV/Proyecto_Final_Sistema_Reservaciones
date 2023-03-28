@@ -49,5 +49,14 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Usuarios_Result>("spConsultar_Usuarios", emailParameter, claveParameter);
         }
+    
+        public virtual ObjectResult<spConsultar_Reservaciones_ID_Result> spConsultar_Reservaciones_ID(Nullable<int> id_Reservacion)
+        {
+            var id_ReservacionParameter = id_Reservacion.HasValue ?
+                new ObjectParameter("id_Reservacion", id_Reservacion) :
+                new ObjectParameter("id_Reservacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Reservaciones_ID_Result>("spConsultar_Reservaciones_ID", id_ReservacionParameter);
+        }
     }
 }

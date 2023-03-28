@@ -14,6 +14,11 @@
                     <asp:BoundField DataField="fechaSalida" HeaderText="Fecha salida" />
                     <asp:BoundField HeaderText="Costo" DataField="costoTotal" />
                     <asp:TemplateField HeaderText="Estado"></asp:TemplateField>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <a href="Detalle_Reservacion.aspx?idReservacion=<%# Eval("idReservacion") %>">Detalle</a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
                 <FooterStyle BackColor="#CCCCCC" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

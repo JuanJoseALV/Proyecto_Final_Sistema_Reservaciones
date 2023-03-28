@@ -4,27 +4,32 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PV_ProyectoFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PV_ProyectoFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="spConsultar_Reservaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Persona" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spConsultar_Reservaciones_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Reservacion" Type="int" Mode="In" />
         </Function>
         <Function Name="spConsultar_Usuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="varchar" Mode="In" />
           <Parameter Name="Clave" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="PV_ProyectoFinalModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PV_ProyectoFinalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PV_ProyectoFinalEntities" annotation:LazyLoadingEnabled="true" >
           <FunctionImport Name="spConsultar_Reservaciones" ReturnType="Collection(PV_ProyectoFinalModel.spConsultar_Reservaciones_Result)">
-            <Parameter Name="id_Persona" Mode="In" Type="Int32" />
+          <Parameter Name="id_Persona" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spConsultar_Usuarios" ReturnType="Collection(PV_ProyectoFinalModel.spConsultar_Usuarios_Result)">
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="Clave" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spConsultar_Reservaciones_ID" ReturnType="Collection(PV_ProyectoFinalModel.spConsultar_Reservaciones_ID_Result)">
+          <Parameter Name="id_Reservacion" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spConsultar_Reservaciones_Result">
@@ -42,6 +47,17 @@
           <Property Type="Boolean" Name="esEmpleado" Nullable="false" />
           <Property Type="String" Name="email" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="clave" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="spConsultar_Reservaciones_ID_Result">
+          <Property Type="Int32" Name="idReservacion" Nullable="false" />
+          <Property Type="DateTime" Name="fechaEntrada" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fechaSalida" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="costoTotal" Nullable="false" Precision="14" Scale="2" />
+          <Property Type="String" Name="numeroHabitacion" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="nombreCompleto" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="numeroAdultos" Nullable="false" />
+          <Property Type="Int32" Name="numeroNinhos" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -70,6 +86,21 @@
                 <ScalarProperty Name="esEmpleado" ColumnName="esEmpleado" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="clave" ColumnName="clave" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spConsultar_Reservaciones_ID" FunctionName="PV_ProyectoFinalModel.Store.spConsultar_Reservaciones_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PV_ProyectoFinalModel.spConsultar_Reservaciones_ID_Result">
+                <ScalarProperty Name="idReservacion" ColumnName="idReservacion" />
+                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
+                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
+                <ScalarProperty Name="costoTotal" ColumnName="costoTotal" />
+                <ScalarProperty Name="numeroHabitacion" ColumnName="numeroHabitacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="numeroAdultos" ColumnName="numeroAdultos" />
+                <ScalarProperty Name="numeroNinhos" ColumnName="numeroNinhos" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

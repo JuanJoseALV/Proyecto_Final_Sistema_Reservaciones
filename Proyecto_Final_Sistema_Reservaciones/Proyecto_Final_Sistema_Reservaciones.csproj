@@ -58,6 +58,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -150,6 +151,7 @@
       <DependentUpon>Model_Reservacion.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Pages\Detalle_Reservacion.aspx" />
     <Content Include="Pages\Error.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Mis_Reservaciones.aspx" />
@@ -219,6 +221,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_Reservacion.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\spConsultar_Reservaciones_ID_Result.cs">
+      <DependentUpon>Model_Reservacion.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\spConsultar_Reservaciones_Result.cs">
       <DependentUpon>Model_Reservacion.tt</DependentUpon>
     </Compile>
@@ -234,6 +239,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Detalle_Reservacion.aspx.cs">
+      <DependentUpon>Detalle_Reservacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Detalle_Reservacion.aspx.designer.cs">
+      <DependentUpon>Detalle_Reservacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>

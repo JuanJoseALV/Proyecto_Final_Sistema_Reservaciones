@@ -1,17 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Mis_Reservaciones.aspx.cs" Inherits="Proyecto_Final_Sistema_Reservaciones.Pages.Mis_Reservaciones1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-        <div class="container" style="margin-top: 10%; margin-right: auto; margin-bottom: auto; margin-left: 30%;">
+        <div class="container" style="margin: 6%">
         <div>
 
         </div>
         <div>
-            <asp:GridView ID="GVW_Reservaciones" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnRowDataBound="GVW_Reservaciones_RowDataBound">
+            <asp:GridView ID="GVW_Reservaciones" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="None" OnRowDataBound="GVW_Reservaciones_RowDataBound" HorizontalAlign="Center" Width="640px">
                 <AlternatingRowStyle BackColor="#CCCCCC" />
                 <Columns>
                     <asp:BoundField DataField="idReservacion" HeaderText="# de reservacion" />
                     <asp:BoundField DataField="nombre" HeaderText="Hotel" />
-                    <asp:BoundField DataField="fechaEntrada" HeaderText="Fecha entrada" />
-                    <asp:BoundField DataField="fechaSalida" HeaderText="Fecha salida" />
+                    <asp:BoundField DataField="fechaEntrada" HeaderText="Fecha entrada" DataFormatString="{0:d}" />
+                    <asp:BoundField DataField="fechaSalida" HeaderText="Fecha salida" DataFormatString="{0:d}" />
                     <asp:BoundField HeaderText="Costo" DataField="costoTotal" />
                     <asp:TemplateField HeaderText="Estado"></asp:TemplateField>
                     <asp:TemplateField>

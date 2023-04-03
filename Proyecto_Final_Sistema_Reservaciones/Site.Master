@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    <title> - Resevaciones</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -47,13 +47,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Nombre de la aplicación</a>
+                    <a class="navbar-brand" runat="server" href="~/">Reservaciones</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/About">Acerca de</a></li>
-                        <li><a runat="server" href="~/Contact">Contacto</a></li>
+                        <li><a runat="server" href="~/Pages/Mis_Reservaciones.aspx">Mis reservaciones</a></li>
+                        <li><a id="Gestionar_R" runat="server" href="~/About" visible="False">Gestionar reservaciones</a></li>
+                        <li><a id="Gestionar_H" runat="server" href="~/Contact" visible="False">Gestionar habitaciones</a></li>
+                        <li><asp:LinkButton ID="LBTN_Cerrar_Sesion" runat="server" Visible="False" OnClick="LBTN_Cerrar_Sesion_Click">Cerrar sesion</asp:LinkButton></li>
+                        <li><a id="Nombre" runat="server" visible="true" enableviewstate="false"></a></li>
+
                     </ul>
                 </div>
             </div>
@@ -63,7 +66,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+                <p>&copy; <%: DateTime.Now.Year %></p>
             </footer>
         </div>
 

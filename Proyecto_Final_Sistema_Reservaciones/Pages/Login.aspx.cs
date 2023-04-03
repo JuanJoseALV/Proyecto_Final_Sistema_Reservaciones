@@ -1,4 +1,5 @@
-﻿using Proyecto_Final_Sistema_Reservaciones.Data;
+﻿using Proyecto_Final_Sistema_Reservaciones.Class;
+using Proyecto_Final_Sistema_Reservaciones.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
         protected void Btn_Sesion_Click(object sender, EventArgs e)
         {
+            bool error = true;
             try
             {
 
@@ -24,10 +26,15 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 string clave = Txt_Contraseña.Text;
                 using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                 {
-                    spConsultar_Usuarios_Result provincia = db.spConsultar_Usuarios(email, clave).FirstOrDefault();
-                    if (provincia != null)
+                    spConsultar_Usuarios_Result Usuario = db.spConsultar_Usuarios(email, clave).FirstOrDefault();
+                    if (Usuario != null)
                     {
-                        Response.Redirect("~/Pages/Mis_reservaciones.aspx", false);
+                        Usuarios Usu = new Usuarios();
+                        Usu.Nombre_Completo = Usuario.nombreCompleto;
+                        Usu.Id = Usuario.idPersona;
+                        Usu.Rol = Usuario.esEmpleado;
+                        Session["Usuario_Res"] = Usu;
+                        error = false;
                     }
                     else
                     {
@@ -40,6 +47,10 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             catch (Exception)
             {
                 Response.Redirect("~/Pages/Error.aspx");
+            }
+            if (!error)
+            {
+                Response.Redirect("~/Pages/Mis_Reservaciones.aspx", false);
             }
         }
     }

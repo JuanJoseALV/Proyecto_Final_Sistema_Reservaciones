@@ -14,6 +14,10 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Usuario_Res"] == null)
+            {
+                Response.Redirect("~/Pages/Login.aspx");
+            }
             try
             {
                 if (IsPostBack == false)

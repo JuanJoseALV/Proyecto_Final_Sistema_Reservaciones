@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container" style="margin-top: 10%; margin-right: auto; margin-bottom: auto; margin-left: 30%;">
         <div class="mb-3">
+            <asp:Label ID="Label2" runat="server" Text="Login" ForeColor="Blue" Font-Size="X-Large" ></asp:Label>
+        </div>
+        <div class="mb-3">
             <asp:Label ID="Label1" runat="server" CssClass="alert-danger" Visible="false">Correo o contraseña invalidos</asp:Label>
         </div>
         <div class="mb-3">

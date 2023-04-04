@@ -3,7 +3,6 @@ using Proyecto_Final_Sistema_Reservaciones.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
-using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace Proyecto_Final_Sistema_Reservaciones.Pages
 {
-    public partial class Mis_Reservaciones1 : System.Web.UI.Page
+    public partial class Gestionar_Reservaciones : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,11 +23,9 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 Usuarios Usu = (Usuarios)Session["Usuario_Res"];
                 using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                 {
-                    ObjectResult<spConsultar_Reservaciones_Result> Reservaciones = db.spConsultar_Reservaciones(Usu.Id);
-                    GVW_Reservaciones.DataSource = Reservaciones;
-                    GVW_Reservaciones.DataBind();
-                    
-
+                    ObjectResult<spGestionar_Reservaciones_Result> Reservaciones = db.spGestionar_Reservaciones(Usu.Id);
+                    GVW_Gestionar.DataSource = Reservaciones;
+                    GVW_Gestionar.DataBind();
                 }
             }
             catch (Exception ex)
@@ -36,7 +33,8 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 Response.Redirect("~/Pages/Error.aspx");
             }
         }
-        protected void GVW_Reservaciones_RowDataBound(object sender, GridViewRowEventArgs e)
+
+        protected void GVW_Gestionar_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -45,28 +43,25 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 DateTime Fecha_Actual = DateTime.Now;
                 if (estado == "I")
                 {
-                    e.Row.Cells[5].Text = "Cancelada";
+                    e.Row.Cells[6].Text = "Cancelada";
                 }
                 else if (estado == "A")
                 {
                     if (Fecha_Estrada < Fecha_Actual)
                     {
-                        e.Row.Cells[5].Text = "Finalizada";
+                        e.Row.Cells[6].Text = "Finalizada";
                     }
                     else if (Fecha_Estrada <= Fecha_Actual)
                     {
-                        e.Row.Cells[5].Text = "En proceso";
+                        e.Row.Cells[6].Text = "En proceso";
                     }
                     else if (Fecha_Estrada >= Fecha_Actual)
                     {
-                        e.Row.Cells[5].Text = "En espera";
+                        e.Row.Cells[6].Text = "En espera";
                     }
                 }
-               
+
             }
         }
-
-        
-        
     }
 }

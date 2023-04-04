@@ -1,10 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Detalle_Reservacion.aspx.cs" Inherits="Proyecto_Final_Sistema_Reservaciones.Pages.Detalle_Reservacion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:GridView runat="server" AutoGenerateColumns="False" ID="GVW_Detalle">
+    <asp:GridView runat="server" AutoGenerateColumns="False" ID="GVW_Detalle" Font-Bold="False" HorizontalAlign="Center" OnSelectedIndexChanged="GVW_Detalle_SelectedIndexChanged">
         <Columns>
-            <asp:BoundField DataField="idReservacion" HeaderText="# Reservacion" />
-            <asp:BoundField DataField="nombre" HeaderText="Hotel" />
+            <asp:BoundField DataField="idReservacion" HeaderText="# Reservacion" >
+            <HeaderStyle Font-Bold="True" />
+            </asp:BoundField>
+            <asp:BoundField DataField="nombre" HeaderText="Hotel" >
+            <HeaderStyle Font-Bold="True" />
+            </asp:BoundField>
             <asp:BoundField DataField="numeroHabitacion" HeaderText="Numero de habitacion" />
             <asp:BoundField DataField="nombreCompleto" HeaderText="Cliente" />
             <asp:BoundField DataField="fechaEntrada" HeaderText="Fecha entrada" />

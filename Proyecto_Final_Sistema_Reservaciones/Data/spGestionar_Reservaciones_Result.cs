@@ -11,7 +11,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
 {
     using System;
     
-    public partial class spConsultar_Reservaciones_ID_Result
+    public partial class spGestionar_Reservaciones_Result
     {
         public int idReservacion { get; set; }
         public string nombre { get; set; }
@@ -22,5 +22,6 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
         public int numeroNinhos { get; set; }
         public int numeroAdultos { get; set; }
         public decimal costoTotal { get; set; }
+        public string estado { get; set; }
     }
 }

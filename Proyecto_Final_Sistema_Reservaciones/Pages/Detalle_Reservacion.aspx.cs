@@ -41,5 +41,10 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         {
             Response.Redirect("~/Pages/Mis_Reservaciones.aspx");
         }
+
+        protected void GVW_Detalle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

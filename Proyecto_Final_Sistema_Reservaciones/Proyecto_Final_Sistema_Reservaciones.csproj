@@ -153,6 +153,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Pages\Detalle_Reservacion.aspx" />
     <Content Include="Pages\Error.aspx" />
+    <Content Include="Pages\Gestionar_Reservaciones.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Mis_Reservaciones.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -231,6 +232,9 @@
     <Compile Include="Data\spConsultar_Usuarios_Result.cs">
       <DependentUpon>Model_Reservacion.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\spGestionar_Reservaciones_Result.cs">
+      <DependentUpon>Model_Reservacion.tt</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -254,6 +258,13 @@
     </Compile>
     <Compile Include="Pages\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Gestionar_Reservaciones.aspx.cs">
+      <DependentUpon>Gestionar_Reservaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Gestionar_Reservaciones.aspx.designer.cs">
+      <DependentUpon>Gestionar_Reservaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

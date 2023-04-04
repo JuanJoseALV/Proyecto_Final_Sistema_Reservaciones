@@ -11,7 +11,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 {
 
 
-    public partial class Mis_Reservaciones1
+    public partial class Gestionar_Reservaciones
     {
 
         /// <summary>
@@ -33,12 +33,12 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
 
         /// <summary>
-        /// Control GVW_Reservaciones.
+        /// Control GVW_Gestionar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVW_Reservaciones;
+        protected global::System.Web.UI.WebControls.GridView GVW_Gestionar;
     }
 }

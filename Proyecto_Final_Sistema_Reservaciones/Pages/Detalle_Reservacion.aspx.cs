@@ -16,73 +16,48 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuarios Usu = (Usuarios)Session["Usuario_Res"];
-            if (Session["Usuario_Res"] == null)
+            if (Usu == null)
             {
                 Response.Redirect("~/Pages/Login.aspx");
             }
-            if(Page.IsPostBack==false)
+
+            int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
+
+            try
             {
-                if (Usu.Rol == true)
+                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                 {
-                    try
+                    if (Usu.Rol == true)
                     {
-                        int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
-                        using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                        ObjectResult<spConsultar_Reservaciones_ID_Result> Reservaciones = db.spConsultar_Reservaciones_ID(idReservacion);
+                        dtl_Detalle.DataSource = Reservaciones;
+                        dtl_Detalle.DataBind();
+                    }
+                    else
+                    {
+                        spConsultar_Reservaciones_ID_Persona_Result Reservaciones = db.spConsultar_Reservaciones_ID_Persona(idReservacion, Usu.Nombre_Completo).FirstOrDefault();
+                        if (Reservaciones == null)
                         {
-                            ObjectResult<spConsultar_Reservaciones_ID_Result> Reservaciones = db.spConsultar_Reservaciones_ID(idReservacion);
-                            dtl_Detalle.DataSource = Reservaciones;
+                            Response.Redirect("~/Pages/Mis_Reservaciones.aspx", false);
+                        }
+                        else
+                        {
+                            ObjectResult<spConsultar_Reservaciones_ID_Result> Reservaciones1 = db.spConsultar_Reservaciones_ID(idReservacion);
+                            dtl_Detalle.DataSource = Reservaciones1;
                             dtl_Detalle.DataBind();
-
-                            ObjectResult<spConsultar_Bitacora_Result> bitacora = db.spConsultar_Bitacora(idReservacion);
-                            GV_Bit.DataSource = bitacora;
-                            GV_Bit.DataBind();
-
                         }
                     }
-                    catch (Exception)
-                    {
-                        Response.Redirect("~/Pages/Error.aspx");
-                    }
+
+                    ObjectResult<spConsultar_Bitacora_Result> bitacora = db.spConsultar_Bitacora(idReservacion);
+                    GV_Bit.DataSource = bitacora;
+                    GV_Bit.DataBind();
                 }
-                else
-                {
-                    try
-                    {
-                        int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
-                        using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
-                        {
-                            spConsultar_Reservaciones_ID_Persona_Result Reservaciones = db.spConsultar_Reservaciones_ID_Persona(idReservacion,Usu.Nombre_Completo).FirstOrDefault();
-                            if (Reservaciones == null )
-                            {
-                                Response.Redirect("~/Pages/Mis_Reservaciones.aspx",false);
-                            }
-                            else
-                            {
-                                using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
-                                {
-                                    ObjectResult<spConsultar_Reservaciones_ID_Result> Reservaciones1 = db.spConsultar_Reservaciones_ID(idReservacion);
-                                    dtl_Detalle.DataSource = Reservaciones1;
-                                    dtl_Detalle.DataBind();
+            }
+            catch (Exception)
+            {
+                Response.Redirect("~/Pages/Error.aspx");
+            }
 
-                                    ObjectResult<spConsultar_Bitacora_Result> bitacora = db.spConsultar_Bitacora(idReservacion);
-                                    GV_Bit.DataSource = bitacora;
-                                    GV_Bit.DataBind();
-
-                                }
-                            }
-                            
-                           
-                            
-                            
-
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        Response.Redirect("~/Pages/Error.aspx");
-                    }
-                }
-            } 
         }
 
         protected void Button1_Click(object sender, EventArgs e)

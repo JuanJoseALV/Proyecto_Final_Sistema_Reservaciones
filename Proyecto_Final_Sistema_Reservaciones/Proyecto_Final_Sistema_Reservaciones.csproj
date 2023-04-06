@@ -223,6 +223,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_Reservacion.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\spConsultar_Bitacora_Result.cs">
+      <DependentUpon>Model_Reservacion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\spConsultar_Reservaciones_ID_Persona_Result.cs">
+      <DependentUpon>Model_Reservacion.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\spConsultar_Reservaciones_ID_Result.cs">
       <DependentUpon>Model_Reservacion.tt</DependentUpon>
     </Compile>

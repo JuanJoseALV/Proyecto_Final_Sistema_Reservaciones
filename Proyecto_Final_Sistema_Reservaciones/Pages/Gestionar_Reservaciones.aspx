@@ -12,12 +12,36 @@
             <asp:GridView ID="GVW_Gestionar" runat="server" AutoGenerateColumns="False" HorizontalAlign="Left" OnRowDataBound="GVW_Gestionar_RowDataBound" Width="640px">
                 <AlternatingRowStyle BackColor="Silver" />
                 <Columns>
-                    <asp:BoundField DataField="idReservacion" HeaderText="# Reservacion" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="nombreCompleto" HeaderText="Cliente" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left"/>
-                    <asp:BoundField DataField="nombre" HeaderText="Hotel" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left"/>
-                    <asp:BoundField DataField="fechaEntrada" HeaderText="Fecha Entrada" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center"/>
-                    <asp:BoundField DataField="fechaSalida" HeaderText="Fecha Salida" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" />
-                    <asp:BoundField DataField="costoTotal" HeaderText="Costo" HeaderStyle-HorizontalAlign="Right" ItemStyle-HorizontalAlign="Right" />
+                    <asp:BoundField DataField="idReservacion" HeaderText="# Reservacion" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" >
+<HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="nombreCompleto" HeaderText="Cliente" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left">
+<HeaderStyle HorizontalAlign="Left"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Left"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="nombre" HeaderText="Hotel" HeaderStyle-HorizontalAlign="left" ItemStyle-HorizontalAlign="left">
+<HeaderStyle HorizontalAlign="Left"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Left"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="fechaEntrada" HeaderText="Fecha Entrada" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}">
+<HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="fechaSalida" HeaderText="Fecha Salida" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:dd/MM/yyyy}" >
+<HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
+                    </asp:BoundField>
+                    <asp:BoundField DataField="costoTotal" HeaderText="Costo" HeaderStyle-HorizontalAlign="Right" ItemStyle-HorizontalAlign="Right" DataFormatString="${0:#,0.00}" >
+<HeaderStyle HorizontalAlign="Right"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Right"></ItemStyle>
+                    </asp:BoundField>
                     <asp:TemplateField HeaderText="Estado"></asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>

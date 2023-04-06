@@ -13,6 +13,8 @@
                 <AlternatingRowStyle BackColor="Silver" />
                 <Columns>
                     <asp:BoundField  DataField="idReservacion" HeaderText="# de reservacion" HeaderStyle-HorizontalAlign="Center">
+<HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
                     <asp:BoundField DataField="nombre" HeaderText="Hotel">
@@ -26,7 +28,9 @@
                         <HeaderStyle Font-Bold="True" HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
-                    <asp:BoundField HeaderText="Costo" DataField="costoTotal" HeaderStyle-HorizontalAlign="Center">
+                    <asp:BoundField HeaderText="Costo" DataField="costoTotal" HeaderStyle-HorizontalAlign="Center" DataFormatString="${0:#,0.00}">
+<HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+
                         <ItemStyle HorizontalAlign="Right" />
                     </asp:BoundField>
                     <asp:TemplateField HeaderText="Estado">

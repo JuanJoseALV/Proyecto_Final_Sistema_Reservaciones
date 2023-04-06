@@ -28,6 +28,15 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
         }
     
     
+        public virtual ObjectResult<spConsultar_Bitacora_Result> spConsultar_Bitacora(Nullable<int> id_Reservacion)
+        {
+            var id_ReservacionParameter = id_Reservacion.HasValue ?
+                new ObjectParameter("id_Reservacion", id_Reservacion) :
+                new ObjectParameter("id_Reservacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Bitacora_Result>("spConsultar_Bitacora", id_ReservacionParameter);
+        }
+    
         public virtual ObjectResult<spConsultar_Reservaciones_Result> spConsultar_Reservaciones(Nullable<int> id_Persona)
         {
             var id_PersonaParameter = id_Persona.HasValue ?
@@ -44,6 +53,19 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
                 new ObjectParameter("id_Reservacion", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Reservaciones_ID_Result>("spConsultar_Reservaciones_ID", id_ReservacionParameter);
+        }
+    
+        public virtual ObjectResult<spConsultar_Reservaciones_ID_Persona_Result> spConsultar_Reservaciones_ID_Persona(Nullable<int> id_Reservacion, string nombre_Usuario)
+        {
+            var id_ReservacionParameter = id_Reservacion.HasValue ?
+                new ObjectParameter("id_Reservacion", id_Reservacion) :
+                new ObjectParameter("id_Reservacion", typeof(int));
+    
+            var nombre_UsuarioParameter = nombre_Usuario != null ?
+                new ObjectParameter("Nombre_Usuario", nombre_Usuario) :
+                new ObjectParameter("Nombre_Usuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Reservaciones_ID_Persona_Result>("spConsultar_Reservaciones_ID_Persona", id_ReservacionParameter, nombre_UsuarioParameter);
         }
     
         public virtual ObjectResult<spConsultar_Usuarios_Result> spConsultar_Usuarios(string email, string clave)

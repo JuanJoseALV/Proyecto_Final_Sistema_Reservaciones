@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container" style="margin: 6%">
         <div class="mb-3">
-            <asp:Label ID="Label1" runat="server" Text="Mis reservaciones" ForeColor="Blue" Font-Size="X-Large"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="Mi reservacion" ForeColor="Blue" Font-Size="X-Large"></asp:Label>
         </div>
         <div style="margin-top: 2%">
             <asp:LinkButton ID="LinkButton1" runat="server">Nueva reservacion</asp:LinkButton>

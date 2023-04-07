@@ -15,7 +15,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
     {
         String Juan = "PV_ProyectoFinalEntities";
         String Wes = "PV_ProyectoFinalEntities1";
-
+        DateTime Fecha_Compu = DateTime.Now;
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuarios Usu = (Usuarios)Session["Usuario_Res"];
@@ -28,13 +28,30 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
             try
             {
-                using (PV_ProyectoFinalEntities1 db = new PV_ProyectoFinalEntities1())
+                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                 {
                     if (Usu.Rol == true)
                     {
-                        ObjectResult<spConsultar_Reservaciones_ID_Result> Reservaciones = db.spConsultar_Reservaciones_ID(idReservacion);
-                        dtl_Detalle.DataSource = Reservaciones;
-                        dtl_Detalle.DataBind();
+                        List<spConsultar_Reservaciones_ID_Result> Reservaciones = db.spConsultar_Reservaciones_ID(idReservacion).ToList();
+                        foreach (spConsultar_Reservaciones_ID_Result reserva in Reservaciones)
+                        {
+                            string estado = reserva.estado;
+                            DateTime fechaSalida = reserva.fechaSalida;
+                            DateTime fechaEntrada = reserva.fechaEntrada;
+
+                            if (estado == "A" && Fecha_Compu < fechaSalida)
+                            {
+                                BTN_Editar.Visible = true;
+                            }
+                            if (estado == "A" && Fecha_Compu < fechaEntrada)
+                            {
+                                BTN_Cancelar.Visible = true;
+
+                            }
+
+                            dtl_Detalle.DataSource = Reservaciones;
+                            dtl_Detalle.DataBind();
+                        }
                     }
                     else
                     {
@@ -45,9 +62,21 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                         }
                         else
                         {
-                            ObjectResult<spConsultar_Reservaciones_ID_Result> Reservaciones1 = db.spConsultar_Reservaciones_ID(idReservacion);
-                            dtl_Detalle.DataSource = Reservaciones1;
-                            dtl_Detalle.DataBind();
+                            List<spConsultar_Reservaciones_ID_Result> Reservaciones1 = db.spConsultar_Reservaciones_ID(idReservacion).ToList();
+                            foreach (spConsultar_Reservaciones_ID_Result reserva in Reservaciones1)
+                            {
+                                string estado = reserva.estado;
+                                DateTime fechaSalida = reserva.fechaSalida;
+                                DateTime fechaEntrada = reserva.fechaEntrada;
+
+                                if (estado == "A" && Fecha_Compu < fechaEntrada)
+                                {
+                                    BTN_Editar.Visible = true;
+                                    BTN_Cancelar.Visible = true;
+                                }
+                                dtl_Detalle.DataSource = Reservaciones1;
+                                dtl_Detalle.DataBind();
+                            }
                         }
                     }
 

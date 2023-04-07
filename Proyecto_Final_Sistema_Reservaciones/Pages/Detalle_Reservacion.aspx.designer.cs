@@ -24,31 +24,31 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         protected global::System.Web.UI.WebControls.DataList dtl_Detalle;
 
         /// <summary>
-        /// Control Button1.
+        /// Control BTN_Editar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button BTN_Editar;
 
         /// <summary>
-        /// Control Button2.
+        /// Control BTN_Cancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Button BTN_Cancelar;
 
         /// <summary>
-        /// Control Button3.
+        /// Control BTN_Regresar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Button BTN_Regresar;
 
         /// <summary>
         /// Control Label1.

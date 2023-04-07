@@ -22,5 +22,6 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
         public int numeroNinhos { get; set; }
         public int numeroAdultos { get; set; }
         public decimal costoTotal { get; set; }
+        public string estado { get; set; }
     }
 }

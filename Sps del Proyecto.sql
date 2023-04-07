@@ -77,7 +77,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create PROCEDURE [dbo].[spConsultar_Reservaciones_ID]
+Alter PROCEDURE [dbo].[spConsultar_Reservaciones_ID]
 	@id_Reservacion INT
 AS	
 BEGIN
@@ -90,7 +90,8 @@ BEGIN
 		r.fechaSalida,
 		r.numeroNinhos,
 		r.numeroAdultos,
-		r.costoTotal
+		r.costoTotal,
+		r.estado
 		
 	FROM Persona pe INNER JOIN Reservacion r on pe.idPersona = r.idPersona
 						INNER JOIN Habitacion h on r.idHabitacion = h.idHabitacion

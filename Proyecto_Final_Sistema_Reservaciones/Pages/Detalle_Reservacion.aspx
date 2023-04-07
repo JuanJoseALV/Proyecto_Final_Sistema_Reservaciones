@@ -63,9 +63,9 @@
         </div>
     </div>
     <div style="margin-top: 2% ;">
-        <asp:Button ID="Button1" runat="server" Text="Editar reservacion"/>
-        <asp:Button ID="Button2" runat="server" Text="Cancelar reservacion"  />
-        <asp:Button ID="Button3" runat="server" Text="Regresar" OnClick="Button1_Click" />
+        <asp:Button ID="BTN_Editar" runat="server" Text="Editar reservacion" Visible="False" />
+        <asp:Button ID="BTN_Cancelar" runat="server" Text="Cancelar reservacion"  Visible="False" />
+        <asp:Button ID="BTN_Regresar" runat="server" Text="Regresar" OnClick="Button1_Click" />
     </div>
     <div style="margin-top:3%">
          <asp:Label ID="Label1" runat="server" Text="Lista de acciones realizadas" ForeColor="Blue" Font-Size="X-Large"></asp:Label>

@@ -10,7 +10,10 @@ using System.Web.UI.WebControls;
 namespace Proyecto_Final_Sistema_Reservaciones.Pages
 {
     public partial class Mis_Reservaciones : System.Web.UI.Page
-    {
+    { 
+        String Juan = "PV_ProyectoFinalEntities";
+        String Wes = "PV_ProyectoFinalEntities1";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -24,7 +27,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
                 string email = Txt_Email.Text;
                 string clave = Txt_Contraseña.Text;
-                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                using (PV_ProyectoFinalEntities1 db = new PV_ProyectoFinalEntities1())
                 {
                     spConsultar_Usuarios_Result Usuario = db.spConsultar_Usuarios(email, clave).FirstOrDefault();
                     if (Usuario != null)

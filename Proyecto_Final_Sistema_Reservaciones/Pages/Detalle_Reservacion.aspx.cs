@@ -13,6 +13,9 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 {
     public partial class Detalle_Reservacion : System.Web.UI.Page
     {
+        String Juan = "PV_ProyectoFinalEntities";
+        String Wes = "PV_ProyectoFinalEntities1";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuarios Usu = (Usuarios)Session["Usuario_Res"];
@@ -25,7 +28,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
             try
             {
-                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                using (PV_ProyectoFinalEntities1 db = new PV_ProyectoFinalEntities1())
                 {
                     if (Usu.Rol == true)
                     {

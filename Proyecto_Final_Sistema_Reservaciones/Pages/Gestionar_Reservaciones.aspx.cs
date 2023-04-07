@@ -12,6 +12,10 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 {
     public partial class Gestionar_Reservaciones : System.Web.UI.Page
     {
+
+        String Juan = "PV_ProyectoFinalEntities";
+        String Wes = "PV_ProyectoFinalEntities1";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario_Res"] == null)
@@ -21,7 +25,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             try
             {
                 Usuarios Usu = (Usuarios)Session["Usuario_Res"];
-                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                using (PV_ProyectoFinalEntities1 db = new PV_ProyectoFinalEntities1())
                 {
                     ObjectResult<spGestionar_Reservaciones_Result> Reservaciones = db.spGestionar_Reservaciones(Usu.Id);
                     GVW_Gestionar.DataSource = Reservaciones;

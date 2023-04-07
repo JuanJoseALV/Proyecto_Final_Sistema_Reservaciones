@@ -131,6 +131,16 @@
       <DependentUpon>Model_Reservacion.edmx</DependentUpon>
       <LastGenOutput>Model_Reservacion.cs</LastGenOutput>
     </Content>
+    <Content Include="Data\Model_Reservaciones1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_Reservaciones1.edmx</DependentUpon>
+      <LastGenOutput>Model_Reservaciones1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\Model_Reservaciones1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model_Reservaciones1.edmx</DependentUpon>
+      <LastGenOutput>Model_Reservaciones1.cs</LastGenOutput>
+    </Content>
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -149,6 +159,13 @@
     </EntityDeploy>
     <Content Include="Data\Model_Reservacion.edmx.diagram">
       <DependentUpon>Model_Reservacion.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Data\Model_Reservaciones1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_Reservaciones1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\Model_Reservaciones1.edmx.diagram">
+      <DependentUpon>Model_Reservaciones1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Pages\Detalle_Reservacion.aspx" />
@@ -223,23 +240,38 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_Reservacion.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\Model_Reservaciones1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_Reservaciones1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Model_Reservaciones1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_Reservaciones1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Model_Reservaciones1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_Reservaciones1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Data\spConsultar_Bitacora_Result.cs">
-      <DependentUpon>Model_Reservacion.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Reservaciones_ID_Persona_Result.cs">
-      <DependentUpon>Model_Reservacion.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Reservaciones_ID_Result.cs">
-      <DependentUpon>Model_Reservacion.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Reservaciones_Result.cs">
-      <DependentUpon>Model_Reservacion.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Usuarios_Result.cs">
-      <DependentUpon>Model_Reservacion.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spGestionar_Reservaciones_Result.cs">
-      <DependentUpon>Model_Reservacion.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones1.tt</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

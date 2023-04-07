@@ -11,13 +11,17 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
 {
     using System;
     
-    public partial class spConsultar_Reservaciones_Result
+    public partial class spFiltro_Gestionar_Reservaciones_Result
     {
         public int idReservacion { get; set; }
+        public string nombre { get; set; }
+        public string numeroHabitacion { get; set; }
+        public string nombreCompleto { get; set; }
         public System.DateTime fechaEntrada { get; set; }
         public System.DateTime fechaSalida { get; set; }
+        public int numeroNinhos { get; set; }
+        public int numeroAdultos { get; set; }
         public decimal costoTotal { get; set; }
         public string estado { get; set; }
-        public string nombre { get; set; }
     }
 }

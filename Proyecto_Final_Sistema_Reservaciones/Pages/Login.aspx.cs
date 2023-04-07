@@ -29,7 +29,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 string clave = Txt_Contraseña.Text;
                 using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                 {
-                    spConsultar_Usuarios_Result Usuario = db.spConsultar_Usuarios(email, clave).FirstOrDefault();
+                    spLogin_Result Usuario = db.spLogin(email, clave).FirstOrDefault();
                     if (Usuario != null)
                     {
                         Usuarios Usu = new Usuarios();

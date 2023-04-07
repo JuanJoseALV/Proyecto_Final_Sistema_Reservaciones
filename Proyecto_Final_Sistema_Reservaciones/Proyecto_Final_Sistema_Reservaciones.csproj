@@ -258,19 +258,25 @@
     <Compile Include="Data\spConsultar_Bitacora_Result.cs">
       <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\spConsultar_Reservaciones_ID_Persona_Result.cs">
+    <Compile Include="Data\spConsultar_Mis_Reservaciones_Result.cs">
       <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Reservaciones_ID_Result.cs">
       <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\spConsultar_Reservaciones_Result.cs">
-      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\spConsultar_Usuarios_Result.cs">
       <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\spGestionar_Reservaciones_Result.cs">
+    <Compile Include="Data\spFiltro_Gestionar_Reservaciones_Result.cs">
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\spGestionar_Reservaciones_ID_Result.cs">
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\spLogin_Result.cs">
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\spValidar_Reservaciones_Persona_Result.cs">
       <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">

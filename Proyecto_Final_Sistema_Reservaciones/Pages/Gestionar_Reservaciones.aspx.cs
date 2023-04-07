@@ -1,4 +1,5 @@
-﻿using Proyecto_Final_Sistema_Reservaciones.Class;
+﻿using Newtonsoft.Json.Linq;
+using Proyecto_Final_Sistema_Reservaciones.Class;
 using Proyecto_Final_Sistema_Reservaciones.Data;
 using System;
 using System.Collections.Generic;
@@ -22,20 +23,26 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             {
                 Response.Redirect("~/Pages/Login.aspx");
             }
-            try
+            if (Page.IsPostBack == false)
             {
-                Usuarios Usu = (Usuarios)Session["Usuario_Res"];
-                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                try
                 {
-                    ObjectResult<spGestionar_Reservaciones_Result> Reservaciones = db.spGestionar_Reservaciones(Usu.Id);
-                    GVW_Gestionar.DataSource = Reservaciones;
-                    GVW_Gestionar.DataBind();
+                    Usuarios Usu = (Usuarios)Session["Usuario_Res"];
+                    DL_Clientes.Items.Add(new ListItem("Selecciona una opción...", "-1"));
+
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                    {
+                        ObjectResult<spGestionar_Reservaciones_ID_Result> Reservaciones = db.spGestionar_Reservaciones_ID(Usu.Id);
+                        GVW_Gestionar.DataSource = Reservaciones;
+                        GVW_Gestionar.DataBind();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Redirect("~/Pages/Error.aspx");
                 }
             }
-            catch (Exception ex)
-            {
-                Response.Redirect("~/Pages/Error.aspx");
-            }
+           
         }
 
         protected void GVW_Gestionar_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -66,6 +73,47 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 }
 
             }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+          
+            try
+            {
+
+                DateTime Fecha_Entrada = Convert.ToDateTime(TXT_Fecha_En.Text);
+                DateTime Fecha_Salida = Convert.ToDateTime(TXT_Fecha_Sal.Text);
+                string Nombre =DL_Clientes.SelectedItem.Text;
+                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                {
+                    ObjectResult<spFiltro_Gestionar_Reservaciones_Result> Filtro =  db.spFiltro_Gestionar_Reservaciones(Nombre,Fecha_Entrada,Fecha_Salida);
+                    GVW_Gestionar.DataSource = Filtro;
+                    GVW_Gestionar.DataBind();
+
+                }
+
+            }
+            catch (Exception)
+            {
+                Response.Redirect("~/Pages/Error.aspx");
+            }
+           
+        }
+
+        protected void DL_Clientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DL_Clientes.SelectedValue != "-1")
+            {
+                var lista = new List<ListItem>();
+                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                {
+                    lista = db.spConsultar_Usuarios().Select(_ => new ListItem { Text = _.nombreCompleto, Value = _.idPersona.ToString() }).ToList();
+                }
+
+                DL_Clientes.DataSource = lista;
+                DL_Clientes.DataBind();
+            }
+               
         }
     }
 }

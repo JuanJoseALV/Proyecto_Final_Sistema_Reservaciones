@@ -37,13 +37,13 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Bitacora_Result>("spConsultar_Bitacora", id_ReservacionParameter);
         }
     
-        public virtual ObjectResult<spConsultar_Reservaciones_Result> spConsultar_Reservaciones(Nullable<int> id_Persona)
+        public virtual ObjectResult<spConsultar_Mis_Reservaciones_Result> spConsultar_Mis_Reservaciones(Nullable<int> id_Persona)
         {
             var id_PersonaParameter = id_Persona.HasValue ?
                 new ObjectParameter("id_Persona", id_Persona) :
                 new ObjectParameter("id_Persona", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Reservaciones_Result>("spConsultar_Reservaciones", id_PersonaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Mis_Reservaciones_Result>("spConsultar_Mis_Reservaciones", id_PersonaParameter);
         }
     
         public virtual ObjectResult<spConsultar_Reservaciones_ID_Result> spConsultar_Reservaciones_ID(Nullable<int> id_Reservacion)
@@ -55,7 +55,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Reservaciones_ID_Result>("spConsultar_Reservaciones_ID", id_ReservacionParameter);
         }
     
-        public virtual ObjectResult<spConsultar_Reservaciones_ID_Persona_Result> spConsultar_Reservaciones_ID_Persona(Nullable<int> id_Reservacion, string nombre_Usuario)
+        public virtual ObjectResult<spValidar_Reservaciones_Persona_Result> spValidar_Reservaciones_Persona(Nullable<int> id_Reservacion, string nombre_Usuario)
         {
             var id_ReservacionParameter = id_Reservacion.HasValue ?
                 new ObjectParameter("id_Reservacion", id_Reservacion) :
@@ -65,7 +65,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
                 new ObjectParameter("Nombre_Usuario", nombre_Usuario) :
                 new ObjectParameter("Nombre_Usuario", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Reservaciones_ID_Persona_Result>("spConsultar_Reservaciones_ID_Persona", id_ReservacionParameter, nombre_UsuarioParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spValidar_Reservaciones_Persona_Result>("spValidar_Reservaciones_Persona", id_ReservacionParameter, nombre_UsuarioParameter);
         }
     
         public virtual ObjectResult<spConsultar_Usuarios_Result> spConsultar_Usuarios(string email, string clave)
@@ -81,13 +81,13 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Usuarios_Result>("spConsultar_Usuarios", emailParameter, claveParameter);
         }
     
-        public virtual ObjectResult<spGestionar_Reservaciones_Result> spGestionar_Reservaciones(Nullable<int> id_Persona)
+        public virtual ObjectResult<spGestionar_Reservaciones_ID_Result> spGestionar_Reservaciones_ID(Nullable<int> id_Persona)
         {
             var id_PersonaParameter = id_Persona.HasValue ?
                 new ObjectParameter("id_Persona", id_Persona) :
                 new ObjectParameter("id_Persona", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGestionar_Reservaciones_Result>("spGestionar_Reservaciones", id_PersonaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGestionar_Reservaciones_ID_Result>("spGestionar_Reservaciones_ID", id_PersonaParameter);
         }
     }
 }

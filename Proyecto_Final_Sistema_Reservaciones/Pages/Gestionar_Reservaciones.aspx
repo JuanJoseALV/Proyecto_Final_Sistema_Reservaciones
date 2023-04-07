@@ -5,6 +5,13 @@
         <div class="mb-3">
             <asp:Label ID="Label1" runat="server" Text="Gestionar reservaciones" ForeColor="Blue" Font-Size="X-Large"></asp:Label>
         </div>
+        <div>
+            <asp:DropDownList ID="DL_Clientes" runat="server" DataTextField="Text" DataValueField="Value" OnSelectedIndexChanged="DL_Clientes_SelectedIndexChanged">
+            </asp:DropDownList>
+            <asp:TextBox ID="TXT_Fecha_En" runat="server" TextMode="DateTime" >dd/MM/yyy</asp:TextBox>
+            <asp:TextBox ID="TXT_Fecha_Sal" runat="server" TextMode="DateTime">dd/MM/yyy</asp:TextBox>
+            <asp:Button ID="Button1" runat="server" Text="Filtrar" OnClick="Button1_Click" />
+        </div>
         <div style="margin-top: 2%">
             <asp:LinkButton ID="LinkButton1" runat="server" >Nueva reservacion</asp:LinkButton>
         </div>

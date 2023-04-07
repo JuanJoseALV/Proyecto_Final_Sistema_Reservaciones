@@ -1,38 +1,11 @@
 USE [PV_ProyectoFinal]
 GO
-/****** Object:  StoredProcedure [dbo].[spConsultar_Reservaciones_ID]    Script Date: 6/4/2023 16:27:21 ******/
+/****** Object:  StoredProcedure [dbo].[spConsultar_Bitacora]    Script Date: 7/4/2023 13:21:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create PROCEDURE [dbo].[spConsultar_Reservaciones_ID_Persona]
-	@id_Reservacion INT,
-	@Nombre_Usuario varchar(50)
-AS	
-BEGIN
-	SELECT
-		r.idReservacion,
-		ho.nombre,
-		h.numeroHabitacion,
-		pe.nombreCompleto,
-		r.fechaEntrada,
-		r.fechaSalida,
-		r.numeroNinhos,
-		r.numeroAdultos,
-		r.costoTotal
-		
-	FROM Persona pe INNER JOIN Reservacion r on pe.idPersona = r.idPersona
-						INNER JOIN Habitacion h on r.idHabitacion = h.idHabitacion
-						INNER JOIN Hotel ho on h.idHotel = ho.idHotel 	
-	WHERE r.idReservacion = @id_Reservacion and pe.nombreCompleto=@Nombre_Usuario
-END
-
-Go
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[spConsultar_Bitacora]
+ALTER PROCEDURE [dbo].[spConsultar_Bitacora]
 	@id_Reservacion INT
 AS	
 BEGIN
@@ -47,12 +20,12 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[spConsultar_Reservaciones]    Script Date: 6/4/2023 18:01:44 ******/
+/****** Object:  StoredProcedure [dbo].[spConsultar_Mis_Reservaciones]    Script Date: 7/4/2023 13:21:35 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create PROCEDURE [dbo].[spConsultar_Reservaciones]
+Create PROCEDURE [dbo].[spConsultar_Mis_Reservaciones]
 	@id_Persona INT
 AS	
 BEGIN
@@ -70,14 +43,13 @@ BEGIN
 	order by r.idReservacion desc;
 	
 END
-
 GO
-/****** Object:  StoredProcedure [dbo].[spConsultar_Reservaciones_ID]    Script Date: 6/4/2023 18:03:00 ******/
+/****** Object:  StoredProcedure [dbo].[spConsultar_Reservaciones_ID]    Script Date: 7/4/2023 13:21:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Alter PROCEDURE [dbo].[spConsultar_Reservaciones_ID]
+Create PROCEDURE [dbo].[spConsultar_Reservaciones_ID]
 	@id_Reservacion INT
 AS	
 BEGIN
@@ -100,13 +72,41 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[spConsultar_Usuarios]    Script Date: 6/4/2023 18:03:48 ******/
+/****** Object:  StoredProcedure [dbo].[spValidar_Reservaciones_Persona]    Script Date: 7/4/2023 13:22:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[spValidar_Reservaciones_Persona]
+	@id_Reservacion INT,
+	@Nombre_Usuario varchar(50)
+AS	
+BEGIN
+	SELECT
+		r.idReservacion,
+		ho.nombre,
+		h.numeroHabitacion,
+		pe.nombreCompleto,
+		r.fechaEntrada,
+		r.fechaSalida,
+		r.numeroNinhos,
+		r.numeroAdultos,
+		r.costoTotal
+		
+	FROM Persona pe INNER JOIN Reservacion r on pe.idPersona = r.idPersona
+						INNER JOIN Habitacion h on r.idHabitacion = h.idHabitacion
+						INNER JOIN Hotel ho on h.idHotel = ho.idHotel 	
+	WHERE r.idReservacion = @id_Reservacion and pe.nombreCompleto=@Nombre_Usuario
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[spLogin]    Script Date: 7/4/2023 13:23:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-Create PROCEDURE [dbo].[spConsultar_Usuarios]
+Create PROCEDURE [dbo].[spLogin]
 	@Email varchar(50),
 	@Clave varchar(50)
 
@@ -124,12 +124,12 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[spGestionar_Reservaciones]    Script Date: 6/4/2023 18:04:10 ******/
+/****** Object:  StoredProcedure [dbo].[spGestionar_Reservaciones_ID]    Script Date: 7/4/2023 13:23:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create PROCEDURE [dbo].[spGestionar_Reservaciones]
+Create PROCEDURE [dbo].[spGestionar_Reservaciones_ID]
 	@id_Persona INT
 AS	
 BEGIN
@@ -150,4 +150,32 @@ BEGIN
 	WHERE pe.idPersona != @id_Persona 
 	order by r.idReservacion desc;
 END
-
+GO
+/****** Object:  StoredProcedure [dbo].[spGestionar_Reservaciones_ID]    Script Date: 7/4/2023 13:46:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[spFiltro_Gestionar_Reservaciones]
+	@Nombre_Persona varchar(50),
+	@Fecha_Entrada datetime,
+	@Fecha_Salida datetime
+AS	
+BEGIN
+	SELECT
+		r.idReservacion,
+		ho.nombre,
+		h.numeroHabitacion,
+		pe.nombreCompleto,
+		r.fechaEntrada,
+		r.fechaSalida,
+		r.numeroNinhos,
+		r.numeroAdultos,
+		r.costoTotal,
+		r.estado
+	FROM Persona pe inner JOIN Reservacion r on pe.idPersona = r.idPersona
+						inner JOIN Habitacion h on r.idHabitacion = h.idHabitacion
+						inner JOIN Hotel ho on h.idHotel = ho.idHotel 	
+	WHERE pe.nombreCompleto = @Nombre_Persona or r.fechaEntrada BETWEEN @Fecha_Entrada AND @Fecha_Salida And r.fechaSalida BETWEEN @Fecha_Entrada AND @Fecha_Salida
+	order by r.idReservacion desc;
+END

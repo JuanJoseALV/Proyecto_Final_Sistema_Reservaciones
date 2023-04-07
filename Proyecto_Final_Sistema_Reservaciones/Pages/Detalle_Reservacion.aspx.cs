@@ -55,7 +55,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     }
                     else
                     {
-                        spConsultar_Reservaciones_ID_Persona_Result Reservaciones = db.spConsultar_Reservaciones_ID_Persona(idReservacion, Usu.Nombre_Completo).FirstOrDefault();
+                        spValidar_Reservaciones_Persona_Result Reservaciones = db.spValidar_Reservaciones_Persona(idReservacion, Usu.Nombre_Completo).FirstOrDefault();
                         if (Reservaciones == null)
                         {
                             Response.Redirect("~/Pages/Mis_Reservaciones.aspx", false);

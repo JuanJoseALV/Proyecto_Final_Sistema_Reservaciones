@@ -4,6 +4,7 @@ using Proyecto_Final_Sistema_Reservaciones.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -28,7 +29,16 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 try
                 {
                     Usuarios Usu = (Usuarios)Session["Usuario_Res"];
-                    DL_Clientes.Items.Add(new ListItem("Selecciona una opción...", "-1"));
+                    var lista = new List<ListItem>();
+                    
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                    {
+                        lista = db.spConsultar_Usuarios().Select(_ => new ListItem { Text = _.nombreCompleto, Value = _.idPersona.ToString() }).ToList();
+                    }
+                    ListItem primer_elemento = new ListItem("Seleccione un cliente ", "");
+                    lista.Insert(0, primer_elemento);
+                    DL_Clientes.DataSource = lista;
+                    DL_Clientes.DataBind();
 
                     using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                     {
@@ -77,43 +87,56 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-          
-            try
+            if (Page.IsValid)
             {
-
-                DateTime Fecha_Entrada = Convert.ToDateTime(TXT_Fecha_En.Text);
-                DateTime Fecha_Salida = Convert.ToDateTime(TXT_Fecha_Sal.Text);
-                string Nombre =DL_Clientes.SelectedItem.Text;
-                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                try
                 {
-                    ObjectResult<spFiltro_Gestionar_Reservaciones_Result> Filtro =  db.spFiltro_Gestionar_Reservaciones(Nombre,Fecha_Entrada,Fecha_Salida);
-                    GVW_Gestionar.DataSource = Filtro;
-                    GVW_Gestionar.DataBind();
+
+                    DateTime Fecha_Entrada = Convert.ToDateTime(INP_Fecha_Entrada.Value);
+                    DateTime Fecha_Salida = Convert.ToDateTime(INP_Fecha_Salida.Value);
+                    string Nombre = DL_Clientes.SelectedItem.Text;
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                    {
+                        ObjectResult<spFiltro_Gestionar_Reservaciones_Result> Filtro = db.spFiltro_Gestionar_Reservaciones(Nombre, Fecha_Entrada, Fecha_Salida);
+                        GVW_Gestionar.DataSource = Filtro;
+                        GVW_Gestionar.DataBind();
+
+                    }
 
                 }
-
+                catch (Exception)
+                {
+                    Response.Redirect("~/Pages/Error.aspx");
+                }
             }
-            catch (Exception)
-            {
-                Response.Redirect("~/Pages/Error.aspx");
-            }
+           
            
         }
 
-        protected void DL_Clientes_SelectedIndexChanged(object sender, EventArgs e)
+        protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            if (DL_Clientes.SelectedValue != "-1")
+            DateTime fecha;
+            if (DateTime.TryParseExact(args.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fecha))
             {
-                var lista = new List<ListItem>();
-                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
-                {
-                    lista = db.spConsultar_Usuarios().Select(_ => new ListItem { Text = _.nombreCompleto, Value = _.idPersona.ToString() }).ToList();
-                }
-
-                DL_Clientes.DataSource = lista;
-                DL_Clientes.DataBind();
+                args.IsValid = true;
             }
-               
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime fecha;
+            if (DateTime.TryParseExact(args.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fecha))
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
         }
     }
 }

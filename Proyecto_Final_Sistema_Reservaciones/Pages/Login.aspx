@@ -9,6 +9,9 @@
             <asp:Label ID="Label1" runat="server" CssClass="alert-danger" Visible="false">Correo o contraseña invalidos</asp:Label>
         </div>
         <div class="mb-3">
+            <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Ingrese un correo electrónico válido" ControlToValidate="Txt_Email" CssClass="alert-warning" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
+        </div>
+        <div class="mb-3">
             <asp:Label ID="Lbl_Email" runat="server" CssClass="form-label">Email</asp:Label>
             <asp:TextBox ID="Txt_Email" runat="server" CssClass="form-control" ></asp:TextBox>
         </div>

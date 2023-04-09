@@ -6,7 +6,7 @@
             <asp:Label ID="Label1" runat="server" Text="Mi reservacion" ForeColor="Blue" Font-Size="X-Large"></asp:Label>
         </div>
         <div style="margin-top: 2%">
-            <asp:LinkButton ID="LinkButton1" runat="server">Nueva reservacion</asp:LinkButton>
+            <a href="Crear_Reservaciones.aspx">Nueva reservacion</a>
         </div>
         <div style="margin-top: 2%">
             <asp:GridView ID="GVW_Reservaciones" runat="server" AutoGenerateColumns="False" OnRowDataBound="GVW_Reservaciones_RowDataBound" HorizontalAlign="Left" Width="640px">

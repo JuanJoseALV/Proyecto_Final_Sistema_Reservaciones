@@ -11,7 +11,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 {
 
 
-    public partial class Gestionar_Reservaciones
+    public partial class Crear_Reservaciones
     {
 
         /// <summary>
@@ -24,31 +24,49 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control Label5.
+        /// Control DL_Hotel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.DropDownList DL_Hotel;
 
         /// <summary>
-        /// Control RequiredFieldValidator1.
+        /// Control LBl_Validacion_Ho.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.Label LBl_Validacion_Ho;
 
         /// <summary>
-        /// Control RequiredFieldValidator2.
+        /// Control Label10.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.Label Label10;
+
+        /// <summary>
+        /// Control DL_Cliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DL_Cliente;
+
+        /// <summary>
+        /// Control LBl_Validacion_Usu.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBl_Validacion_Usu;
 
         /// <summary>
         /// Control Label2.
@@ -69,49 +87,58 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control Label4.
+        /// Control INP_Fecha_En.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText INP_Fecha_En;
 
         /// <summary>
-        /// Control DL_Clientes.
+        /// Control INP_Fecha_Sal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DL_Clientes;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText INP_Fecha_Sal;
 
         /// <summary>
-        /// Control INP_Fecha_Entrada.
+        /// Control CV_Fecha_En.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl INP_Fecha_Entrada;
+        protected global::System.Web.UI.WebControls.CustomValidator CV_Fecha_En;
 
         /// <summary>
-        /// Control INP_Fecha_Salida.
+        /// Control RequiredFieldValidator1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl INP_Fecha_Salida;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
-        /// Control Button1.
+        /// Control CV_Fecha_Sal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.CustomValidator CV_Fecha_Sal;
+
+        /// <summary>
+        /// Control RequiredFieldValidator2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
 
         /// <summary>
         /// Control Label6.
@@ -123,30 +150,48 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         protected global::System.Web.UI.WebControls.Label Label6;
 
         /// <summary>
-        /// Control CustomValidator1.
+        /// Control Label7.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
+        protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// Control CustomValidator2.
+        /// Control INP_Num_A.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl INP_Num_A;
 
         /// <summary>
-        /// Control GVW_Gestionar.
+        /// Control INP_Num_N.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVW_Gestionar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl INP_Num_N;
+
+        /// <summary>
+        /// Control BTN_Guardar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_Guardar;
+
+        /// <summary>
+        /// Control BTN_Regresar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_Regresar;
     }
 }

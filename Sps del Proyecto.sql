@@ -179,3 +179,24 @@ BEGIN
 	WHERE pe.nombreCompleto = @Nombre_Persona or r.fechaEntrada BETWEEN @Fecha_Entrada AND @Fecha_Salida And r.fechaSalida BETWEEN @Fecha_Entrada AND @Fecha_Salida
 	order by r.idReservacion desc;
 END
+
+USE [PV_ProyectoFinal]
+GO
+/****** Object:  StoredProcedure [dbo].[spConsultar_Usuarios]    Script Date: 9/4/2023 12:54:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create PROCEDURE [dbo].[spConsultar_Hoteles]
+AS
+BEGIN
+	SELECT
+		h.idHotel,
+		h.nombre,
+		h.direccion,
+		h.costoPorCadaAdulto,
+		h.costoPorCadaNinho
+	FROM dbo.Hotel h
+	order by  h.nombre asc;
+END

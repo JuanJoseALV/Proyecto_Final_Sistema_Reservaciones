@@ -37,6 +37,11 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Bitacora_Result>("spConsultar_Bitacora", id_ReservacionParameter);
         }
     
+        public virtual ObjectResult<spConsultar_Hoteles_Result> spConsultar_Hoteles()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Hoteles_Result>("spConsultar_Hoteles");
+        }
+    
         public virtual ObjectResult<spConsultar_Mis_Reservaciones_Result> spConsultar_Mis_Reservaciones(Nullable<int> id_Persona)
         {
             var id_PersonaParameter = id_Persona.HasValue ?

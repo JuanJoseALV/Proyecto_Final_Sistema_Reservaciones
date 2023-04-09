@@ -8,6 +8,7 @@
         <Function Name="spConsultar_Bitacora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Reservacion" Type="int" Mode="In" />
         </Function>
+        <Function Name="spConsultar_Hoteles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spConsultar_Mis_Reservaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Persona" Type="int" Mode="In" />
         </Function>
@@ -41,6 +42,7 @@
           <FunctionImport Name="spConsultar_Bitacora" ReturnType="Collection(PV_ProyectoFinalModel.spConsultar_Bitacora_Result)">
             <Parameter Name="id_Reservacion" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="spConsultar_Hoteles" ReturnType="Collection(PV_ProyectoFinalModel.spConsultar_Hoteles_Result)" />
           <FunctionImport Name="spConsultar_Mis_Reservaciones" ReturnType="Collection(PV_ProyectoFinalModel.spConsultar_Mis_Reservaciones_Result)">
             <Parameter Name="id_Persona" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -70,6 +72,13 @@
           <Property Type="DateTime" Name="fechaDeLaAccion" Nullable="false" Precision="23" />
           <Property Type="String" Name="accionRealizada" Nullable="false" MaxLength="25" />
           <Property Type="String" Name="nombreCompleto" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="spConsultar_Hoteles_Result">
+          <Property Type="Int32" Name="idHotel" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="500" />
+          <Property Type="Decimal" Name="costoPorCadaAdulto" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="costoPorCadaNinho" Nullable="false" Precision="10" Scale="2" />
         </ComplexType>
         <ComplexType Name="spConsultar_Mis_Reservaciones_Result">
           <Property Type="Int32" Name="idReservacion" Nullable="false" />
@@ -155,6 +164,17 @@
                 <ScalarProperty Name="fechaDeLaAccion" ColumnName="fechaDeLaAccion" />
                 <ScalarProperty Name="accionRealizada" ColumnName="accionRealizada" />
                 <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spConsultar_Hoteles" FunctionName="PV_ProyectoFinalModel.Store.spConsultar_Hoteles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PV_ProyectoFinalModel.spConsultar_Hoteles_Result">
+                <ScalarProperty Name="idHotel" ColumnName="idHotel" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="costoPorCadaAdulto" ColumnName="costoPorCadaAdulto" />
+                <ScalarProperty Name="costoPorCadaNinho" ColumnName="costoPorCadaNinho" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

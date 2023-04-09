@@ -27,7 +27,7 @@
             <asp:CustomValidator ID="CustomValidator2" runat="server" ErrorMessage="Ingrese una fecha válida en formato dd/MM/yyyy" ControlToValidate="INP_Fecha_Salida" CssClass="alert-warning" Width="175" OnServerValidate="CustomValidator2_ServerValidate"></asp:CustomValidator>
         </div>
         <div style="margin-top: 2%">
-            <asp:LinkButton ID="LinkButton1" runat="server">Nueva reservacion</asp:LinkButton>
+            <a href="Crear_Reservaciones.aspx">Nueva reservacion</a>
         </div>
         <div style="margin-top: 2%">
             <asp:GridView ID="GVW_Gestionar" runat="server" AutoGenerateColumns="False" HorizontalAlign="Left" OnRowDataBound="GVW_Gestionar_RowDataBound" Width="640px">

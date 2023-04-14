@@ -37,9 +37,23 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Bitacora_Result>("spConsultar_Bitacora", id_ReservacionParameter);
         }
     
+        public virtual ObjectResult<spConsultar_Habitaciones_Result> spConsultar_Habitaciones()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Habitaciones_Result>("spConsultar_Habitaciones");
+        }
+    
         public virtual ObjectResult<spConsultar_Hoteles_Result> spConsultar_Hoteles()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Hoteles_Result>("spConsultar_Hoteles");
+        }
+    
+        public virtual ObjectResult<spConsultar_Hoteles_Id_Result> spConsultar_Hoteles_Id(Nullable<int> id_Hotel)
+        {
+            var id_HotelParameter = id_Hotel.HasValue ?
+                new ObjectParameter("id_Hotel", id_Hotel) :
+                new ObjectParameter("id_Hotel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Hoteles_Id_Result>("spConsultar_Hoteles_Id", id_HotelParameter);
         }
     
         public virtual ObjectResult<spConsultar_Mis_Reservaciones_Result> spConsultar_Mis_Reservaciones(Nullable<int> id_Persona)
@@ -63,6 +77,76 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
         public virtual ObjectResult<spConsultar_Usuarios_Result> spConsultar_Usuarios()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Usuarios_Result>("spConsultar_Usuarios");
+        }
+    
+        public virtual int spCrear_Bitacora(Nullable<int> id_Reservacion, Nullable<int> id_Persona)
+        {
+            var id_ReservacionParameter = id_Reservacion.HasValue ?
+                new ObjectParameter("id_Reservacion", id_Reservacion) :
+                new ObjectParameter("id_Reservacion", typeof(int));
+    
+            var id_PersonaParameter = id_Persona.HasValue ?
+                new ObjectParameter("id_Persona", id_Persona) :
+                new ObjectParameter("id_Persona", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCrear_Bitacora", id_ReservacionParameter, id_PersonaParameter);
+        }
+    
+        public virtual ObjectResult<spCrear_Reservacion_Result> spCrear_Reservacion(Nullable<int> numPersonas, Nullable<int> idHotel, Nullable<int> idPersona, Nullable<System.DateTime> fechaEntrada, Nullable<System.DateTime> fechaSalida, Nullable<int> numeroAdultos, Nullable<int> numeroNinhos, Nullable<int> totalDiasReservacion, Nullable<decimal> costoPorCadaAdulto, Nullable<decimal> costoPorCadaNinho, Nullable<decimal> costoTotal, Nullable<System.DateTime> fechaCreacion, string estado)
+        {
+            var numPersonasParameter = numPersonas.HasValue ?
+                new ObjectParameter("numPersonas", numPersonas) :
+                new ObjectParameter("numPersonas", typeof(int));
+    
+            var idHotelParameter = idHotel.HasValue ?
+                new ObjectParameter("idHotel", idHotel) :
+                new ObjectParameter("idHotel", typeof(int));
+    
+            var idPersonaParameter = idPersona.HasValue ?
+                new ObjectParameter("idPersona", idPersona) :
+                new ObjectParameter("idPersona", typeof(int));
+    
+            var fechaEntradaParameter = fechaEntrada.HasValue ?
+                new ObjectParameter("fechaEntrada", fechaEntrada) :
+                new ObjectParameter("fechaEntrada", typeof(System.DateTime));
+    
+            var fechaSalidaParameter = fechaSalida.HasValue ?
+                new ObjectParameter("fechaSalida", fechaSalida) :
+                new ObjectParameter("fechaSalida", typeof(System.DateTime));
+    
+            var numeroAdultosParameter = numeroAdultos.HasValue ?
+                new ObjectParameter("numeroAdultos", numeroAdultos) :
+                new ObjectParameter("numeroAdultos", typeof(int));
+    
+            var numeroNinhosParameter = numeroNinhos.HasValue ?
+                new ObjectParameter("numeroNinhos", numeroNinhos) :
+                new ObjectParameter("numeroNinhos", typeof(int));
+    
+            var totalDiasReservacionParameter = totalDiasReservacion.HasValue ?
+                new ObjectParameter("totalDiasReservacion", totalDiasReservacion) :
+                new ObjectParameter("totalDiasReservacion", typeof(int));
+    
+            var costoPorCadaAdultoParameter = costoPorCadaAdulto.HasValue ?
+                new ObjectParameter("costoPorCadaAdulto", costoPorCadaAdulto) :
+                new ObjectParameter("costoPorCadaAdulto", typeof(decimal));
+    
+            var costoPorCadaNinhoParameter = costoPorCadaNinho.HasValue ?
+                new ObjectParameter("costoPorCadaNinho", costoPorCadaNinho) :
+                new ObjectParameter("costoPorCadaNinho", typeof(decimal));
+    
+            var costoTotalParameter = costoTotal.HasValue ?
+                new ObjectParameter("costoTotal", costoTotal) :
+                new ObjectParameter("costoTotal", typeof(decimal));
+    
+            var fechaCreacionParameter = fechaCreacion.HasValue ?
+                new ObjectParameter("fechaCreacion", fechaCreacion) :
+                new ObjectParameter("fechaCreacion", typeof(System.DateTime));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spCrear_Reservacion_Result>("spCrear_Reservacion", numPersonasParameter, idHotelParameter, idPersonaParameter, fechaEntradaParameter, fechaSalidaParameter, numeroAdultosParameter, numeroNinhosParameter, totalDiasReservacionParameter, costoPorCadaAdultoParameter, costoPorCadaNinhoParameter, costoTotalParameter, fechaCreacionParameter, estadoParameter);
         }
     
         public virtual ObjectResult<spFiltro_Gestionar_Reservaciones_Result> spFiltro_Gestionar_Reservaciones(string nombre_Persona, Nullable<System.DateTime> fecha_Entrada, Nullable<System.DateTime> fecha_Salida)
@@ -102,6 +186,24 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
                 new ObjectParameter("Clave", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spLogin_Result>("spLogin", emailParameter, claveParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> spObtener_Id_Reservacion_Creada()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("spObtener_Id_Reservacion_Creada");
+        }
+    
+        public virtual ObjectResult<spValidar_Habitaciones_Result> spValidar_Habitaciones(Nullable<int> id_Hotel, Nullable<int> cantidad_Personas)
+        {
+            var id_HotelParameter = id_Hotel.HasValue ?
+                new ObjectParameter("id_Hotel", id_Hotel) :
+                new ObjectParameter("id_Hotel", typeof(int));
+    
+            var cantidad_PersonasParameter = cantidad_Personas.HasValue ?
+                new ObjectParameter("Cantidad_Personas", cantidad_Personas) :
+                new ObjectParameter("Cantidad_Personas", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spValidar_Habitaciones_Result>("spValidar_Habitaciones", id_HotelParameter, cantidad_PersonasParameter);
         }
     
         public virtual ObjectResult<spValidar_Reservaciones_Persona_Result> spValidar_Reservaciones_Persona(Nullable<int> id_Reservacion, string nombre_Usuario)

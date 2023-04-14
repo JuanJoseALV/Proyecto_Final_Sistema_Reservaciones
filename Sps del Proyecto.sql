@@ -180,7 +180,7 @@ BEGIN
 	order by r.idReservacion desc;
 END
 
-USE [PV_ProyectoFinal]
+
 GO
 /****** Object:  StoredProcedure [dbo].[spConsultar_Usuarios]    Script Date: 9/4/2023 12:54:14 ******/
 SET ANSI_NULLS ON
@@ -199,4 +199,133 @@ BEGIN
 		h.costoPorCadaNinho
 	FROM dbo.Hotel h
 	order by  h.nombre asc;
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[spConsultar_Hoteles]    Script Date: 13/4/2023 10:47:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create PROCEDURE [dbo].[spConsultar_Habitaciones]
+AS
+BEGIN
+	SELECT
+		h.idHabitacion,
+		h.idHotel,
+		h.numeroHabitacion,
+		h.capacidadMaxima,
+		h.descripcion,
+		h.estado
+	FROM dbo.Habitacion h
+END
+
+Create PROCEDURE [dbo].[spCrear_Reservacion]
+	  @numPersonas INT,
+	  @idHotel INT,
+	  @idPersona int,
+	  @fechaEntrada datetime,
+	  @fechaSalida datetime,
+	  @numeroAdultos int,
+	  @numeroNinhos int,
+	  @totalDiasReservacion int,
+	  @costoPorCadaAdulto numeric(10,2),
+	  @costoPorCadaNinho numeric(10,2),
+	  @costoTotal numeric(14,2),
+	  @fechaCreacion datetime,
+	  @estado varchar(1)
+As
+BEGIN
+	 SET NOCOUNT ON;
+	 DECLARE @capacidad INT
+	 SET @capacidad = @numPersonas
+ -- Paso 2: Consultar las habitaciones disponibles que tienen capacidad suficiente
+	SELECT TOP 1 H.IdHabitacion, COUNT(R.IdReservacion) AS NumReservaciones FROM Habitacion H
+    LEFT JOIN Reservacion R ON H.IdHabitacion = R.IdHabitacion
+    WHERE H.Estado = 'A' AND H.CapacidadMaxima >= @capacidad AND H.IdHotel = @idHotel
+    GROUP BY H.IdHabitacion
+    ORDER BY NumReservaciones ASC
+
+	 -- Paso 3: Contar la cantidad de reservaciones para la habitación seleccionada
+    DECLARE @idHabitacion int
+    SET @idHabitacion  = (SELECT TOP 1 IdHabitacion FROM Habitacion WHERE Estado = 'A' AND CapacidadMaxima >= @capacidad AND IdHotel = @idHotel)
+
+	
+	--Paso 4: hacer el insert
+	INSERT INTO dbo.Reservacion (idPersona, idHabitacion, fechaEntrada, fechaSalida, numeroAdultos, numeroNinhos, totalDiasReservacion, costoPorCadaAdulto, costoPorCadaNinho, costoTotal, fechaCreacion, estado)
+	VALUES (@idPersona, @idHabitacion, @fechaEntrada, @fechaSalida, @numeroAdultos, @numeroNinhos, @totalDiasReservacion, @costoPorCadaAdulto, @costoPorCadaNinho, @costoTotal, @fechaCreacion, @estado)
+	--Paso 5: Update estado habitacion
+	UPDATE Habitacion SET Estado = 'I' WHERE IdHabitacion = @idHabitacion
+END
+
+/****** Object:  StoredProcedure [dbo].[spConsultar_Hoteles_Id]    Script Date: 13/4/2023 18:02:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create PROCEDURE [dbo].[spConsultar_Hoteles_Id]
+@id_Hotel int
+AS
+BEGIN
+	SELECT
+		h.idHotel,
+		h.nombre,
+		h.direccion,
+		h.costoPorCadaAdulto,
+		h.costoPorCadaNinho
+	FROM dbo.Hotel h
+where h.idHotel=@id_Hotel;
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[spCrear_Reservacion]    Script Date: 13/4/2023 16:57:16 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[spCrear_Bitacora]
+	 @id_Reservacion int,
+	 @id_Persona int
+As
+BEGIN
+	INSERT INTO dbo.Bitacora(idReservacion,idPersona,accionRealizada,fechaDeLaAccion)
+	VALUES (@id_Reservacion,@id_Persona,'Creada',GETDATE())
+	
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[spObtener_Id_Reservacion_Creada]    Script Date: 13/4/2023 18:05:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[spObtener_Id_Reservacion_Creada]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT MAX(idReservacion) AS idReservacion
+    FROM Reservacion;
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[spConsultar_Hoteles]    Script Date: 13/4/2023 18:37:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[spConsultar_Usuarios]
+AS
+BEGIN
+	SELECT
+	p.nombreCompleto,
+	p.idPersona,
+	p.estado,
+	p.esEmpleado,
+	p.email,
+	p.clave
+	FROM dbo.Persona p
 END

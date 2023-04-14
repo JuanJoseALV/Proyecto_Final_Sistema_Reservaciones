@@ -121,15 +121,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Data\Model_Rerservaciones.Context.tt">
+    <Content Include="Data\Model_Reservaciones.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model_Rerservaciones.edmx</DependentUpon>
-      <LastGenOutput>Model_Rerservaciones.Context.cs</LastGenOutput>
+      <DependentUpon>Model_Reservaciones.edmx</DependentUpon>
+      <LastGenOutput>Model_Reservaciones.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Data\Model_Rerservaciones.tt">
+    <Content Include="Data\Model_Reservaciones.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model_Rerservaciones.edmx</DependentUpon>
-      <LastGenOutput>Model_Rerservaciones.cs</LastGenOutput>
+      <DependentUpon>Model_Reservaciones.edmx</DependentUpon>
+      <LastGenOutput>Model_Reservaciones.cs</LastGenOutput>
     </Content>
     <Content Include="Data\Model_Reservaciones1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -160,12 +160,12 @@
     <Content Include="Data\Model_Reservaciones1.edmx.diagram">
       <DependentUpon>Model_Reservaciones1.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Data\Model_Rerservaciones.edmx">
+    <EntityDeploy Include="Data\Model_Reservaciones.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model_Rerservaciones.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model_Reservaciones.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Data\Model_Rerservaciones.edmx.diagram">
-      <DependentUpon>Model_Rerservaciones.edmx</DependentUpon>
+    <Content Include="Data\Model_Reservaciones.edmx.diagram">
+      <DependentUpon>Model_Reservaciones.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Pages\Crear_Reservaciones.aspx" />
@@ -226,20 +226,20 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Model_Rerservaciones.Context.cs">
+    <Compile Include="Data\Model_Reservaciones.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model_Rerservaciones.Context.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Model_Rerservaciones.cs">
+    <Compile Include="Data\Model_Reservaciones.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model_Rerservaciones.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\Model_Rerservaciones.Designer.cs">
+    <Compile Include="Data\Model_Reservaciones.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model_Rerservaciones.edmx</DependentUpon>
+      <DependentUpon>Model_Reservaciones.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\Model_Reservaciones1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -257,31 +257,43 @@
       <DependentUpon>Model_Reservaciones1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Bitacora_Result.cs">
-      <DependentUpon>Model_Rerservaciones.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\spConsultar_Habitaciones_Result.cs">
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\spConsultar_Hoteles_Id_Result.cs">
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Hoteles_Result.cs">
-      <DependentUpon>Model_Rerservaciones.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Mis_Reservaciones_Result.cs">
-      <DependentUpon>Model_Rerservaciones.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Reservaciones_ID_Result.cs">
-      <DependentUpon>Model_Rerservaciones.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Usuarios_Result.cs">
-      <DependentUpon>Model_Rerservaciones.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\spCrear_Reservacion_Result.cs">
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spFiltro_Gestionar_Reservaciones_Result.cs">
-      <DependentUpon>Model_Rerservaciones.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spGestionar_Reservaciones_ID_Result.cs">
-      <DependentUpon>Model_Rerservaciones.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spLogin_Result.cs">
-      <DependentUpon>Model_Rerservaciones.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\spValidar_Habitaciones_Result.cs">
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spValidar_Reservaciones_Persona_Result.cs">
-      <DependentUpon>Model_Rerservaciones.tt</DependentUpon>
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

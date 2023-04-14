@@ -10,6 +10,8 @@
             <br />
             <asp:DropDownList ID="DL_Hotel" runat="server" DataTextField="Text" DataValueField="Value"></asp:DropDownList>
            <asp:Label ID="LBl_Validacion_Ho" runat="server" Text="Debe de seleccionar un Hotel valido" CssClass="alert-warning" Visible="False"></asp:Label>
+            <br />
+            <asp:Label ID="LBL_Vali_Habi" runat="server" Text="El hotel no tiene habitaciones disponibles por favor seleccione otro" CssClass="alert-danger" Visible="False"></asp:Label>
         </div>
         <div class="form-group">
             <asp:Label ID="Label10" runat="server" Text="Cliente"></asp:Label>

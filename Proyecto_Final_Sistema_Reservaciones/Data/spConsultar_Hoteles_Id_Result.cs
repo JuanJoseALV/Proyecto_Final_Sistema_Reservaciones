@@ -11,13 +11,12 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
 {
     using System;
     
-    public partial class spConsultar_Usuarios_Result
+    public partial class spConsultar_Hoteles_Id_Result
     {
-        public string nombreCompleto { get; set; }
-        public int idPersona { get; set; }
-        public string estado { get; set; }
-        public bool esEmpleado { get; set; }
-        public string email { get; set; }
-        public string clave { get; set; }
+        public int idHotel { get; set; }
+        public string nombre { get; set; }
+        public string direccion { get; set; }
+        public decimal costoPorCadaAdulto { get; set; }
+        public decimal costoPorCadaNinho { get; set; }
     }
 }

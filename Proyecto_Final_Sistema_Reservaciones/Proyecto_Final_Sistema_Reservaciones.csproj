@@ -121,6 +121,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Css\Styles.css" />
     <Content Include="Data\Model_Reservaciones.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model_Reservaciones.edmx</DependentUpon>
@@ -168,6 +169,7 @@
       <DependentUpon>Model_Reservaciones.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Pages\Afirmacion.aspx" />
     <Content Include="Pages\Crear_Reservaciones.aspx" />
     <Content Include="Pages\Detalle_Reservacion.aspx" />
     <Content Include="Pages\Error.aspx" />
@@ -305,6 +307,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Afirmacion.aspx.cs">
+      <DependentUpon>Afirmacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Afirmacion.aspx.designer.cs">
+      <DependentUpon>Afirmacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Crear_Reservaciones.aspx.cs">
       <DependentUpon>Crear_Reservaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -372,6 +381,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Img\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

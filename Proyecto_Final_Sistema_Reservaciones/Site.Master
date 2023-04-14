@@ -15,6 +15,7 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="Css/Styles.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body>
@@ -39,19 +40,14 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-fixed-top" id="Menu">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Reservaciones</a>
+                    <a id="Title" class="navbar-brand" runat="server" href="~/">Reservaciones</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Pages/Mis_Reservaciones.aspx">Mis reservaciones</a></li>
+                        <li><a  id="Mis_Res" runat="server" href="~/Pages/Mis_Reservaciones.aspx" visible="false">Mis reservaciones</a></li>
                         <li><a id="Gestionar_R" runat="server" href="~/Pages/Gestionar_Reservaciones.aspx" visible="False">Gestionar reservaciones</a></li>
                         <li><a id="Gestionar_H" runat="server" href="~/Contact" visible="False">Gestionar habitaciones</a></li>
                         <li><asp:LinkButton ID="LBTN_Cerrar_Sesion" runat="server" Visible="False" OnClick="LBTN_Cerrar_Sesion_Click">Cerrar sesion</asp:LinkButton></li>
@@ -62,14 +58,10 @@
             </div>
         </div>
         <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" >
+                <asp:Label ID="LBL_Login" runat="server" Text="Login"  Font-Size="X-Large" ></asp:Label>
             </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %></p>
-            </footer>
         </div>
-
     </form>
 </body>
 </html>

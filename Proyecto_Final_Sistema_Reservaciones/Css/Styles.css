@@ -1,0 +1,54 @@
+﻿body {
+    background-image: url(../Img/pngtree-black-and-deep-green-colors-jungle-geometric-seamless-pattern-image_1136186.jpg);
+}
+#Menu{
+    background-color:navy ;
+}
+#Mis_Res {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+}
+    #Mis_Res:hover {
+        color: aqua;
+        text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+    }
+#Gestionar_R {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+}
+    #Gestionar_R:hover {
+        color: aqua;
+        text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+    }
+#Gestionar_H:hover {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+}
+    #Gestionar_H:hover {
+        color: aqua;
+        text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+    }
+#LBTN_Cerrar_Sesion {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+}
+    #LBTN_Cerrar_Sesion:hover {
+        color: aqua;
+        text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+    }
+#Title {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+}
+    #Title:hover {
+        color: aqua;
+        text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+    }
+#Nombre {
+    color: white;
+    text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+}
+    #Nombre:hover{
+        color: aqua;
+        text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+    }

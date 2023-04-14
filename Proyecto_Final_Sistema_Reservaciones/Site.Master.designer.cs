@@ -15,6 +15,24 @@ namespace Proyecto_Final_Sistema_Reservaciones
     {
 
         /// <summary>
+        /// Control Title.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor Title;
+
+        /// <summary>
+        /// Control Mis_Res.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor Mis_Res;
+
+        /// <summary>
         /// Control Gestionar_R.
         /// </summary>
         /// <remarks>
@@ -58,5 +76,14 @@ namespace Proyecto_Final_Sistema_Reservaciones
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+
+        /// <summary>
+        /// Control LBL_Login.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBL_Login;
     }
 }

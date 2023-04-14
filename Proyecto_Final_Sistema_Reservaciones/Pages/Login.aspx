@@ -1,9 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Proyecto_Final_Sistema_Reservaciones.Pages.Mis_Reservaciones" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Proyecto_Final_Sistema_Reservaciones.Pages.Mis_Reservaciones"  %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container" style="margin-top: 10%; margin-right: auto; margin-bottom: auto; margin-left: 30%;">
-        <div class="mb-3">
-            <asp:Label ID="Label2" runat="server" Text="Login" ForeColor="Blue" Font-Size="X-Large" ></asp:Label>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server" >
+     
+    <div class="container " style="margin-top: 10%; margin-right: auto; margin-bottom: auto; margin-left: 30%;">
+        <div>
+            <label id="LBL_Login" runat="server" Font-Size="X-Large">Login</label>
         </div>
         <div class="mb-3">
             <asp:Label ID="Label1" runat="server" CssClass="alert-danger" Visible="false">Correo o contraseña invalidos</asp:Label>
@@ -12,7 +13,7 @@
             <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Ingrese un correo electrónico válido" ControlToValidate="Txt_Email" CssClass="alert-warning" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
         </div>
         <div class="mb-3">
-            <asp:Label ID="Lbl_Email" runat="server" CssClass="form-label">Email</asp:Label>
+            <asp:Label ID="Lbl_Email" runat="server" CssClass="c">Email</asp:Label>
             <asp:TextBox ID="Txt_Email" runat="server" CssClass="form-control" ></asp:TextBox>
         </div>
         <div class="mb-3">
@@ -30,4 +31,32 @@
             <asp:Button ID="Btn_Cancelar" runat="server" CssClass="btn-danger" Text="Cancelar" />
         </div>
     </div>
+      <style type="text/css">
+        #<%= LBL_Login.ClientID %> {
+            color: aqua;
+            font-size:xx-large; 
+        }
+        #<%= Lbl_Email.ClientID %>{
+            color:aqua;
+            font-size:large;
+        }
+        #<%= Lbl_Contraseña.ClientID %>{
+            color:aqua;
+            font-size:large;
+        }
+        #<%=Btn_Sesion.ClientID%>{
+            background-color:blue;
+            border-radius: 12px;
+        }
+        #<%=Btn_Sesion.ClientID%>:hover{
+            background-color:cyan;
+        }
+        #<%=Btn_Cancelar.ClientID%>{
+            background-color:maroon; 
+            border-radius: 12px;
+        }
+        #<%=Btn_Cancelar.ClientID%>:hover{
+            background-color:red;   
+        }
+    </style>
 </asp:Content>

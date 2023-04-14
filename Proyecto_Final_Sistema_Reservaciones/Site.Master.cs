@@ -18,6 +18,7 @@ namespace Proyecto_Final_Sistema_Reservaciones
                 LBTN_Cerrar_Sesion.Visible=true;
                 Usuarios Usu = (Usuarios)Session["Usuario_Res"];
                 Nombre.InnerText = Usu.Nombre_Completo;
+                Mis_Res.Visible = true;
                 if (Usu.Rol == true)
                 {
                     Gestionar_H.Visible=true;

@@ -13,7 +13,7 @@
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:BoundField  DataField="idReservacion" HeaderText="# de reservacion" HeaderStyle-HorizontalAlign="Center">
-<HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+            <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
 
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
@@ -57,10 +57,8 @@
     </div>
       <style type="text/css">
         #<%= GVW_Reservaciones.ClientID %> {
-            color: deepskyblue;
-            font-size:large; 
-            border: solid 2px #525252;
-            border-collapse: collapse;
+           font-size:large; 
+           
         }
         #<%= Label1.ClientID %> {
             color: aqua;
@@ -72,10 +70,6 @@
              color: aqua;
             text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
         }
-          #<%= GVW_Reservaciones.ClientID %> {
-              border-color:chartreuse;
-               border: solid 1px #525252;
-             border-collapse: collapse;
-          }
+       
     </style>
 </asp:Content>

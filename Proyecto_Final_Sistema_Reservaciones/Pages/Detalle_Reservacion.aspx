@@ -3,6 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container" style="margin-top: 4%">
         <div>
+            <asp:Label ID="Label8" runat="server" >Detalle reservacion</asp:Label>
+        </div>
+        <div>
             <asp:DataList ID="dtl_Detalle" runat="server" Width="800px">
                 <HeaderTemplate>
                     <table border="1">
@@ -68,15 +71,73 @@
         <asp:Button ID="BTN_Regresar" runat="server" Text="Regresar" OnClick="Button1_Click" />
     </div>
     <div style="margin-top:3%">
-         <asp:Label ID="Label1" runat="server" Text="Lista de acciones realizadas" ForeColor="Blue" Font-Size="X-Large"></asp:Label>
+         <asp:Label ID="Label1" runat="server">Lista de acciones realizadas</asp:Label>
     </div>
-    <div style="margin:2%">
-        <asp:GridView ID="GV_Bit" runat="server" AutoGenerateColumns="False" >
+    <div style="margin-top:2%">
+        <asp:GridView ID="GV_Bit" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" >
+            <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
                 <asp:BoundField HeaderText="Fecha" DataField="fechaDeLaAccion" />
                 <asp:BoundField HeaderText="Accion" DataField="accionRealizada" />
                 <asp:BoundField HeaderText="Realiazda por" DataField="nombreCompleto" />
             </Columns>
+            <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+            <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+            <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+            <SortedAscendingHeaderStyle BackColor="#0000A9" />
+            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+            <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
     </div>
+    <style type="text/css">
+        #<%= dtl_Detalle.ClientID %> {
+            color: aqua;
+            font-size:large;
+        }
+        #<%= GV_Bit.ClientID %> {
+            font-size:large;
+        }
+        #<%= Label8.ClientID %>{
+           color: aqua;
+            text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+            font-size:xx-large;
+        }
+        #<%= BTN_Editar.ClientID %>{
+             background-color:blue;
+            border-radius: 12px;
+            color:white;
+            width:auto;
+       
+        }
+        #<%= BTN_Editar.ClientID%>:hover{
+             background-color:aqua;
+        }
+        #<%= BTN_Cancelar.ClientID %>{
+             background-color:maroon;
+            border-radius: 12px;
+            color:white;
+            width:auto;
+        }
+        #<%= BTN_Cancelar.ClientID%>:hover{
+             background-color:red;
+        }
+        #<%= BTN_Regresar.ClientID %>{
+             background-color:darkgreen;
+            border-radius: 12px;
+            color:white;
+            width:auto;
+        }
+        #<%= BTN_Regresar.ClientID%>:hover{
+             background-color:chartreuse;
+        }
+        #<%= Label1.ClientID %>{
+            color: aqua;
+            text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+            font-size:xx-large;
+        }
+     
+    </style>
 </asp:Content>

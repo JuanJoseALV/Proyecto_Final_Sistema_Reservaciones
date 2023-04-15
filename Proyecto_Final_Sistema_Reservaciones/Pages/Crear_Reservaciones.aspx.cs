@@ -204,5 +204,19 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 CV_Fecha_En.ErrorMessage = "El formato de la fecha entrada es inválido.";
             }
         }
+
+        protected void BTN_Regresar_Click(object sender, EventArgs e)
+        {
+            Usuarios Usu = (Usuarios)Session["Usuario_Res"];
+            if (Usu.Rol == true)
+            {
+                Response.Redirect("~/Pages/Gestionar_Reservaciones.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Pages/Mis_Reservaciones.aspx");
+            }
+
+        }
     }
 }

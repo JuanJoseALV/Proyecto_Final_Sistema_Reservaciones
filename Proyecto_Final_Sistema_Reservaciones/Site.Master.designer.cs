@@ -42,22 +42,13 @@ namespace Proyecto_Final_Sistema_Reservaciones
         protected global::System.Web.UI.HtmlControls.HtmlAnchor Gestionar_R;
 
         /// <summary>
-        /// Control Gestionar_H.
+        /// Control Gestionar_habitaciones.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor Gestionar_H;
-
-        /// <summary>
-        /// Control LBTN_Cerrar_Sesion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LBTN_Cerrar_Sesion;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor Gestionar_habitaciones;
 
         /// <summary>
         /// Control Nombre.
@@ -67,6 +58,15 @@ namespace Proyecto_Final_Sistema_Reservaciones
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor Nombre;
+
+        /// <summary>
+        /// Control LBTN_Cerrar_Sesion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LBTN_Cerrar_Sesion;
 
         /// <summary>
         /// Control MainContent.

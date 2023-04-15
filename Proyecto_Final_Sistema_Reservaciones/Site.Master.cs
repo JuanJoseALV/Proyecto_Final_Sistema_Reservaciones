@@ -21,7 +21,7 @@ namespace Proyecto_Final_Sistema_Reservaciones
                 Mis_Res.Visible = true;
                 if (Usu.Rol == true)
                 {
-                    Gestionar_H.Visible=true;
+                    Gestionar_habitaciones.Visible=true;
                     Gestionar_R.Visible = true;
                 }
             }

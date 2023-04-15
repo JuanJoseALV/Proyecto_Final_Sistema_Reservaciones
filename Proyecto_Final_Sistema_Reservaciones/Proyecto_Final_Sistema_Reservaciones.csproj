@@ -115,7 +115,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -176,6 +175,7 @@
     <Content Include="Pages\Gestionar_Reservaciones.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Mis_Reservaciones.aspx" />
+    <Content Include="Pages\Modificar_Reservacion.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -221,13 +221,6 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Class\Usuarios.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Data\Model_Reservaciones.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -355,6 +348,13 @@
     </Compile>
     <Compile Include="Pages\Mis_Reservaciones.aspx.designer.cs">
       <DependentUpon>Mis_Reservaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modificar_Reservacion.aspx.cs">
+      <DependentUpon>Modificar_Reservacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Modificar_Reservacion.aspx.designer.cs">
+      <DependentUpon>Modificar_Reservacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

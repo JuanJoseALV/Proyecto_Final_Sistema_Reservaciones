@@ -34,7 +34,8 @@
       <style type="text/css">
         #<%= LBL_Login.ClientID %> {
             color: aqua;
-            font-size:xx-large; 
+            text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+            font-size:xx-large;
         }
         #<%= Lbl_Email.ClientID %>{
             color:aqua;

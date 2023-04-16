@@ -23,6 +23,8 @@
         <Function Name="spCrear_Bitacora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Reservacion" Type="int" Mode="In" />
           <Parameter Name="id_Persona" Type="int" Mode="In" />
+          <Parameter Name="Accion" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
         </Function>
         <Function Name="spCrear_Reservacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="numPersonas" Type="int" Mode="In" />
@@ -38,6 +40,16 @@
           <Parameter Name="costoTotal" Type="numeric" Mode="In" />
           <Parameter Name="fechaCreacion" Type="datetime" Mode="In" />
           <Parameter Name="estado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spEditar_Reservacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Reservacion" Type="int" Mode="In" />
+          <Parameter Name="fechaEntrada" Type="datetime" Mode="In" />
+          <Parameter Name="fechaSalida" Type="datetime" Mode="In" />
+          <Parameter Name="numeroAdultos" Type="int" Mode="In" />
+          <Parameter Name="numeroNinhos" Type="int" Mode="In" />
+          <Parameter Name="totalDiasReservacion" Type="int" Mode="In" />
+          <Parameter Name="costoTotal" Type="numeric" Mode="In" />
+          <Parameter Name="fechaModificacion" Type="datetime" Mode="In" />
         </Function>
         <Function Name="spFiltro_Gestionar_Reservaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Persona" Type="varchar" Mode="In" />
@@ -85,6 +97,8 @@
           <FunctionImport Name="spCrear_Bitacora">
             <Parameter Name="id_Reservacion" Mode="In" Type="Int32" />
             <Parameter Name="id_Persona" Mode="In" Type="Int32" />
+            <Parameter Name="Accion" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="spCrear_Reservacion" ReturnType="Collection(PV_ProyectoFinalModel.spCrear_Reservacion_Result)">
             <Parameter Name="numPersonas" Mode="In" Type="Int32" />
@@ -100,6 +114,16 @@
             <Parameter Name="costoTotal" Mode="In" Type="Decimal" />
             <Parameter Name="fechaCreacion" Mode="In" Type="DateTime" />
             <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spEditar_Reservacion">
+            <Parameter Name="id_Reservacion" Mode="In" Type="Int32" />
+            <Parameter Name="fechaEntrada" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaSalida" Mode="In" Type="DateTime" />
+            <Parameter Name="numeroAdultos" Mode="In" Type="Int32" />
+            <Parameter Name="numeroNinhos" Mode="In" Type="Int32" />
+            <Parameter Name="totalDiasReservacion" Mode="In" Type="Int32" />
+            <Parameter Name="costoTotal" Mode="In" Type="Decimal" />
+            <Parameter Name="fechaModificacion" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="spFiltro_Gestionar_Reservaciones" ReturnType="Collection(PV_ProyectoFinalModel.spFiltro_Gestionar_Reservaciones_Result)">
             <Parameter Name="Nombre_Persona" Mode="In" Type="String" />
@@ -329,6 +353,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEditar_Reservacion" FunctionName="PV_ProyectoFinalModel.Store.spEditar_Reservacion" />
           <FunctionImportMapping FunctionImportName="spFiltro_Gestionar_Reservaciones" FunctionName="PV_ProyectoFinalModel.Store.spFiltro_Gestionar_Reservaciones">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PV_ProyectoFinalModel.spFiltro_Gestionar_Reservaciones_Result">

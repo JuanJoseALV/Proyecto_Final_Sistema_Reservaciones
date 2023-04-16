@@ -7,28 +7,29 @@
         <div class="form-group">
             <asp:Label ID="Label1" runat="server" Text="Hotel"></asp:Label>
             <br />
-            <asp:DropDownList ID="DL_Hotel" runat="server" DataTextField="Text" DataValueField="Value"></asp:DropDownList>
-           <asp:Label ID="LBl_Validacion_Ho" runat="server" Text="Debe de seleccionar un Hotel valido" CssClass="alert-warning" Visible="False"></asp:Label>
+           <input id="TXT_Hotel" type="text" runat="server" formmethod="get" style="width:180px" readonly="readonly" />
+        </div>
+         <div class="form-group">
+            <asp:Label ID="Label4" runat="server" Text="Numero de habitacion"></asp:Label>
             <br />
-            <asp:Label ID="LBL_Vali_Habi" runat="server" Text="El hotel no tiene habitaciones disponibles por favor seleccione otro" CssClass="alert-danger" Visible="False"></asp:Label>
+           <input id="TXT_Numero_Hotel" type="text" runat="server" formmethod="get" style="width:180px"  readonly="readonly" />
         </div>
         <div class="form-group">
             <asp:Label ID="Label10" runat="server" Text="Cliente"></asp:Label>
             <br />
-            <asp:DropDownList ID="DL_Cliente" runat="server" DataTextField="Text" DataValueField="Value"></asp:DropDownList>
-            <asp:Label ID="LBl_Validacion_Usu" runat="server" Text="Debe de seleccionar un usuario valido" CssClass="alert-warning" Visible="False"></asp:Label>
+            <input id="TXT_Cliente" type="text" runat="server" formmethod="get" style="width:180px"  readonly="readonly" />
         </div>
         <div class="form-group">
             <asp:Label ID="Label2" runat="server" Text="Fecha de entrada" Width="180px" ></asp:Label>
             <asp:Label ID="Label3" runat="server" Text="Fecha de salida"></asp:Label>
             <br />
-            <input id="INP_Fecha_En" type="text"  placeholder="dd/MM/yyyy" runat="server" formmethod="get" style="width:180px" />
+            <input id="INP_Fecha_En" type="text"  placeholder="dd/MM/yyyy" runat="server" formmethod="get" style="width:180px"  />
             <input id="INP_Fecha_Sal" type="text" placeholder="dd/MM/yyyy" runat="server"  style="width:180px"/>
             <br />
             <asp:CustomValidator ID="CV_Fecha_En" runat="server" ControlToValidate="INP_Fecha_En"  CssClass="alert-warning" OnServerValidate="CV_Fecha_En_ServerValidate" ></asp:CustomValidator>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Fecha entrada requerida" ControlToValidate="INP_Fecha_En" CssClass="alert-danger"></asp:RequiredFieldValidator>
             <br />
-            <asp:CustomValidator ID="CV_Fecha_Sal" runat="server" ControlToValidate="INP_Fecha_Sal" CssClass="alert-warning" OnServerValidate="CV_Fecha_Sal_ServerValidate"></asp:CustomValidator>
+            <asp:CustomValidator ID="CV_Fecha_Sal" runat="server" ControlToValidate="INP_Fecha_Sal" CssClass="alert-warning" OnServerValidate="CV_Fecha_Sal_ServerValidate" ></asp:CustomValidator>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Fecha salida requerida" ControlToValidate="INP_Fecha_Sal" CssClass="alert-danger"></asp:RequiredFieldValidator>
         </div>
         <div class="form-group">
@@ -37,10 +38,12 @@
             <br />
              <input id="INP_Num_A" type="number" runat="server" style="width:180px"/>
             <input id="INP_Num_N" type="number" runat="server"  style="width:180px"/>
+                        <br />
+            <asp:Label ID="LBL_Vali_Habi" runat="server" Text="Cantidad de personas mayor a la capacidad maxima de la habitacion" CssClass="alert-danger" Visible="False"></asp:Label>
 
         </div>
         <div class="form-group">
-            <asp:Button ID="BTN_Guardar" runat="server" Text="Guardar"  OnClick="BTN_Guardar_Click" />
+            <asp:Button ID="BTN_Guardar" runat="server" Text="Guardar" OnClick="BTN_Guardar_Click"   />
             <asp:Button ID="BTN_Regresar" runat="server" Text="Regresar" CausesValidation="False" OnClick="BTN_Regresar_Click"  />
         </div>
     </div>
@@ -54,6 +57,10 @@
             color:aqua;
             font-size:large;
         }
+        #<%= Label4.ClientID %>{
+            color:aqua;
+            font-size:large;
+        }
         #<%= Label10.ClientID %>{
             color:aqua;
             font-size:large;
@@ -61,7 +68,6 @@
         #<%= Label2.ClientID %>{
             color:aqua;
             font-size:medium;
-            text-align:
         } 
         #<%= Label3.ClientID %>{
             color:aqua;

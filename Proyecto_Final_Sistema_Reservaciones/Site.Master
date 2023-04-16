@@ -49,7 +49,7 @@
                     <ul class="nav navbar-nav">
                         <li><a  id="Mis_Res" runat="server" href="~/Pages/Mis_Reservaciones.aspx" visible="false">Mis reservaciones</a></li>
                         <li><a id="Gestionar_R" runat="server" href="~/Pages/Gestionar_Reservaciones.aspx" visible="False">Gestionar reservaciones</a></li>
-                        <li><a id="Gestionar_habitaciones" runat="server" href="">Gestionar Habitaciones</a></li>
+                        <li><a id="Gestionar_habitaciones" runat="server" href="" visible="false">Gestionar Habitaciones</a></li>
                         <li><a id="Nombre" runat="server" visible="true" enableviewstate="false"></a></li>                     
                         <li><asp:LinkButton ID="LBTN_Cerrar_Sesion" runat="server" Visible="False" OnClick="LBTN_Cerrar_Sesion_Click">Cerrar sesion</asp:LinkButton></li>
 

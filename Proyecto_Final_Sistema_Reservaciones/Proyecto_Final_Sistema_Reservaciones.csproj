@@ -169,6 +169,7 @@
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Pages\Afirmacion.aspx" />
+    <Content Include="Pages\Afirmacion_Modi.aspx" />
     <Content Include="Pages\Crear_Reservaciones.aspx" />
     <Content Include="Pages\Detalle_Reservacion.aspx" />
     <Content Include="Pages\Error.aspx" />
@@ -306,6 +307,13 @@
     </Compile>
     <Compile Include="Pages\Afirmacion.aspx.designer.cs">
       <DependentUpon>Afirmacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Afirmacion_Modi.aspx.cs">
+      <DependentUpon>Afirmacion_Modi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Afirmacion_Modi.aspx.designer.cs">
+      <DependentUpon>Afirmacion_Modi.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Crear_Reservaciones.aspx.cs">
       <DependentUpon>Crear_Reservaciones.aspx</DependentUpon>

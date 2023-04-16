@@ -23,6 +23,7 @@ namespace Proyecto_Final_Sistema_Reservaciones
                 {
                     Gestionar_habitaciones.Visible=true;
                     Gestionar_R.Visible = true;
+                    Gestionar_habitaciones.Visible = true;
                 }
             }
         }

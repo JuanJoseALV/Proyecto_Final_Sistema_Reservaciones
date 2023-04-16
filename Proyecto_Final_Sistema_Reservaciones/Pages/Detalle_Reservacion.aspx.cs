@@ -13,82 +13,87 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 {
     public partial class Detalle_Reservacion : System.Web.UI.Page
     {
+        
         String Juan = "PV_ProyectoFinalEntities";
         String Wes = "PV_ProyectoFinalEntities1";
         DateTime Fecha_Compu = DateTime.Now;
         protected void Page_Load(object sender, EventArgs e)
         {
-            Usuarios Usu = (Usuarios)Session["Usuario_Res"];
-            if (Usu == null)
+            if (Page.IsPostBack == false)
             {
-                Response.Redirect("~/Pages/Login.aspx");
-            }
-
-            int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
-
-            try
-            {
-                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                Usuarios Usu = (Usuarios)Session["Usuario_Res"];
+                if (Usu == null)
                 {
-                    if (Usu.Rol == true)
+                    Response.Redirect("~/Pages/Login.aspx");
+                }
+
+                int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
+
+                try
+                {
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                     {
-                        List<spConsultar_Reservaciones_ID_Result> Reservaciones = db.spConsultar_Reservaciones_ID(idReservacion).ToList();
-                        foreach (spConsultar_Reservaciones_ID_Result reserva in Reservaciones)
+                        if (Usu.Rol == true)
                         {
-                            string estado = reserva.estado;
-                            DateTime fechaSalida = reserva.fechaSalida;
-                            DateTime fechaEntrada = reserva.fechaEntrada;
-
-                            if (estado == "A" && Fecha_Compu < fechaSalida)
-                            {
-                                BTN_Editar.Visible = true;
-                            }
-                            if (estado == "A" && Fecha_Compu < fechaEntrada)
-                            {
-                                BTN_Cancelar.Visible = true;
-
-                            }
-
-                            dtl_Detalle.DataSource = Reservaciones;
-                            dtl_Detalle.DataBind();
-                        }
-                    }
-                    else
-                    {
-                        spValidar_Reservaciones_Persona_Result Reservaciones = db.spValidar_Reservaciones_Persona(idReservacion, Usu.Nombre_Completo).FirstOrDefault();
-                        if (Reservaciones == null)
-                        {
-                            Response.Redirect("~/Pages/Mis_Reservaciones.aspx", false);
-                        }
-                        else
-                        {
-                            List<spConsultar_Reservaciones_ID_Result> Reservaciones1 = db.spConsultar_Reservaciones_ID(idReservacion).ToList();
-                            foreach (spConsultar_Reservaciones_ID_Result reserva in Reservaciones1)
+                            List<spConsultar_Reservaciones_ID_Result> Reservaciones = db.spConsultar_Reservaciones_ID(idReservacion).ToList();
+                            foreach (spConsultar_Reservaciones_ID_Result reserva in Reservaciones)
                             {
                                 string estado = reserva.estado;
                                 DateTime fechaSalida = reserva.fechaSalida;
                                 DateTime fechaEntrada = reserva.fechaEntrada;
 
-                                if (estado == "A" && Fecha_Compu < fechaEntrada)
+                                if (estado == "A" && Fecha_Compu < fechaSalida)
                                 {
                                     BTN_Editar.Visible = true;
-                                    BTN_Cancelar.Visible = true;
                                 }
-                                dtl_Detalle.DataSource = Reservaciones1;
+                                if (estado == "A" && Fecha_Compu < fechaEntrada)
+                                {
+                                    BTN_Cancelar.Visible = true;
+
+                                }
+
+                                dtl_Detalle.DataSource = Reservaciones;
                                 dtl_Detalle.DataBind();
                             }
                         }
-                    }
+                        else
+                        {
+                            spValidar_Reservaciones_Persona_Result Reservaciones = db.spValidar_Reservaciones_Persona(idReservacion, Usu.Nombre_Completo).FirstOrDefault();
+                            if (Reservaciones == null)
+                            {
+                                Response.Redirect("~/Pages/Mis_Reservaciones.aspx", false);
+                            }
+                            else
+                            {
+                                List<spConsultar_Reservaciones_ID_Result> Reservaciones1 = db.spConsultar_Reservaciones_ID(idReservacion).ToList();
+                                foreach (spConsultar_Reservaciones_ID_Result reserva in Reservaciones1)
+                                {
+                                    string estado = reserva.estado;
+                                    DateTime fechaSalida = reserva.fechaSalida;
+                                    DateTime fechaEntrada = reserva.fechaEntrada;
 
-                    ObjectResult<spConsultar_Bitacora_Result> bitacora = db.spConsultar_Bitacora(idReservacion);
-                    GV_Bit.DataSource = bitacora;
-                    GV_Bit.DataBind();
+                                    if (estado == "A" && Fecha_Compu < fechaEntrada)
+                                    {
+                                        BTN_Editar.Visible = true;
+                                        BTN_Cancelar.Visible = true;
+                                    }
+                                    dtl_Detalle.DataSource = Reservaciones1;
+                                    dtl_Detalle.DataBind();
+                                }
+                            }
+                        }
+
+                        ObjectResult<spConsultar_Bitacora_Result> bitacora = db.spConsultar_Bitacora(idReservacion);
+                        GV_Bit.DataSource = bitacora;
+                        GV_Bit.DataBind();
+                    }
+                }
+                catch (Exception)
+                {
+                    Response.Redirect("~/Pages/Error.aspx");
                 }
             }
-            catch (Exception)
-            {
-                Response.Redirect("~/Pages/Error.aspx");
-            }
+            
 
         }
 
@@ -116,6 +121,15 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             string formattedCost = string.Format("${0:#,0.00}", costo);
 
             return formattedCost;
+        }
+
+        protected void BTN_Editar_Click(object sender, EventArgs e)
+        {
+            
+
+            Button btn = (Button)sender;
+            int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
+            Response.Redirect("~/Pages/Modificar_Reservacion.aspx?idReservacion1=" + idReservacion);
         }
     }
 }

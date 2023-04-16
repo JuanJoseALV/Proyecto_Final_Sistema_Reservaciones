@@ -79,7 +79,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Usuarios_Result>("spConsultar_Usuarios");
         }
     
-        public virtual int spCrear_Bitacora(Nullable<int> id_Reservacion, Nullable<int> id_Persona)
+        public virtual int spCrear_Bitacora(Nullable<int> id_Reservacion, Nullable<int> id_Persona, string accion, Nullable<System.DateTime> fecha)
         {
             var id_ReservacionParameter = id_Reservacion.HasValue ?
                 new ObjectParameter("id_Reservacion", id_Reservacion) :
@@ -89,7 +89,15 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
                 new ObjectParameter("id_Persona", id_Persona) :
                 new ObjectParameter("id_Persona", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCrear_Bitacora", id_ReservacionParameter, id_PersonaParameter);
+            var accionParameter = accion != null ?
+                new ObjectParameter("Accion", accion) :
+                new ObjectParameter("Accion", typeof(string));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCrear_Bitacora", id_ReservacionParameter, id_PersonaParameter, accionParameter, fechaParameter);
         }
     
         public virtual ObjectResult<spCrear_Reservacion_Result> spCrear_Reservacion(Nullable<int> numPersonas, Nullable<int> idHotel, Nullable<int> idPersona, Nullable<System.DateTime> fechaEntrada, Nullable<System.DateTime> fechaSalida, Nullable<int> numeroAdultos, Nullable<int> numeroNinhos, Nullable<int> totalDiasReservacion, Nullable<decimal> costoPorCadaAdulto, Nullable<decimal> costoPorCadaNinho, Nullable<decimal> costoTotal, Nullable<System.DateTime> fechaCreacion, string estado)
@@ -147,6 +155,43 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
                 new ObjectParameter("estado", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spCrear_Reservacion_Result>("spCrear_Reservacion", numPersonasParameter, idHotelParameter, idPersonaParameter, fechaEntradaParameter, fechaSalidaParameter, numeroAdultosParameter, numeroNinhosParameter, totalDiasReservacionParameter, costoPorCadaAdultoParameter, costoPorCadaNinhoParameter, costoTotalParameter, fechaCreacionParameter, estadoParameter);
+        }
+    
+        public virtual int spEditar_Reservacion(Nullable<int> id_Reservacion, Nullable<System.DateTime> fechaEntrada, Nullable<System.DateTime> fechaSalida, Nullable<int> numeroAdultos, Nullable<int> numeroNinhos, Nullable<int> totalDiasReservacion, Nullable<decimal> costoTotal, Nullable<System.DateTime> fechaModificacion)
+        {
+            var id_ReservacionParameter = id_Reservacion.HasValue ?
+                new ObjectParameter("id_Reservacion", id_Reservacion) :
+                new ObjectParameter("id_Reservacion", typeof(int));
+    
+            var fechaEntradaParameter = fechaEntrada.HasValue ?
+                new ObjectParameter("fechaEntrada", fechaEntrada) :
+                new ObjectParameter("fechaEntrada", typeof(System.DateTime));
+    
+            var fechaSalidaParameter = fechaSalida.HasValue ?
+                new ObjectParameter("fechaSalida", fechaSalida) :
+                new ObjectParameter("fechaSalida", typeof(System.DateTime));
+    
+            var numeroAdultosParameter = numeroAdultos.HasValue ?
+                new ObjectParameter("numeroAdultos", numeroAdultos) :
+                new ObjectParameter("numeroAdultos", typeof(int));
+    
+            var numeroNinhosParameter = numeroNinhos.HasValue ?
+                new ObjectParameter("numeroNinhos", numeroNinhos) :
+                new ObjectParameter("numeroNinhos", typeof(int));
+    
+            var totalDiasReservacionParameter = totalDiasReservacion.HasValue ?
+                new ObjectParameter("totalDiasReservacion", totalDiasReservacion) :
+                new ObjectParameter("totalDiasReservacion", typeof(int));
+    
+            var costoTotalParameter = costoTotal.HasValue ?
+                new ObjectParameter("costoTotal", costoTotal) :
+                new ObjectParameter("costoTotal", typeof(decimal));
+    
+            var fechaModificacionParameter = fechaModificacion.HasValue ?
+                new ObjectParameter("fechaModificacion", fechaModificacion) :
+                new ObjectParameter("fechaModificacion", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEditar_Reservacion", id_ReservacionParameter, fechaEntradaParameter, fechaSalidaParameter, numeroAdultosParameter, numeroNinhosParameter, totalDiasReservacionParameter, costoTotalParameter, fechaModificacionParameter);
         }
     
         public virtual ObjectResult<spFiltro_Gestionar_Reservaciones_Result> spFiltro_Gestionar_Reservaciones(string nombre_Persona, Nullable<System.DateTime> fecha_Entrada, Nullable<System.DateTime> fecha_Salida)

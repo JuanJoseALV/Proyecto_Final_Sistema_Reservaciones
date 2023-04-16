@@ -33,31 +33,31 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control DL_Hotel.
+        /// Control TXT_Hotel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DL_Hotel;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText TXT_Hotel;
 
         /// <summary>
-        /// Control LBl_Validacion_Ho.
+        /// Control Label4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBl_Validacion_Ho;
+        protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// Control LBL_Vali_Habi.
+        /// Control TXT_Numero_Hotel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBL_Vali_Habi;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText TXT_Numero_Hotel;
 
         /// <summary>
         /// Control Label10.
@@ -69,22 +69,13 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
-        /// Control DL_Cliente.
+        /// Control TXT_Cliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DL_Cliente;
-
-        /// <summary>
-        /// Control LBl_Validacion_Usu.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBl_Validacion_Usu;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText TXT_Cliente;
 
         /// <summary>
         /// Control Label2.
@@ -193,6 +184,15 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl INP_Num_N;
+
+        /// <summary>
+        /// Control LBL_Vali_Habi.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBL_Vali_Habi;
 
         /// <summary>
         /// Control BTN_Guardar.

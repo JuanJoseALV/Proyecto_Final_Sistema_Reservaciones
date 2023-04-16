@@ -122,7 +122,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                             {
                                 Usuarios Usu = (Usuarios)Session["Usuario_Res"];
                                 int Id_Reservacion = Reservacion.Value;
-                                db1.spCrear_Bitacora(Id_Reservacion, Usu.Id);
+                                db1.spCrear_Bitacora(Id_Reservacion, Usu.Id,"CREADA",fechaCreacion);
                             }
                         }
                     }

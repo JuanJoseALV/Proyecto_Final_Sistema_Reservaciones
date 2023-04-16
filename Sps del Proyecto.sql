@@ -280,18 +280,20 @@ where h.idHotel=@id_Hotel;
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[spCrear_Reservacion]    Script Date: 13/4/2023 16:57:16 ******/
+/****** Object:  StoredProcedure [dbo].[spCrear_Bitacora]    Script Date: 15/4/2023 17:44:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[spCrear_Bitacora]
+Create PROCEDURE [dbo].[spCrear_Bitacora]
 	 @id_Reservacion int,
-	 @id_Persona int
+	 @id_Persona int,
+	 @Accion varchar(25),
+	 @fecha datetime 
 As
 BEGIN
 	INSERT INTO dbo.Bitacora(idReservacion,idPersona,accionRealizada,fechaDeLaAccion)
-	VALUES (@id_Reservacion,@id_Persona,'Creada',GETDATE())
+	VALUES (@id_Reservacion,@id_Persona,@Accion,@fecha)
 	
 END
 
@@ -329,3 +331,39 @@ BEGIN
 	p.clave
 	FROM dbo.Persona p
 END
+
+GO
+/****** Object:  StoredProcedure [dbo].[spEditar_Reservacion]    Script Date: 15/4/2023 13:13:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[spEditar_Reservacion]
+	  @id_Reservacion int,
+	  @fechaEntrada datetime,
+	  @fechaSalida datetime,
+	  @numeroAdultos int,
+	  @numeroNinhos int,
+	  @totalDiasReservacion int,
+	  @costoTotal numeric(14,2),
+	  @fechaModificacion datetime
+As
+BEGIN
+	 UPDATE Reservacion
+   SET
+      fechaEntrada = @fechaEntrada,
+      fechaSalida = @fechaSalida,
+      numeroAdultos = @numeroAdultos,
+      numeroNinhos = @numeroNinhos,
+      totalDiasReservacion = @totalDiasReservacion,
+      costoTotal = @costoTotal,
+      fechaModificacion = @fechaModificacion
+ WHERE idReservacion = @id_Reservacion
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[spCrear_Reservacion]    Script Date: 15/4/2023 12:51:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO

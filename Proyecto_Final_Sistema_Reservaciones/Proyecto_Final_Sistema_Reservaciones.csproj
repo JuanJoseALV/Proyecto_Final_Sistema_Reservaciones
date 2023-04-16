@@ -168,8 +168,9 @@
       <DependentUpon>Model_Reservaciones.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Pages\Afirmacion.aspx" />
-    <Content Include="Pages\Afirmacion_Modi.aspx" />
+    <Content Include="Pages\Afirmaciones\Afirmacion.aspx" />
+    <Content Include="Pages\Afirmaciones\Afirmacion_Eli.aspx" />
+    <Content Include="Pages\Afirmaciones\Afirmacion_Modi.aspx" />
     <Content Include="Pages\Crear_Reservaciones.aspx" />
     <Content Include="Pages\Detalle_Reservacion.aspx" />
     <Content Include="Pages\Error.aspx" />
@@ -301,18 +302,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Afirmacion.aspx.cs">
+    <Compile Include="Pages\Afirmaciones\Afirmacion.aspx.cs">
       <DependentUpon>Afirmacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Afirmacion.aspx.designer.cs">
+    <Compile Include="Pages\Afirmaciones\Afirmacion.aspx.designer.cs">
       <DependentUpon>Afirmacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Afirmacion_Modi.aspx.cs">
+    <Compile Include="Pages\Afirmaciones\Afirmacion_Eli.aspx.cs">
+      <DependentUpon>Afirmacion_Eli.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Afirmaciones\Afirmacion_Eli.aspx.designer.cs">
+      <DependentUpon>Afirmacion_Eli.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Afirmaciones\Afirmacion_Modi.aspx.cs">
       <DependentUpon>Afirmacion_Modi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Afirmacion_Modi.aspx.designer.cs">
+    <Compile Include="Pages\Afirmaciones\Afirmacion_Modi.aspx.designer.cs">
       <DependentUpon>Afirmacion_Modi.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Crear_Reservaciones.aspx.cs">

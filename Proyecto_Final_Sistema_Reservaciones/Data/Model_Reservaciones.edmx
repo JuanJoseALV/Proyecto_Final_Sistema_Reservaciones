@@ -51,6 +51,11 @@
           <Parameter Name="costoTotal" Type="numeric" Mode="In" />
           <Parameter Name="fechaModificacion" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="spEliminar_Reservacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Reservacion" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+          <Parameter Name="fechaModificacion" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="spFiltro_Gestionar_Reservaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Persona" Type="varchar" Mode="In" />
           <Parameter Name="Fecha_Entrada" Type="datetime" Mode="In" />
@@ -123,6 +128,11 @@
             <Parameter Name="numeroNinhos" Mode="In" Type="Int32" />
             <Parameter Name="totalDiasReservacion" Mode="In" Type="Int32" />
             <Parameter Name="costoTotal" Mode="In" Type="Decimal" />
+            <Parameter Name="fechaModificacion" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spEliminar_Reservacion">
+            <Parameter Name="id_Reservacion" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
             <Parameter Name="fechaModificacion" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="spFiltro_Gestionar_Reservaciones" ReturnType="Collection(PV_ProyectoFinalModel.spFiltro_Gestionar_Reservaciones_Result)">
@@ -354,6 +364,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spEditar_Reservacion" FunctionName="PV_ProyectoFinalModel.Store.spEditar_Reservacion" />
+          <FunctionImportMapping FunctionImportName="spEliminar_Reservacion" FunctionName="PV_ProyectoFinalModel.Store.spEliminar_Reservacion" />
           <FunctionImportMapping FunctionImportName="spFiltro_Gestionar_Reservaciones" FunctionName="PV_ProyectoFinalModel.Store.spFiltro_Gestionar_Reservaciones">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PV_ProyectoFinalModel.spFiltro_Gestionar_Reservaciones_Result">

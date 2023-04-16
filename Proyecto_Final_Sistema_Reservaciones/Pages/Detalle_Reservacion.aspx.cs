@@ -16,6 +16,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         
         String Juan = "PV_ProyectoFinalEntities";
         String Wes = "PV_ProyectoFinalEntities1";
+
         DateTime Fecha_Compu = DateTime.Now;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -99,7 +100,15 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Pages/Mis_Reservaciones.aspx");
+            Usuarios Usu = (Usuarios)Session["Usuario_Res"];
+            if (Usu.Rol == true)
+            {
+                Response.Redirect("~/Pages/Gestionar_Reservaciones.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/Pages/Mis_Reservaciones.aspx");
+            }
         }
         protected int GetReservationDays(string fechaEntradaStr, string fechaSalidaStr)
         {
@@ -130,6 +139,49 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             Button btn = (Button)sender;
             int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
             Response.Redirect("~/Pages/Modificar_Reservacion.aspx?idReservacion1=" + idReservacion);
+        }
+
+        protected void BTN_Cancelar_Click(object sender, EventArgs e)
+        {
+            string estado = "";
+            DateTime fechaSalida;
+            DateTime fechaEntrada;
+            DateTime fecha_actual = DateTime.Now;
+            bool Continuar = false;
+            Usuarios Usu = (Usuarios)Session["Usuario_Res"];
+            int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
+            using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+            {
+                List<spConsultar_Reservaciones_ID_Result> Reservaciones = db.spConsultar_Reservaciones_ID(idReservacion).ToList();
+                foreach (spConsultar_Reservaciones_ID_Result reserva in Reservaciones)
+                {
+                    estado = reserva.estado;
+                    fechaSalida = reserva.fechaSalida;
+                    fechaEntrada = reserva.fechaEntrada;
+                    if (estado == "I" || fechaSalida <= DateTime.Now || fechaEntrada <= DateTime.Now || fechaSalida > DateTime.Now && fechaEntrada < DateTime.Now)
+                    {
+                        
+                        if (Usu.Rol == true)
+                        {
+                            Response.Redirect("~/Pages/Gestionar_Reservaciones.aspx");
+                        }
+                        else
+                        {
+                            Response.Redirect("~/Pages/Mis_Reservaciones.aspx");
+                        }
+                    }
+                    else
+                    {
+                        db.spEliminar_Reservacion(idReservacion, "I", fecha_actual);
+                        Continuar = true;
+                    }
+                }
+            }
+            using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
+            {
+                db1.spCrear_Bitacora(idReservacion, Usu.Id, "CANCELADA", fecha_actual);
+                Response.Redirect("~/Pages/Afirmaciones/Afirmacion_Eli.aspx");
+            }
         }
     }
 }

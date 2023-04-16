@@ -148,7 +148,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                         {
                             Usuarios Usu = (Usuarios)Session["Usuario_Res"];
                             db1.spCrear_Bitacora(idReservacion, Usu.Id, "CORREGIDA", fechaModificacion);
-                            Response.Redirect("~/Pages/Afirmacion_Modi.aspx",false);
+                            Response.Redirect("~/Pages/Afirmaciones/Afirmacion_Modi.aspx", false);
                         }
 
                     }

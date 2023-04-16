@@ -367,3 +367,23 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+GO
+/****** Object:  StoredProcedure [dbo].[spEditar_Reservacion]    Script Date: 15/4/2023 19:33:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[spEliminar_Reservacion]
+	  @id_Reservacion int,
+	  @estado varchar(1),
+	  @fechaModificacion datetime
+	 
+As
+BEGIN
+	 UPDATE Reservacion
+   SET
+      estado = @estado,
+	  fechaModificacion = @fechaModificacion
+ WHERE idReservacion = @id_Reservacion
+END

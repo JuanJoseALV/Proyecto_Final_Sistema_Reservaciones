@@ -194,6 +194,23 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEditar_Reservacion", id_ReservacionParameter, fechaEntradaParameter, fechaSalidaParameter, numeroAdultosParameter, numeroNinhosParameter, totalDiasReservacionParameter, costoTotalParameter, fechaModificacionParameter);
         }
     
+        public virtual int spEliminar_Reservacion(Nullable<int> id_Reservacion, string estado, Nullable<System.DateTime> fechaModificacion)
+        {
+            var id_ReservacionParameter = id_Reservacion.HasValue ?
+                new ObjectParameter("id_Reservacion", id_Reservacion) :
+                new ObjectParameter("id_Reservacion", typeof(int));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            var fechaModificacionParameter = fechaModificacion.HasValue ?
+                new ObjectParameter("fechaModificacion", fechaModificacion) :
+                new ObjectParameter("fechaModificacion", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEliminar_Reservacion", id_ReservacionParameter, estadoParameter, fechaModificacionParameter);
+        }
+    
         public virtual ObjectResult<spFiltro_Gestionar_Reservaciones_Result> spFiltro_Gestionar_Reservaciones(string nombre_Persona, Nullable<System.DateTime> fecha_Entrada, Nullable<System.DateTime> fecha_Salida)
         {
             var nombre_PersonaParameter = nombre_Persona != null ?

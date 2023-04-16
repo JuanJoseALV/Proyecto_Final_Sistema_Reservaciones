@@ -44,7 +44,8 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string estado = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "estado"));
-                DateTime Fecha_Estrada = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "fechaEntrada"));
+                DateTime Fecha_Entrada = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "fechaEntrada"));
+                DateTime Fecha_Salida = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "fechaSalida"));
                 DateTime Fecha_Actual = DateTime.Now;
                 if (estado == "I")
                 {
@@ -52,15 +53,15 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 }
                 else if (estado == "A")
                 {
-                    if (Fecha_Estrada < Fecha_Actual)
+                    if (Fecha_Salida < Fecha_Actual)
                     {
                         e.Row.Cells[5].Text = "Finalizada";
                     }
-                    else if (Fecha_Estrada <= Fecha_Actual)
+                    else if (Fecha_Entrada <= Fecha_Actual)
                     {
                         e.Row.Cells[5].Text = "En proceso";
                     }
-                    else if (Fecha_Estrada >= Fecha_Actual)
+                    else if (Fecha_Entrada >= Fecha_Actual)
                     {
                         e.Row.Cells[5].Text = "En espera";
                     }

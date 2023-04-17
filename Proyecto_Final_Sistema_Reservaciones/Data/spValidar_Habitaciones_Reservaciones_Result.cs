@@ -11,7 +11,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
 {
     using System;
     
-    public partial class spConsultar_Habitaciones_Result
+    public partial class spValidar_Habitaciones_Reservaciones_Result
     {
         public int idHabitacion { get; set; }
         public int idHotel { get; set; }
@@ -21,5 +21,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
         public string estado { get; set; }
         public string nombre { get; set; }
         public string direccion { get; set; }
+        public System.DateTime fechaEntrada { get; set; }
+        public System.DateTime fechaSalida { get; set; }
     }
 }

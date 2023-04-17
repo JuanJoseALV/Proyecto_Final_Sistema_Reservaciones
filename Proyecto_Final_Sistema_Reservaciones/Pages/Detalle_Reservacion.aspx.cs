@@ -91,7 +91,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 }
                 catch (Exception)
                 {
-                    Response.Redirect("~/Pages/Error.aspx");
+                    Response.Redirect("~/Pages/Errores/Error.aspx");
                 }
             }
             

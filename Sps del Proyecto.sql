@@ -1,11 +1,7 @@
 USE [PV_ProyectoFinal]
-GO
-/****** Object:  StoredProcedure [dbo].[spConsultar_Bitacora]    Script Date: 7/4/2023 13:21:19 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER PROCEDURE [dbo].[spConsultar_Bitacora]
+/*************************************************************************** SP Consultar bitacora *****************************************************************/
+
+Create  PROCEDURE [dbo].[spConsultar_Bitacora]
 	@id_Reservacion INT
 AS	
 BEGIN
@@ -19,12 +15,80 @@ BEGIN
 	order by b.idBitacora desc;
 END
 
-GO
-/****** Object:  StoredProcedure [dbo].[spConsultar_Mis_Reservaciones]    Script Date: 7/4/2023 13:21:35 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+/*************************************************************************** SP Consultar  habitaciones *****************************************************************/
+
+CREATE PROCEDURE [dbo].[spConsultar_Habitaciones]
+AS
+BEGIN
+	SELECT
+		h.idHabitacion,
+		h.idHotel,
+		h.numeroHabitacion,
+		h.capacidadMaxima,
+		h.descripcion,
+		h.estado,
+		ho.nombre,
+		ho.direccion
+	FROM dbo.Habitacion h inner join Hotel ho on h.idHotel=ho.idHotel
+	order by ho.nombre asc
+END
+
+/*************************************************************************** SP Consultar  habitaciones Id*****************************************************************/
+
+Create PROCEDURE [dbo].[spConsultar_Habitaciones_Id]
+@id_Habitacion int
+AS
+BEGIN
+	SELECT
+		h.idHabitacion,
+		h.idHotel,
+		h.numeroHabitacion,
+		h.capacidadMaxima,
+		h.descripcion,
+		h.estado,
+		ho.nombre,
+		ho.direccion,
+		r.fechaEntrada,
+		r.fechaSalida
+	FROM dbo.Habitacion h inner join Hotel ho on h.idHotel=ho.idHotel
+	inner join Reservacion r on h.idHabitacion=r.idHabitacion
+	where h.idHabitacion = @id_Habitacion;
+END
+
+/*************************************************************************** SP Consultar Hoteles *****************************************************************/
+
+
+Create PROCEDURE [dbo].[spConsultar_Hoteles]
+AS
+BEGIN
+	SELECT
+		h.idHotel,
+		h.nombre,
+		h.direccion,
+		h.costoPorCadaAdulto,
+		h.costoPorCadaNinho
+	FROM dbo.Hotel h
+	order by  h.nombre asc;
+END
+
+/*************************************************************************** SP Consultar Hoteles Id *****************************************************************/
+
+Create PROCEDURE [dbo].[spConsultar_Hoteles_Id]
+@id_Hotel int
+AS
+BEGIN
+	SELECT
+		h.idHotel,
+		h.nombre,
+		h.direccion,
+		h.costoPorCadaAdulto,
+		h.costoPorCadaNinho
+	FROM dbo.Hotel h
+where h.idHotel=@id_Hotel;
+END
+
+/*************************************************************************** SP Consultar Mis Reservaciones *****************************************************************/
+
 Create PROCEDURE [dbo].[spConsultar_Mis_Reservaciones]
 	@id_Persona INT
 AS	
@@ -43,172 +107,11 @@ BEGIN
 	order by r.idReservacion desc;
 	
 END
-GO
-/****** Object:  StoredProcedure [dbo].[spConsultar_Reservaciones_ID]    Script Date: 7/4/2023 13:21:53 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[spConsultar_Reservaciones_ID]
-	@id_Reservacion INT
-AS	
-BEGIN
-	SELECT
-		r.idReservacion,
-		ho.nombre,
-		h.numeroHabitacion,
-		pe.nombreCompleto,
-		r.fechaEntrada,
-		r.fechaSalida,
-		r.numeroNinhos,
-		r.numeroAdultos,
-		r.costoTotal,
-		r.estado
-		
-	FROM Persona pe INNER JOIN Reservacion r on pe.idPersona = r.idPersona
-						INNER JOIN Habitacion h on r.idHabitacion = h.idHabitacion
-						INNER JOIN Hotel ho on h.idHotel = ho.idHotel 	
-	WHERE r.idReservacion = @id_Reservacion
-END
 
-GO
-/****** Object:  StoredProcedure [dbo].[spValidar_Reservaciones_Persona]    Script Date: 7/4/2023 13:22:36 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[spValidar_Reservaciones_Persona]
-	@id_Reservacion INT,
-	@Nombre_Usuario varchar(50)
-AS	
-BEGIN
-	SELECT
-		r.idReservacion,
-		ho.nombre,
-		h.numeroHabitacion,
-		pe.nombreCompleto,
-		r.fechaEntrada,
-		r.fechaSalida,
-		r.numeroNinhos,
-		r.numeroAdultos,
-		r.costoTotal
-		
-	FROM Persona pe INNER JOIN Reservacion r on pe.idPersona = r.idPersona
-						INNER JOIN Habitacion h on r.idHabitacion = h.idHabitacion
-						INNER JOIN Hotel ho on h.idHotel = ho.idHotel 	
-	WHERE r.idReservacion = @id_Reservacion and pe.nombreCompleto=@Nombre_Usuario
-END
+/*************************************************************************** SP Consultar Reservaciones Id *****************************************************************/
 
-GO
-/****** Object:  StoredProcedure [dbo].[spLogin]    Script Date: 7/4/2023 13:23:34 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-Create PROCEDURE [dbo].[spLogin]
-	@Email varchar(50),
-	@Clave varchar(50)
-
-AS
-BEGIN
-	SELECT
-		p.idPersona,
-		p.nombreCompleto,
-		p.estado,
-		p.esEmpleado,
-		p.email,
-		p.clave
-	FROM dbo.Persona p
-	WHERE p.clave= @Clave and p.email=@Email and p.estado='A'
-END
-
-GO
-/****** Object:  StoredProcedure [dbo].[spGestionar_Reservaciones_ID]    Script Date: 7/4/2023 13:23:51 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[spGestionar_Reservaciones_ID]
-	@id_Persona INT
-AS	
-BEGIN
-	SELECT
-		r.idReservacion,
-		ho.nombre,
-		h.numeroHabitacion,
-		pe.nombreCompleto,
-		r.fechaEntrada,
-		r.fechaSalida,
-		r.numeroNinhos,
-		r.numeroAdultos,
-		r.costoTotal,
-		r.estado
-	FROM Persona pe inner JOIN Reservacion r on pe.idPersona = r.idPersona
-						inner JOIN Habitacion h on r.idHabitacion = h.idHabitacion
-						inner JOIN Hotel ho on h.idHotel = ho.idHotel 	
-	WHERE pe.idPersona != @id_Persona 
-	order by r.idReservacion desc;
-END
-GO
-/****** Object:  StoredProcedure [dbo].[spGestionar_Reservaciones_ID]    Script Date: 7/4/2023 13:46:50 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[spFiltro_Gestionar_Reservaciones]
-	@Nombre_Persona varchar(50),
-	@Fecha_Entrada datetime,
-	@Fecha_Salida datetime
-AS	
-BEGIN
-	SELECT
-		r.idReservacion,
-		ho.nombre,
-		h.numeroHabitacion,
-		pe.nombreCompleto,
-		r.fechaEntrada,
-		r.fechaSalida,
-		r.numeroNinhos,
-		r.numeroAdultos,
-		r.costoTotal,
-		r.estado
-	FROM Persona pe inner JOIN Reservacion r on pe.idPersona = r.idPersona
-						inner JOIN Habitacion h on r.idHabitacion = h.idHabitacion
-						inner JOIN Hotel ho on h.idHotel = ho.idHotel 	
-	WHERE pe.nombreCompleto = @Nombre_Persona or r.fechaEntrada BETWEEN @Fecha_Entrada AND @Fecha_Salida And r.fechaSalida BETWEEN @Fecha_Entrada AND @Fecha_Salida
-	order by r.idReservacion desc;
-END
-
-
-GO
-/****** Object:  StoredProcedure [dbo].[spConsultar_Usuarios]    Script Date: 9/4/2023 12:54:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-Create PROCEDURE [dbo].[spConsultar_Hoteles]
-AS
-BEGIN
-	SELECT
-		h.idHotel,
-		h.nombre,
-		h.direccion,
-		h.costoPorCadaAdulto,
-		h.costoPorCadaNinho
-	FROM dbo.Hotel h
-	order by  h.nombre asc;
-END
-
-GO
-/****** Object:  StoredProcedure [dbo].[spConsultar_Hoteles]    Script Date: 13/4/2023 10:47:06 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-Create PROCEDURE [dbo].[spConsultar_Habitaciones]
+CREATE PROCEDURE [dbo].[spConsultar_Habitaciones_Id]
+@id_Habitacion int
 AS
 BEGIN
 	SELECT
@@ -217,11 +120,61 @@ BEGIN
 		h.numeroHabitacion,
 		h.capacidadMaxima,
 		h.descripcion,
-		h.estado
-	FROM dbo.Habitacion h
+		h.estado,
+		ho.nombre,
+		ho.direccion
+
+	FROM dbo.Habitacion h inner join Hotel ho on h.idHotel=ho.idHotel
+
+	where h.idHabitacion = @id_Habitacion;
+END
+/*************************************************************************** SP Consultar Usuarios *****************************************************************/
+
+CREATE PROCEDURE [dbo].[spConsultar_Usuarios]
+AS
+BEGIN
+	SELECT
+	p.nombreCompleto,
+	p.idPersona,
+	p.estado,
+	p.esEmpleado,
+	p.email,
+	p.clave
+	FROM dbo.Persona p
 END
 
-Create PROCEDURE [dbo].[spCrear_Reservacion]
+/*************************************************************************** SP Crear Bitacora *****************************************************************/
+
+Create PROCEDURE [dbo].[spCrear_Bitacora]
+	 @id_Reservacion int,
+	 @id_Persona int,
+	 @Accion varchar(25),
+	 @fecha datetime 
+As
+BEGIN
+	INSERT INTO dbo.Bitacora(idReservacion,idPersona,accionRealizada,fechaDeLaAccion)
+	VALUES (@id_Reservacion,@id_Persona,@Accion,@fecha)
+	
+END
+
+/*************************************************************************** SP Crear habitacion *****************************************************************/
+
+Create PROCEDURE [dbo].[spCrear_Habitacion]
+	 @id_Hotel int,
+	 @numero_Hotel varchar(10),
+	 @Capacidad_Max int,
+	 @Descripcion varchar(500),
+	 @Estado varchar(1)
+As
+BEGIN
+	INSERT INTO dbo.Habitacion(idHotel, numeroHabitacion, capacidadMaxima, descripcion, estado)
+     VALUES(@id_Hotel, @numero_Hotel, @Capacidad_Max, @Descripcion, @Estado)
+	
+END
+
+/*************************************************************************** SP Crear Reservacion *****************************************************************/
+
+CREATE PROCEDURE [dbo].[spCrear_Reservacion]
 	  @numPersonas INT,
 	  @idHotel INT,
 	  @idPersona int,
@@ -255,89 +208,27 @@ BEGIN
 	--Paso 4: hacer el insert
 	INSERT INTO dbo.Reservacion (idPersona, idHabitacion, fechaEntrada, fechaSalida, numeroAdultos, numeroNinhos, totalDiasReservacion, costoPorCadaAdulto, costoPorCadaNinho, costoTotal, fechaCreacion, estado)
 	VALUES (@idPersona, @idHabitacion, @fechaEntrada, @fechaSalida, @numeroAdultos, @numeroNinhos, @totalDiasReservacion, @costoPorCadaAdulto, @costoPorCadaNinho, @costoTotal, @fechaCreacion, @estado)
-	--Paso 5: Update estado habitacion
-	UPDATE Habitacion SET Estado = 'I' WHERE IdHabitacion = @idHabitacion
 END
 
-/****** Object:  StoredProcedure [dbo].[spConsultar_Hoteles_Id]    Script Date: 13/4/2023 18:02:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+/*************************************************************************** SP Editar Habitacion *****************************************************************/
 
-Create PROCEDURE [dbo].[spConsultar_Hoteles_Id]
-@id_Hotel int
-AS
-BEGIN
-	SELECT
-		h.idHotel,
-		h.nombre,
-		h.direccion,
-		h.costoPorCadaAdulto,
-		h.costoPorCadaNinho
-	FROM dbo.Hotel h
-where h.idHotel=@id_Hotel;
-END
-
-GO
-/****** Object:  StoredProcedure [dbo].[spCrear_Bitacora]    Script Date: 15/4/2023 17:44:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[spCrear_Bitacora]
-	 @id_Reservacion int,
-	 @id_Persona int,
-	 @Accion varchar(25),
-	 @fecha datetime 
+Create PROCEDURE [dbo].[spEditar_Habitacion]
+	  @id_Habitacion int,
+	  @Numero_Habitacion varchar(10),
+	  @Capacidad_Maxima int,
+	  @Descripcion varchar (500)
 As
 BEGIN
-	INSERT INTO dbo.Bitacora(idReservacion,idPersona,accionRealizada,fechaDeLaAccion)
-	VALUES (@id_Reservacion,@id_Persona,@Accion,@fecha)
-	
-END
+UPDATE Habitacion
+   SET
+      numeroHabitacion = @Numero_Habitacion,
+      capacidadMaxima = @Capacidad_Maxima,
+      descripcion = @Descripcion 
+ WHERE idHabitacion=@id_Habitacion;
+ END
 
-GO
-/****** Object:  StoredProcedure [dbo].[spObtener_Id_Reservacion_Creada]    Script Date: 13/4/2023 18:05:18 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[spObtener_Id_Reservacion_Creada]
-AS
-BEGIN
-    SET NOCOUNT ON;
+/*************************************************************************** SP Editar Reservacion *****************************************************************/
 
-    SELECT MAX(idReservacion) AS idReservacion
-    FROM Reservacion;
-END
-
-GO
-/****** Object:  StoredProcedure [dbo].[spConsultar_Hoteles]    Script Date: 13/4/2023 18:37:44 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE PROCEDURE [dbo].[spConsultar_Usuarios]
-AS
-BEGIN
-	SELECT
-	p.nombreCompleto,
-	p.idPersona,
-	p.estado,
-	p.esEmpleado,
-	p.email,
-	p.clave
-	FROM dbo.Persona p
-END
-
-GO
-/****** Object:  StoredProcedure [dbo].[spEditar_Reservacion]    Script Date: 15/4/2023 13:13:13 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 Create PROCEDURE [dbo].[spEditar_Reservacion]
 	  @id_Reservacion int,
 	  @fechaEntrada datetime,
@@ -361,19 +252,8 @@ BEGIN
  WHERE idReservacion = @id_Reservacion
 END
 
-GO
-/****** Object:  StoredProcedure [dbo].[spCrear_Reservacion]    Script Date: 15/4/2023 12:51:36 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+/*************************************************************************** SP Eliminar Reservacion *****************************************************************/
 
-GO
-/****** Object:  StoredProcedure [dbo].[spEditar_Reservacion]    Script Date: 15/4/2023 19:33:05 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
 Create PROCEDURE [dbo].[spEliminar_Reservacion]
 	  @id_Reservacion int,
 	  @estado varchar(1),
@@ -387,3 +267,181 @@ BEGIN
 	  fechaModificacion = @fechaModificacion
  WHERE idReservacion = @id_Reservacion
 END
+
+/*************************************************************************** SP Filtro Gestionar Reservaciones *****************************************************************/
+
+Create PROCEDURE [dbo].[spFiltro_Gestionar_Reservaciones]
+	@Nombre_Persona varchar(50),
+	@Fecha_Entrada datetime,
+	@Fecha_Salida datetime
+AS	
+BEGIN
+	SELECT
+		r.idReservacion,
+		ho.nombre,
+		h.numeroHabitacion,
+		pe.nombreCompleto,
+		r.fechaEntrada,
+		r.fechaSalida,
+		r.numeroNinhos,
+		r.numeroAdultos,
+		r.costoTotal,
+		r.estado
+	FROM Persona pe inner JOIN Reservacion r on pe.idPersona = r.idPersona
+						inner JOIN Habitacion h on r.idHabitacion = h.idHabitacion
+						inner JOIN Hotel ho on h.idHotel = ho.idHotel 	
+	WHERE pe.nombreCompleto = @Nombre_Persona or r.fechaEntrada BETWEEN @Fecha_Entrada AND @Fecha_Salida And r.fechaSalida BETWEEN @Fecha_Entrada AND @Fecha_Salida
+	order by r.idReservacion desc;
+END
+
+/*************************************************************************** SP Gestionar Reservaciones id *****************************************************************/
+
+Create PROCEDURE [dbo].[spGestionar_Reservaciones_ID]
+	@id_Persona INT
+AS	
+BEGIN
+	SELECT
+		r.idReservacion,
+		ho.nombre,
+		h.numeroHabitacion,
+		pe.nombreCompleto,
+		r.fechaEntrada,
+		r.fechaSalida,
+		r.numeroNinhos,
+		r.numeroAdultos,
+		r.costoTotal,
+		r.estado
+	FROM Persona pe inner JOIN Reservacion r on pe.idPersona = r.idPersona
+						inner JOIN Habitacion h on r.idHabitacion = h.idHabitacion
+						inner JOIN Hotel ho on h.idHotel = ho.idHotel 	
+	WHERE pe.idPersona != @id_Persona 
+	order by r.idReservacion desc;
+END
+
+/*************************************************************************** SP inactivar Habitacion *****************************************************************/
+
+CREATE PROCEDURE [dbo].[spInactivar_Habitacion]
+	  @id_Habitacion int,
+	  @Estado varchar (1)
+	
+As
+BEGIN
+UPDATE Habitacion
+   SET 
+      estado = @Estado
+ WHERE idHabitacion=@id_Habitacion
+END
+
+/*************************************************************************** SP login *****************************************************************/
+
+Create PROCEDURE [dbo].[spLogin]
+	@Email varchar(50),
+	@Clave varchar(50)
+
+AS
+BEGIN
+	SELECT
+		p.idPersona,
+		p.nombreCompleto,
+		p.estado,
+		p.esEmpleado,
+		p.email,
+		p.clave
+	FROM dbo.Persona p
+	WHERE p.clave= @Clave and p.email=@Email and p.estado='A'
+END
+
+/*************************************************************************** SP Obtener Id Reservacion Creada *****************************************************************/
+
+Create PROCEDURE [dbo].[spObtener_Id_Reservacion_Creada]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT MAX(idReservacion) AS idReservacion
+    FROM Reservacion;
+END
+
+/*************************************************************************** SP Validar Habitaciones *****************************************************************/
+
+Create PROCEDURE [dbo].[spValidar_Habitaciones]
+	@id_Hotel INT,
+	@Cantidad_Personas int
+AS	
+BEGIN
+	SELECT
+		h.idHotel,
+		ha.idHabitacion
+	FROM Hotel h inner join Habitacion ha on ha.idHotel=h.idHotel
+	WHERE h.idHotel = @id_Hotel and ha.capacidadMaxima >= @Cantidad_Personas;
+
+END
+
+/*************************************************************************** SP Validar Habitaciones_Reservacion *****************************************************************/
+
+CREATE PROCEDURE [dbo].[spValidar_Habitaciones_Reservaciones]
+@id_Habitacion int
+AS
+BEGIN
+	SELECT
+		h.idHabitacion,
+		h.idHotel,
+		h.numeroHabitacion,
+		h.capacidadMaxima,
+		h.descripcion,
+		h.estado,
+		ho.nombre,
+		ho.direccion,
+		r.fechaEntrada,
+		r.fechaSalida
+	FROM dbo.Habitacion h inner join Hotel ho on h.idHotel=ho.idHotel
+	inner join Reservacion r on h.idHabitacion=r.idHabitacion
+	where h.idHabitacion = @id_Habitacion;
+END
+
+/*************************************************************************** SP Validar Reservaciones Persona*****************************************************************/
+
+Create PROCEDURE [dbo].[spValidar_Reservaciones_Persona]
+	@id_Reservacion INT,
+	@Nombre_Usuario varchar(50)
+AS	
+BEGIN
+	SELECT
+		r.idReservacion,
+		ho.nombre,
+		h.numeroHabitacion,
+		pe.nombreCompleto,
+		r.fechaEntrada,
+		r.fechaSalida,
+		r.numeroNinhos,
+		r.numeroAdultos,
+		r.costoTotal
+		
+	FROM Persona pe INNER JOIN Reservacion r on pe.idPersona = r.idPersona
+						INNER JOIN Habitacion h on r.idHabitacion = h.idHabitacion
+						INNER JOIN Hotel ho on h.idHotel = ho.idHotel 	
+	WHERE r.idReservacion = @id_Reservacion and pe.nombreCompleto=@Nombre_Usuario
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,6 +9,9 @@
           <Parameter Name="id_Reservacion" Type="int" Mode="In" />
         </Function>
         <Function Name="spConsultar_Habitaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spConsultar_Habitaciones_Id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Habitacion" Type="int" Mode="In" />
+        </Function>
         <Function Name="spConsultar_Hoteles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spConsultar_Hoteles_Id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Hotel" Type="int" Mode="In" />
@@ -26,6 +29,13 @@
           <Parameter Name="Accion" Type="varchar" Mode="In" />
           <Parameter Name="fecha" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="spCrear_Habitacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Hotel" Type="int" Mode="In" />
+          <Parameter Name="numero_Hotel" Type="varchar" Mode="In" />
+          <Parameter Name="Capacidad_Max" Type="int" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Estado" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="spCrear_Reservacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="numPersonas" Type="int" Mode="In" />
           <Parameter Name="idHotel" Type="int" Mode="In" />
@@ -40,6 +50,12 @@
           <Parameter Name="costoTotal" Type="numeric" Mode="In" />
           <Parameter Name="fechaCreacion" Type="datetime" Mode="In" />
           <Parameter Name="estado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spEditar_Habitacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Habitacion" Type="int" Mode="In" />
+          <Parameter Name="Numero_Habitacion" Type="varchar" Mode="In" />
+          <Parameter Name="Capacidad_Maxima" Type="int" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="spEditar_Reservacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Reservacion" Type="int" Mode="In" />
@@ -64,6 +80,10 @@
         <Function Name="spGestionar_Reservaciones_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Persona" Type="int" Mode="In" />
         </Function>
+        <Function Name="spInactivar_Habitacion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Habitacion" Type="int" Mode="In" />
+          <Parameter Name="Estado" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="spLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Email" Type="varchar" Mode="In" />
           <Parameter Name="Clave" Type="varchar" Mode="In" />
@@ -72,6 +92,9 @@
         <Function Name="spValidar_Habitaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Hotel" Type="int" Mode="In" />
           <Parameter Name="Cantidad_Personas" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spValidar_Habitaciones_Reservaciones" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Habitacion" Type="int" Mode="In" />
         </Function>
         <Function Name="spValidar_Reservaciones_Persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Reservacion" Type="int" Mode="In" />
@@ -88,6 +111,9 @@
             <Parameter Name="id_Reservacion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spConsultar_Habitaciones" ReturnType="Collection(PV_ProyectoFinalModel.spConsultar_Habitaciones_Result)" />
+          <FunctionImport Name="spConsultar_Habitaciones_Id" ReturnType="Collection(PV_ProyectoFinalModel.spConsultar_Habitaciones_Id_Result)">
+            <Parameter Name="id_Habitacion" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="spConsultar_Hoteles" ReturnType="Collection(PV_ProyectoFinalModel.spConsultar_Hoteles_Result)" />
           <FunctionImport Name="spConsultar_Hoteles_Id" ReturnType="Collection(PV_ProyectoFinalModel.spConsultar_Hoteles_Id_Result)">
             <Parameter Name="id_Hotel" Mode="In" Type="Int32" />
@@ -105,6 +131,13 @@
             <Parameter Name="Accion" Mode="In" Type="String" />
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="spCrear_Habitacion">
+            <Parameter Name="id_Hotel" Mode="In" Type="Int32" />
+            <Parameter Name="numero_Hotel" Mode="In" Type="String" />
+            <Parameter Name="Capacidad_Max" Mode="In" Type="Int32" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="spCrear_Reservacion" ReturnType="Collection(PV_ProyectoFinalModel.spCrear_Reservacion_Result)">
             <Parameter Name="numPersonas" Mode="In" Type="Int32" />
             <Parameter Name="idHotel" Mode="In" Type="Int32" />
@@ -119,6 +152,12 @@
             <Parameter Name="costoTotal" Mode="In" Type="Decimal" />
             <Parameter Name="fechaCreacion" Mode="In" Type="DateTime" />
             <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spEditar_Habitacion">
+            <Parameter Name="id_Habitacion" Mode="In" Type="Int32" />
+            <Parameter Name="Numero_Habitacion" Mode="In" Type="String" />
+            <Parameter Name="Capacidad_Maxima" Mode="In" Type="Int32" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spEditar_Reservacion">
             <Parameter Name="id_Reservacion" Mode="In" Type="Int32" />
@@ -143,6 +182,10 @@
           <FunctionImport Name="spGestionar_Reservaciones_ID" ReturnType="Collection(PV_ProyectoFinalModel.spGestionar_Reservaciones_ID_Result)">
             <Parameter Name="id_Persona" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="spInactivar_Habitacion">
+            <Parameter Name="id_Habitacion" Mode="In" Type="Int32" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="spLogin" ReturnType="Collection(PV_ProyectoFinalModel.spLogin_Result)">
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="Clave" Mode="In" Type="String" />
@@ -151,6 +194,9 @@
           <FunctionImport Name="spValidar_Habitaciones" ReturnType="Collection(PV_ProyectoFinalModel.spValidar_Habitaciones_Result)">
             <Parameter Name="id_Hotel" Mode="In" Type="Int32" />
             <Parameter Name="Cantidad_Personas" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spValidar_Habitaciones_Reservaciones" ReturnType="Collection(PV_ProyectoFinalModel.spValidar_Habitaciones_Reservaciones_Result)">
+            <Parameter Name="id_Habitacion" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spValidar_Reservaciones_Persona" ReturnType="Collection(PV_ProyectoFinalModel.spValidar_Reservaciones_Persona_Result)">
             <Parameter Name="id_Reservacion" Mode="In" Type="Int32" />
@@ -170,6 +216,18 @@
           <Property Type="Int32" Name="capacidadMaxima" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
           <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="spConsultar_Habitaciones_Id_Result">
+          <Property Type="Int32" Name="idHabitacion" Nullable="false" />
+          <Property Type="Int32" Name="idHotel" Nullable="false" />
+          <Property Type="String" Name="numeroHabitacion" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="capacidadMaxima" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="500" />
         </ComplexType>
         <ComplexType Name="spConsultar_Hoteles_Result">
           <Property Type="Int32" Name="idHotel" Nullable="false" />
@@ -253,6 +311,18 @@
           <Property Type="Int32" Name="idHotel" Nullable="false" />
           <Property Type="Int32" Name="idHabitacion" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="spValidar_Habitaciones_Reservaciones_Result">
+          <Property Type="Int32" Name="idHabitacion" Nullable="false" />
+          <Property Type="Int32" Name="idHotel" Nullable="false" />
+          <Property Type="String" Name="numeroHabitacion" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="capacidadMaxima" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="fechaEntrada" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fechaSalida" Nullable="false" Precision="23" />
+        </ComplexType>
         <ComplexType Name="spValidar_Reservaciones_Persona_Result">
           <Property Type="Int32" Name="idReservacion" Nullable="false" />
           <Property Type="String" Name="nombre" Nullable="false" MaxLength="150" />
@@ -289,6 +359,22 @@
                 <ScalarProperty Name="capacidadMaxima" ColumnName="capacidadMaxima" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spConsultar_Habitaciones_Id" FunctionName="PV_ProyectoFinalModel.Store.spConsultar_Habitaciones_Id">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PV_ProyectoFinalModel.spConsultar_Habitaciones_Id_Result">
+                <ScalarProperty Name="idHabitacion" ColumnName="idHabitacion" />
+                <ScalarProperty Name="idHotel" ColumnName="idHotel" />
+                <ScalarProperty Name="numeroHabitacion" ColumnName="numeroHabitacion" />
+                <ScalarProperty Name="capacidadMaxima" ColumnName="capacidadMaxima" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -355,6 +441,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spCrear_Bitacora" FunctionName="PV_ProyectoFinalModel.Store.spCrear_Bitacora" />
+          <FunctionImportMapping FunctionImportName="spCrear_Habitacion" FunctionName="PV_ProyectoFinalModel.Store.spCrear_Habitacion" />
           <FunctionImportMapping FunctionImportName="spCrear_Reservacion" FunctionName="PV_ProyectoFinalModel.Store.spCrear_Reservacion">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PV_ProyectoFinalModel.spCrear_Reservacion_Result">
@@ -363,6 +450,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spEditar_Habitacion" FunctionName="PV_ProyectoFinalModel.Store.spEditar_Habitacion" />
           <FunctionImportMapping FunctionImportName="spEditar_Reservacion" FunctionName="PV_ProyectoFinalModel.Store.spEditar_Reservacion" />
           <FunctionImportMapping FunctionImportName="spEliminar_Reservacion" FunctionName="PV_ProyectoFinalModel.Store.spEliminar_Reservacion" />
           <FunctionImportMapping FunctionImportName="spFiltro_Gestionar_Reservaciones" FunctionName="PV_ProyectoFinalModel.Store.spFiltro_Gestionar_Reservaciones">
@@ -397,6 +485,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spInactivar_Habitacion" FunctionName="PV_ProyectoFinalModel.Store.spInactivar_Habitacion" />
           <FunctionImportMapping FunctionImportName="spLogin" FunctionName="PV_ProyectoFinalModel.Store.spLogin">
             <ResultMapping>
               <ComplexTypeMapping TypeName="PV_ProyectoFinalModel.spLogin_Result">
@@ -415,6 +504,22 @@
               <ComplexTypeMapping TypeName="PV_ProyectoFinalModel.spValidar_Habitaciones_Result">
                 <ScalarProperty Name="idHotel" ColumnName="idHotel" />
                 <ScalarProperty Name="idHabitacion" ColumnName="idHabitacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spValidar_Habitaciones_Reservaciones" FunctionName="PV_ProyectoFinalModel.Store.spValidar_Habitaciones_Reservaciones">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PV_ProyectoFinalModel.spValidar_Habitaciones_Reservaciones_Result">
+                <ScalarProperty Name="idHabitacion" ColumnName="idHabitacion" />
+                <ScalarProperty Name="idHotel" ColumnName="idHotel" />
+                <ScalarProperty Name="numeroHabitacion" ColumnName="numeroHabitacion" />
+                <ScalarProperty Name="capacidadMaxima" ColumnName="capacidadMaxima" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="fechaEntrada" ColumnName="fechaEntrada" />
+                <ScalarProperty Name="fechaSalida" ColumnName="fechaSalida" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

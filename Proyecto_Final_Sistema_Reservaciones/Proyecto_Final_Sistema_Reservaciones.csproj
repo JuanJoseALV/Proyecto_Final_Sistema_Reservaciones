@@ -131,16 +131,6 @@
       <DependentUpon>Model_Reservaciones.edmx</DependentUpon>
       <LastGenOutput>Model_Reservaciones.cs</LastGenOutput>
     </Content>
-    <Content Include="Data\Model_Reservaciones1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model_Reservaciones1.edmx</DependentUpon>
-      <LastGenOutput>Model_Reservaciones1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Data\Model_Reservaciones1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model_Reservaciones1.edmx</DependentUpon>
-      <LastGenOutput>Model_Reservaciones1.cs</LastGenOutput>
-    </Content>
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -153,13 +143,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <EntityDeploy Include="Data\Model_Reservaciones1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model_Reservaciones1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\Model_Reservaciones1.edmx.diagram">
-      <DependentUpon>Model_Reservaciones1.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Data\Model_Reservaciones.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model_Reservaciones.Designer.cs</LastGenOutput>
@@ -169,12 +152,20 @@
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Pages\Afirmaciones\Afirmacion.aspx" />
+    <Content Include="Pages\Afirmaciones\Afirmacion_Crear_Habi.aspx" />
+    <Content Include="Pages\Afirmaciones\Afirmacion_Editar_Habi.aspx" />
     <Content Include="Pages\Afirmaciones\Afirmacion_Eli.aspx" />
+    <Content Include="Pages\Afirmaciones\Afirmacion_Inac_Habi.aspx" />
     <Content Include="Pages\Afirmaciones\Afirmacion_Modi.aspx" />
+    <Content Include="Pages\Crear_Habitaciones.aspx" />
     <Content Include="Pages\Crear_Reservaciones.aspx" />
     <Content Include="Pages\Detalle_Reservacion.aspx" />
-    <Content Include="Pages\Error.aspx" />
+    <Content Include="Pages\Editar_Habitacion.aspx" />
+    <Content Include="Pages\Errores\Error.aspx" />
+    <Content Include="Pages\Errores\Error_Fecha_INV.aspx" />
+    <Content Include="Pages\Errores\Error_ha_In.aspx" />
     <Content Include="Pages\Gestionar_Reservaciones.aspx" />
+    <Content Include="Pages\Lista_Habitaciones.aspx" />
     <Content Include="Pages\Login.aspx" />
     <Content Include="Pages\Mis_Reservaciones.aspx" />
     <Content Include="Pages\Modificar_Reservacion.aspx" />
@@ -238,22 +229,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model_Reservaciones.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Model_Reservaciones1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_Reservaciones1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Model_Reservaciones1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_Reservaciones1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Model_Reservaciones1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model_Reservaciones1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Data\spConsultar_Bitacora_Result.cs">
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\spConsultar_Habitaciones_Id_Result.cs">
       <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\spConsultar_Habitaciones_Result.cs">
@@ -286,6 +265,9 @@
     <Compile Include="Data\spLogin_Result.cs">
       <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\spValidar_Habitaciones_Reservaciones_Result.cs">
+      <DependentUpon>Model_Reservaciones.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\spValidar_Habitaciones_Result.cs">
       <DependentUpon>Model_Reservaciones.tt</DependentUpon>
     </Compile>
@@ -309,6 +291,20 @@
     <Compile Include="Pages\Afirmaciones\Afirmacion.aspx.designer.cs">
       <DependentUpon>Afirmacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Afirmaciones\Afirmacion_Crear_Habi.aspx.cs">
+      <DependentUpon>Afirmacion_Crear_Habi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Afirmaciones\Afirmacion_Crear_Habi.aspx.designer.cs">
+      <DependentUpon>Afirmacion_Crear_Habi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Afirmaciones\Afirmacion_Editar_Habi.aspx.cs">
+      <DependentUpon>Afirmacion_Editar_Habi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Afirmaciones\Afirmacion_Editar_Habi.aspx.designer.cs">
+      <DependentUpon>Afirmacion_Editar_Habi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Afirmaciones\Afirmacion_Eli.aspx.cs">
       <DependentUpon>Afirmacion_Eli.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -316,12 +312,26 @@
     <Compile Include="Pages\Afirmaciones\Afirmacion_Eli.aspx.designer.cs">
       <DependentUpon>Afirmacion_Eli.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Afirmaciones\Afirmacion_Inac_Habi.aspx.cs">
+      <DependentUpon>Afirmacion_Inac_Habi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Afirmaciones\Afirmacion_Inac_Habi.aspx.designer.cs">
+      <DependentUpon>Afirmacion_Inac_Habi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Afirmaciones\Afirmacion_Modi.aspx.cs">
       <DependentUpon>Afirmacion_Modi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Afirmaciones\Afirmacion_Modi.aspx.designer.cs">
       <DependentUpon>Afirmacion_Modi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Crear_Habitaciones.aspx.cs">
+      <DependentUpon>Crear_Habitaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Crear_Habitaciones.aspx.designer.cs">
+      <DependentUpon>Crear_Habitaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Crear_Reservaciones.aspx.cs">
       <DependentUpon>Crear_Reservaciones.aspx</DependentUpon>
@@ -337,12 +347,33 @@
     <Compile Include="Pages\Detalle_Reservacion.aspx.designer.cs">
       <DependentUpon>Detalle_Reservacion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Error.aspx.cs">
+    <Compile Include="Pages\Editar_Habitacion.aspx.cs">
+      <DependentUpon>Editar_Habitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Editar_Habitacion.aspx.designer.cs">
+      <DependentUpon>Editar_Habitacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Errores\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Error.aspx.designer.cs">
+    <Compile Include="Pages\Errores\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Errores\Error_Fecha_INV.aspx.cs">
+      <DependentUpon>Error_Fecha_INV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Errores\Error_Fecha_INV.aspx.designer.cs">
+      <DependentUpon>Error_Fecha_INV.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Errores\Error_ha_In.aspx.cs">
+      <DependentUpon>Error_ha_In.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Errores\Error_ha_In.aspx.designer.cs">
+      <DependentUpon>Error_ha_In.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Gestionar_Reservaciones.aspx.cs">
       <DependentUpon>Gestionar_Reservaciones.aspx</DependentUpon>
@@ -350,6 +381,13 @@
     </Compile>
     <Compile Include="Pages\Gestionar_Reservaciones.aspx.designer.cs">
       <DependentUpon>Gestionar_Reservaciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Lista_Habitaciones.aspx.cs">
+      <DependentUpon>Lista_Habitaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Lista_Habitaciones.aspx.designer.cs">
+      <DependentUpon>Lista_Habitaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

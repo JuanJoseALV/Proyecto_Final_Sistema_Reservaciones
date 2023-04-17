@@ -58,7 +58,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 catch (Exception)
                 {
 
-                    throw;
+                    Response.Redirect("~/Pages/Errores/Error.aspx");
                 }
                 INP_Num_A.Value = Convert.ToString(1);
                 INP_Num_N.Value = Convert.ToString(0);
@@ -70,70 +70,79 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             bool Hotel = false;
             if (Page.IsValid == true)
             {
-                try
+                string idHotel1 = DL_Hotel.SelectedItem.Value;
+                string idPersona1 = DL_Cliente.SelectedItem.Value;
+                if (string.IsNullOrEmpty(idHotel1) == false)
                 {
-                    int idHotel = Convert.ToInt32(DL_Hotel.SelectedItem.Value);
-                    int idPersona = Convert.ToInt32(DL_Cliente.SelectedItem.Value);
-                    DateTime fechaEntrada = Convert.ToDateTime(INP_Fecha_En.Value);
-                    DateTime fechaSalida = Convert.ToDateTime(INP_Fecha_Sal.Value);
-                    int numeroAdultos = Convert.ToInt32(INP_Num_A.Value);
-                    int numeroNinhos = Convert.ToInt32(INP_Num_N.Value);
-                    int totalDiasReservacion = (fechaSalida - fechaEntrada).Days;
-                    DateTime fechaCreacion = DateTime.Now;
-                    string estado = "A";
-                    int numPersonas = numeroAdultos + numeroNinhos;
-
-                    decimal costoPorCadaAdulto = 0;
-                    decimal costoPorCadaNinho = 0;
-                    decimal costoTotal = 0;
-
-                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                    if (string.IsNullOrEmpty(idPersona1) == false)
                     {
-                        spValidar_Habitaciones_Result Habi = db.spValidar_Habitaciones(idHotel, numPersonas).FirstOrDefault();
-                        if(Habi!= null)
+                        try
                         {
-                            spConsultar_Hoteles_Id_Result reserva = db.spConsultar_Hoteles_Id(idHotel).FirstOrDefault();
-                            if (reserva != null)
-                            {
-                                costoPorCadaAdulto = reserva.costoPorCadaAdulto;
-                                costoPorCadaNinho = reserva.costoPorCadaNinho;
-                                costoTotal = (costoPorCadaAdulto * numeroAdultos) + (costoPorCadaNinho * numeroNinhos);
+                            int idHotel = Convert.ToInt32(DL_Hotel.SelectedItem.Value);
+                            int idPersona = Convert.ToInt32(DL_Cliente.SelectedItem.Value);
+                            DateTime fechaEntrada = Convert.ToDateTime(INP_Fecha_En.Value);
+                            DateTime fechaSalida = Convert.ToDateTime(INP_Fecha_Sal.Value);
+                            int numeroAdultos = Convert.ToInt32(INP_Num_A.Value);
+                            int numeroNinhos = Convert.ToInt32(INP_Num_N.Value);
+                            int totalDiasReservacion = (fechaSalida - fechaEntrada).Days;
+                            DateTime fechaCreacion = DateTime.Now;
+                            string estado = "A";
+                            int numPersonas = numeroAdultos + numeroNinhos;
 
-                                db.spCrear_Reservacion(numPersonas, idHotel, idPersona, fechaEntrada, fechaSalida, numeroAdultos,
-                                numeroNinhos, totalDiasReservacion, costoPorCadaAdulto, costoPorCadaNinho, costoTotal, fechaCreacion, estado);
-                                Hotel = true;
+                            decimal costoPorCadaAdulto = 0;
+                            decimal costoPorCadaNinho = 0;
+                            decimal costoTotal = 0;
 
-                            
-                            }
-                        }
-                        else
-                        {
-                            LBL_Vali_Habi.Visible = true;
-                        }
-                        
-                       
-                    }
-                    if (Hotel == true)
-                    {
-                        using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
-                        {
-                            int? Reservacion = db1.Database.SqlQuery<int?>("EXEC spObtener_Id_Reservacion_Creada").FirstOrDefault();
-                            if (Reservacion != null)
+                            using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                             {
-                                Usuarios Usu = (Usuarios)Session["Usuario_Res"];
-                                int Id_Reservacion = Reservacion.Value;
-                                db1.spCrear_Bitacora(Id_Reservacion, Usu.Id,"CREADA",fechaCreacion);
-                                Response.Redirect("~/Pages/Afirmaciones/Afirmacion.aspx");
+                                spValidar_Habitaciones_Result Habi = db.spValidar_Habitaciones(idHotel, numPersonas).FirstOrDefault();
+                                if (Habi != null)
+                                {
+                                    spConsultar_Hoteles_Id_Result reserva = db.spConsultar_Hoteles_Id(idHotel).FirstOrDefault();
+                                    if (reserva != null)
+                                    {
+                                        costoPorCadaAdulto = reserva.costoPorCadaAdulto;
+                                        costoPorCadaNinho = reserva.costoPorCadaNinho;
+                                        costoTotal = (costoPorCadaAdulto * numeroAdultos) + (costoPorCadaNinho * numeroNinhos);
+
+                                        db.spCrear_Reservacion(numPersonas, idHotel, idPersona, fechaEntrada, fechaSalida, numeroAdultos,
+                                        numeroNinhos, totalDiasReservacion, costoPorCadaAdulto, costoPorCadaNinho, costoTotal, fechaCreacion, estado);
+                                        Hotel = true;
+
+
+                                    }
+                                }
+                                else
+                                {
+                                    LBL_Vali_Habi.Visible = true;
+                                }
+
+
                             }
+                            if (Hotel == true)
+                            {
+                                using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
+                                {
+                                    int? Reservacion = db1.Database.SqlQuery<int?>("EXEC spObtener_Id_Reservacion_Creada").FirstOrDefault();
+                                    if (Reservacion != null)
+                                    {
+                                        Usuarios Usu = (Usuarios)Session["Usuario_Res"];
+                                        int Id_Reservacion = Reservacion.Value;
+                                        db1.spCrear_Bitacora(Id_Reservacion, Usu.Id, "CREADA", fechaCreacion);
+                                        Response.Redirect("~/Pages/Afirmaciones/Afirmacion.aspx");
+                                    }
+                                }
+                            }
+
+                        }
+                        catch (Exception)
+                        {
+
+                            Response.Redirect("~/Pages/Errores/Error.aspx");
                         }
                     }
+                }
                     
-                }
-                catch (Exception)
-                {
-
-                    Response.Redirect("~/Pages/Error.aspx");
-                }
                 
                    
             }

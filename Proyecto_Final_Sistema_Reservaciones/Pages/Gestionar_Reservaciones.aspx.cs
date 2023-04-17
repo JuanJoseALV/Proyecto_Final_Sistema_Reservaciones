@@ -49,7 +49,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 }
                 catch (Exception ex)
                 {
-                    Response.Redirect("~/Pages/Error.aspx");
+                    Response.Redirect("~/Pages/Errores/Error.aspx");
                 }
             }
            
@@ -106,7 +106,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 }
                 catch (Exception)
                 {
-                    Response.Redirect("~/Pages/Error.aspx");
+                    Response.Redirect("~/Pages/Errores/Error.aspx");
                 }
             }
            

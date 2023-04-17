@@ -1,18 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Mis_Reservaciones.aspx.cs" Inherits="Proyecto_Final_Sistema_Reservaciones.Pages.Mis_Reservaciones1" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Lista_Habitaciones.aspx.cs" Inherits="Proyecto_Final_Sistema_Reservaciones.Pages.LIsta_Habitaciones" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container" style="margin: 6%">
+     <div class="container" style="margin: 6%">
         <div class="mb-3">
-            <asp:Label ID="Label1" runat="server" Text="Mis reservaciones" ></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="Lista de Habitaciones" ></asp:Label>
         </div>
         <div style="margin-top: 2%">
-            <a style="color:white; font-size:large" href="Crear_Reservaciones.aspx">Nueva reservacion</a>
+            <a style="color:white; font-size:large" href="Crear_Habitaciones.aspx" >Crear habitacion</a>
         </div>
         <div style="margin-top: 2%">
-            <asp:GridView ID="GVW_Reservaciones" runat="server" AutoGenerateColumns="False" OnRowDataBound="GVW_Reservaciones_RowDataBound" HorizontalAlign="Left" Width="640px" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
+            <asp:GridView ID="GVW_Habitaciones" runat="server" AutoGenerateColumns="False"  HorizontalAlign="Left" Width="696px" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" OnRowDataBound="GVW_Habitaciones_RowDataBound">
                 <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
-                    <asp:BoundField  DataField="idReservacion" HeaderText="# de reservacion" HeaderStyle-HorizontalAlign="Center">
+                    <asp:BoundField  DataField="idHabitacion" HeaderText="ID" HeaderStyle-HorizontalAlign="Center">
             <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
 
                         <ItemStyle HorizontalAlign="Center" />
@@ -20,18 +19,13 @@
                     <asp:BoundField DataField="nombre" HeaderText="Hotel">
                         <HeaderStyle Font-Bold="True" HorizontalAlign="Left" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="fechaEntrada" HeaderText="Fecha entrada" DataFormatString="{0:d}">
+                    <asp:BoundField DataField="numeroHabitacion" HeaderText="Numero Habitacion">
                         <HeaderStyle Font-Bold="True" Font-Overline="False" HorizontalAlign="Left" />
                         <ItemStyle Font-Bold="False" HorizontalAlign="Center" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="fechaSalida" HeaderText="Fecha salida" DataFormatString="{0:d}">
+                    <asp:BoundField DataField="capacidadMaxima" HeaderText="Capacidad maxima">
                         <HeaderStyle Font-Bold="True" HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-                    <asp:BoundField HeaderText="Costo" DataField="costoTotal" HeaderStyle-HorizontalAlign="Center" DataFormatString="${0:#,0.00}">
-<HeaderStyle HorizontalAlign="Center"></HeaderStyle>
-
-                        <ItemStyle HorizontalAlign="Right" />
                     </asp:BoundField>
                     <asp:TemplateField HeaderText="Estado">
                         <HeaderStyle Font-Bold="True" HorizontalAlign="Center" />
@@ -39,7 +33,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <a href="Detalle_Reservacion.aspx?idReservacion=<%# Eval("idReservacion") %>">Consultar</a>
+                            <a href="Editar_Habitacion.aspx?idHabitacion=<%# Eval("idHabitacion") %>">Modificar</a>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -56,7 +50,7 @@
         </div>
     </div>
       <style type="text/css">
-        #<%= GVW_Reservaciones.ClientID %> {
+        #<%= GVW_Habitaciones.ClientID %> {
            font-size:large; 
            
         }

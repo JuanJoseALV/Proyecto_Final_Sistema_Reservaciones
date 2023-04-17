@@ -42,6 +42,15 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Habitaciones_Result>("spConsultar_Habitaciones");
         }
     
+        public virtual ObjectResult<spConsultar_Habitaciones_Id_Result> spConsultar_Habitaciones_Id(Nullable<int> id_Habitacion)
+        {
+            var id_HabitacionParameter = id_Habitacion.HasValue ?
+                new ObjectParameter("id_Habitacion", id_Habitacion) :
+                new ObjectParameter("id_Habitacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Habitaciones_Id_Result>("spConsultar_Habitaciones_Id", id_HabitacionParameter);
+        }
+    
         public virtual ObjectResult<spConsultar_Hoteles_Result> spConsultar_Hoteles()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spConsultar_Hoteles_Result>("spConsultar_Hoteles");
@@ -100,6 +109,31 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCrear_Bitacora", id_ReservacionParameter, id_PersonaParameter, accionParameter, fechaParameter);
         }
     
+        public virtual int spCrear_Habitacion(Nullable<int> id_Hotel, string numero_Hotel, Nullable<int> capacidad_Max, string descripcion, string estado)
+        {
+            var id_HotelParameter = id_Hotel.HasValue ?
+                new ObjectParameter("id_Hotel", id_Hotel) :
+                new ObjectParameter("id_Hotel", typeof(int));
+    
+            var numero_HotelParameter = numero_Hotel != null ?
+                new ObjectParameter("numero_Hotel", numero_Hotel) :
+                new ObjectParameter("numero_Hotel", typeof(string));
+    
+            var capacidad_MaxParameter = capacidad_Max.HasValue ?
+                new ObjectParameter("Capacidad_Max", capacidad_Max) :
+                new ObjectParameter("Capacidad_Max", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spCrear_Habitacion", id_HotelParameter, numero_HotelParameter, capacidad_MaxParameter, descripcionParameter, estadoParameter);
+        }
+    
         public virtual ObjectResult<spCrear_Reservacion_Result> spCrear_Reservacion(Nullable<int> numPersonas, Nullable<int> idHotel, Nullable<int> idPersona, Nullable<System.DateTime> fechaEntrada, Nullable<System.DateTime> fechaSalida, Nullable<int> numeroAdultos, Nullable<int> numeroNinhos, Nullable<int> totalDiasReservacion, Nullable<decimal> costoPorCadaAdulto, Nullable<decimal> costoPorCadaNinho, Nullable<decimal> costoTotal, Nullable<System.DateTime> fechaCreacion, string estado)
         {
             var numPersonasParameter = numPersonas.HasValue ?
@@ -155,6 +189,27 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
                 new ObjectParameter("estado", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spCrear_Reservacion_Result>("spCrear_Reservacion", numPersonasParameter, idHotelParameter, idPersonaParameter, fechaEntradaParameter, fechaSalidaParameter, numeroAdultosParameter, numeroNinhosParameter, totalDiasReservacionParameter, costoPorCadaAdultoParameter, costoPorCadaNinhoParameter, costoTotalParameter, fechaCreacionParameter, estadoParameter);
+        }
+    
+        public virtual int spEditar_Habitacion(Nullable<int> id_Habitacion, string numero_Habitacion, Nullable<int> capacidad_Maxima, string descripcion)
+        {
+            var id_HabitacionParameter = id_Habitacion.HasValue ?
+                new ObjectParameter("id_Habitacion", id_Habitacion) :
+                new ObjectParameter("id_Habitacion", typeof(int));
+    
+            var numero_HabitacionParameter = numero_Habitacion != null ?
+                new ObjectParameter("Numero_Habitacion", numero_Habitacion) :
+                new ObjectParameter("Numero_Habitacion", typeof(string));
+    
+            var capacidad_MaximaParameter = capacidad_Maxima.HasValue ?
+                new ObjectParameter("Capacidad_Maxima", capacidad_Maxima) :
+                new ObjectParameter("Capacidad_Maxima", typeof(int));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spEditar_Habitacion", id_HabitacionParameter, numero_HabitacionParameter, capacidad_MaximaParameter, descripcionParameter);
         }
     
         public virtual int spEditar_Reservacion(Nullable<int> id_Reservacion, Nullable<System.DateTime> fechaEntrada, Nullable<System.DateTime> fechaSalida, Nullable<int> numeroAdultos, Nullable<int> numeroNinhos, Nullable<int> totalDiasReservacion, Nullable<decimal> costoTotal, Nullable<System.DateTime> fechaModificacion)
@@ -237,6 +292,19 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGestionar_Reservaciones_ID_Result>("spGestionar_Reservaciones_ID", id_PersonaParameter);
         }
     
+        public virtual int spInactivar_Habitacion(Nullable<int> id_Habitacion, string estado)
+        {
+            var id_HabitacionParameter = id_Habitacion.HasValue ?
+                new ObjectParameter("id_Habitacion", id_Habitacion) :
+                new ObjectParameter("id_Habitacion", typeof(int));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spInactivar_Habitacion", id_HabitacionParameter, estadoParameter);
+        }
+    
         public virtual ObjectResult<spLogin_Result> spLogin(string email, string clave)
         {
             var emailParameter = email != null ?
@@ -266,6 +334,15 @@ namespace Proyecto_Final_Sistema_Reservaciones.Data
                 new ObjectParameter("Cantidad_Personas", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spValidar_Habitaciones_Result>("spValidar_Habitaciones", id_HotelParameter, cantidad_PersonasParameter);
+        }
+    
+        public virtual ObjectResult<spValidar_Habitaciones_Reservaciones_Result> spValidar_Habitaciones_Reservaciones(Nullable<int> id_Habitacion)
+        {
+            var id_HabitacionParameter = id_Habitacion.HasValue ?
+                new ObjectParameter("id_Habitacion", id_Habitacion) :
+                new ObjectParameter("id_Habitacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spValidar_Habitaciones_Reservaciones_Result>("spValidar_Habitaciones_Reservaciones", id_HabitacionParameter);
         }
     
         public virtual ObjectResult<spValidar_Reservaciones_Persona_Result> spValidar_Reservaciones_Persona(Nullable<int> id_Reservacion, string nombre_Usuario)

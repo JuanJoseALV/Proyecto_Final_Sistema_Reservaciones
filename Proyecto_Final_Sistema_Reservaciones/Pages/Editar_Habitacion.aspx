@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container" style="margin-top: 5%">
         <div>
-            <asp:Label Text="Crear habitacion" runat="server" ID="LBL_Crear" />
+            <asp:Label Text="Editar habitacion" runat="server" ID="LBL_Crear" />
         </div>
         <div class="form-group">
             <asp:Label ID="Label1" runat="server" Text="Hotel"></asp:Label>
@@ -35,7 +35,7 @@
         <div class="form-group">
          <asp:Button ID="BTN_Guardar" runat="server" Text="Guardar" OnClick="BTN_Guardar_Click" />
         <asp:Button ID="BTN_Inactivar" runat="server" Text="Inactivar" OnClick="BTN_Inactivar_Click"  />
-        <asp:Button ID="BTN_Regresar" runat="server" Text="Regresar" OnClick="BTN_Regresar_Click" />
+        <asp:Button ID="BTN_Regresar" runat="server" Text="Regresar" CausesValidation="False" OnClick="BTN_Regresar_Click" />
         </div>
     </div>
     <style type="text/css">

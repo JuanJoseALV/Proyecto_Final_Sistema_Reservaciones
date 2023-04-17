@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container" style="margin-top:5%">
         <div>
-            <asp:Label Text="Crear reservacion" runat="server" id="LBL_Crear" />
+            <asp:Label Text="Editar reservacion" runat="server" id="LBL_Crear" />
         </div>
         <div class="form-group">
             <asp:Label ID="Label1" runat="server" Text="Hotel"></asp:Label>

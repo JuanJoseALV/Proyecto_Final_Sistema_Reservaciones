@@ -7,7 +7,7 @@
         <div class="form-group">
             <asp:Label ID="Label1" runat="server" Text="Hotel"></asp:Label>
             <br />
-            <asp:DropDownList ID="DL_Habitacion" runat="server" DataTextField="Text" DataValueField="Value"></asp:DropDownList>
+            <asp:DropDownList ID="DL_Hotel" runat="server" DataTextField="Text" DataValueField="Value"></asp:DropDownList>
             <br />
             <asp:Label ID="LBl_Validacion_Ho" runat="server" Text="Debe de seleccionar un Hotel valido" CssClass="alert-warning" Visible="False"></asp:Label>
         </div>

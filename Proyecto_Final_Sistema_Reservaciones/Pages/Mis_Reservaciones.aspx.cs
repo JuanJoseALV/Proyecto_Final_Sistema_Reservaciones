@@ -16,6 +16,9 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         String Juan = "PV_ProyectoFinalEntities";
         String Wes = "PV_ProyectoFinalEntities1";
 
+        /* El código verifica si el usuario ha iniciado sesión y lo redirige a la página de inicio de sesión si no lo está. Luego recupera
+           las reservas del usuario de la base de datos mediante un procedimiento almacenado */
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario_Res"] == null)
@@ -39,6 +42,12 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 Response.Redirect("~/Pages/Errores/Error.aspx");
             }
         }
+
+        /*El código comprueba el estado de cada reserva y muestra el mensaje de estado correspondiente en el control GridView. Si se
+          cancela la reserva, muestra "Cancelada". Si la reserva está activa, comprueba las fechas de la reserva y muestra "Finalizada"
+          si la fecha de finalización es pasada, "En proceso" si la fecha de inicio es pasada o "En espera" si la fecha de inicio es pasada.
+          en el futuro.*/
+
         protected void GVW_Reservaciones_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)

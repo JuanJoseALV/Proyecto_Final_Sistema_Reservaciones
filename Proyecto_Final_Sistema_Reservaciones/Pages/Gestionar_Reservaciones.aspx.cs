@@ -18,6 +18,11 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         String Juan = "PV_ProyectoFinalEntities";
         String Wes = "PV_ProyectoFinalEntities1";
 
+        /*Este método se llama cuando se carga la página. Primero verifica si la variable de sesión "Usuario_Res" es nula y redirige al
+          usuario a la página de inicio de sesión si lo es. A continuación, rellena un control DropDownList con una lista de usuarios
+          recuperada de una base de datos mediante un procedimiento almacenado. Finalmente, recupera una lista de reservas asociadas con el
+          usuario conectado actualmente y las vincula a un control GridView.*/
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario_Res"] == null)
@@ -55,6 +60,9 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
            
         }
 
+        /*Este método se llama para cada fila del control GridView. Comprueba el estado de la reserva (es decir, si está cancelada, en proceso
+          o finalizada) y muestra el texto correspondiente en la columna "estado".*/
+
         protected void GVW_Gestionar_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -85,6 +93,9 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             }
         }
 
+        /*Este método se llama cuando el usuario hace clic en un botón para filtrar la lista de reservas por cliente y rango de fechas.
+          Recupera el cliente seleccionado y el intervalo de fechas de la interfaz de usuario, llama a un procedimiento almacenado para 
+          recuperar una lista filtrada de reservas de la base de datos y las vincula al control GridView.*/
         protected void Button1_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -112,6 +123,10 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
            
            
         }
+
+        /*CustomValidator2_ServerValidate y CustomValidator1_ServerValidate: estos métodos son métodos de validación personalizados
+          para las entradas de fecha. Verifican si la entrada de fecha está en el formato correcto (dd/MM/aaaa) y configuran la propiedad
+          IsValid del control de validación en consecuencia.*/
 
         protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
         {

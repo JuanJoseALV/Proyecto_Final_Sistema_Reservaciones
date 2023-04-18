@@ -12,6 +12,12 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 {
     public partial class Modificar_Reservacion : System.Web.UI.Page
     {
+        /*El método primero verifica si el usuario ha iniciado sesión y, si no, lo redirige a la página de inicio de sesión.
+          Luego recupera la identificación de la reserva de la cadena de consulta y la usa para recuperar los datos de la reserva 
+          de la base de datos. Si el usuario es un administrador, se recuperan todos los datos de la reserva. Si el usuario es un
+          usuario habitual, solo se recuperan sus propios datos de reserva. A continuación, los datos de la reserva se muestran en la
+          página.*/
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuarios Usu = (Usuarios)Session["Usuario_Res"];
@@ -85,9 +91,13 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             
 
         }
-        
-        
 
+
+        /*El método se ejecuta cuando el usuario hace clic en el botón "Guardar". Recupera la identificación de la reserva de la cadena
+          de consulta y recupera los datos de la reserva de la base de datos. Luego calcula el nuevo costo de la reserva en función de la 
+          información actualizada de la reserva (como el número de adultos y niños) y actualiza los datos de la reserva en la base de datos.
+          HotelSi los datos de la reserva se actualizan correctamente, se establece un indicador booleano en verdadero. Si el usuario no ha 
+          seleccionado una habitación de hotel válida para su reserva, se muestra un mensaje de error.*/
         protected void BTN_Guardar_Click(object sender, EventArgs e)
         {
             int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion1"]);
@@ -162,6 +172,10 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
             }
         }
+
+        /*este método es un método de validación del lado del servidor para un campo de entrada de fecha. Comprueba si la fecha ingresada
+          está en el formato correcto ("dd/MM/yyyy") y si es mayor o igual a la fecha actual.*/
+
         protected void CV_Fecha_En_ServerValidate(object source, ServerValidateEventArgs args)
         {
             DateTime fecha;
@@ -184,6 +198,11 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 CV_Fecha_En.ErrorMessage = "El formato de la fecha entrada es inválido.";
             }
         }
+
+        /*este método es un método de validación del lado del servidor para otro campo de entrada de fecha. Comprueba si la fecha ingresada
+          tiene el formato correcto ("dd/MM/aaaa"), si es mayor o igual a la fecha actual y si es posterior a la fecha ingresada en el campo
+          de entrada anterior*/
+
         protected void CV_Fecha_Sal_ServerValidate(object source, ServerValidateEventArgs args)
         {
             DateTime fecha;
@@ -223,6 +242,9 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 CV_Fecha_Sal.ErrorMessage = "El formato de la fecha de salida es inválido.";
             }
         }
+
+        /*Este método se activa cuando un usuario hace clic en un botón llamado "BTN_Regresar". Comprueba el rol del usuario actual 
+          y lo redirige a una página diferente según su rol*/
 
         protected void BTN_Regresar_Click(object sender, EventArgs e)
         {

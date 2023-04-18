@@ -12,6 +12,11 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 {
     public partial class LIsta_Habitaciones : System.Web.UI.Page
     {
+
+        /*Se ejecuta cuando se carga la página y primero verifica si un usuario ha iniciado sesión. Si no hay una sesión de usuario,
+          la página se redirige a la página de inicio de sesión. Después de eso, el método obtiene una lista de todas las habitaciones de
+          hotel de la base de datos utilizando un procedimiento almacenado llamado */
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario_Res"] == null)
@@ -35,6 +40,9 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 Response.Redirect("~/Pages/Errores/Error.aspx");
             }
         }
+
+        /*Se ejecuta para cada fila en la vista de cuadrícula y establece el texto de la cuarta celda de la fila en "Inactiva" o "Activa" 
+          según el valor del campo "estado" en el elemento de datos.*/
 
         protected void GVW_Habitaciones_RowDataBound(object sender, GridViewRowEventArgs e)
         {

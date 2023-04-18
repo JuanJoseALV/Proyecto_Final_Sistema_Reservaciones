@@ -20,6 +20,12 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
         }
 
+        /*Se activa cuando el usuario hace clic en el botón de inicio de sesión. Primero verifica si la página es válida usando la
+          Page.IsValidpropiedad. Si es válido, intenta autenticar al usuario consultando la base de datos con el correo electrónico y
+          la contraseña proporcionados. Si se encuentra un usuario, Usuariosse crea e inicializa un objeto con el nombre, la identificación
+          y la función del usuario, y el objeto se guarda en una variable de sesión denominada "Usuario_Res". Si no se encuentra ningún usuario
+          , se muestra un mensaje de error en la página.*/
+
         protected void Btn_Sesion_Click(object sender, EventArgs e)
         {
             bool error = true;
@@ -61,6 +67,9 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 Response.Redirect("~/Pages/Mis_Reservaciones.aspx", false);
             }
         }
+
+        /*Método es un método de validación del lado del servidor para el campo de entrada de correo electrónico. Utiliza una expresión regular
+          para validar que la dirección de correo electrónico es una dirección de hotmail.*/
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
         {

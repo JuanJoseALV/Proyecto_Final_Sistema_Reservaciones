@@ -27,7 +27,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             {
                 try
                 {
-                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
                     {
                         if (Usu.Rol == true)
                         {
@@ -93,7 +93,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                             decimal costoPorCadaNinho = 0;
                             decimal costoTotal = 0;
 
-                            using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                            using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
                             {
                                 spValidar_Habitaciones_Result Habi = db.spValidar_Habitaciones(idHotel, numPersonas).FirstOrDefault();
                                 if (Habi != null)
@@ -121,7 +121,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                             }
                             if (Hotel == true)
                             {
-                                using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
+                                using (PV_ProyectoFinalEntities2 db1 = new PV_ProyectoFinalEntities2())
                                 {
                                     int? Reservacion = db1.Database.SqlQuery<int?>("EXEC spObtener_Id_Reservacion_Creada").FirstOrDefault();
                                     if (Reservacion != null)
@@ -129,7 +129,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                                         Usuarios Usu = (Usuarios)Session["Usuario_Res"];
                                         int Id_Reservacion = Reservacion.Value;
                                         db1.spCrear_Bitacora(Id_Reservacion, Usu.Id, "CREADA", fechaCreacion);
-                                        Response.Redirect("~/Pages/Afirmaciones/Afirmacion.aspx");
+                                        Response.Redirect("~/Pages/Afirmaciones/Afirmacion.aspx",false);
                                     }
                                 }
                             }
@@ -200,12 +200,12 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 if (fecha <= DateTime.Now)
                 {
                     
-                    args.IsValid = true;
+                    args.IsValid = false;
+                    CV_Fecha_En.ErrorMessage = "La fecha de entrada debe ser menor que la fecha actual.";
                 }
                 else
                 {
-                    args.IsValid = false;
-                    CV_Fecha_En.ErrorMessage = "La fecha de entrada debe ser menor que la fecha actual.";
+                    args.IsValid = true;
                 }
             }
             else

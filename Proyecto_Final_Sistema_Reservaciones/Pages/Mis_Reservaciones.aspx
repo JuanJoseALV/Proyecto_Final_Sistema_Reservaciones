@@ -6,7 +6,7 @@
             <asp:Label ID="Label1" runat="server" Text="Mis reservaciones" ></asp:Label>
         </div>
         <div style="margin-top: 2%">
-            <a style="color:white; font-size:large" href="Crear_Reservaciones.aspx">Nueva reservacion</a>
+            <a style="color:white; font-size:large" href="Crear_Reservaciones.aspx" class="NuevaReservacion">Nueva reservacion</a>
         </div>
         <div style="margin-top: 2%">
             <asp:GridView ID="GVW_Reservaciones" runat="server" AutoGenerateColumns="False" OnRowDataBound="GVW_Reservaciones_RowDataBound" HorizontalAlign="Left" Width="640px" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical">
@@ -67,8 +67,10 @@
         }
       
          a:hover{
-             color: aqua;
+            color: aqua;
+            text-decoration: none;
             text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+            transition: .5s;
         }
        
     </style>

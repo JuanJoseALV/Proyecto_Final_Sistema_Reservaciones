@@ -23,7 +23,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             {
                 try
                 {
-                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
                     {
                         var lista_Hoteles = new List<ListItem>();
                         lista_Hoteles = db.spConsultar_Hoteles().Select(_ => new ListItem { Text = _.nombre, Value = _.idHotel.ToString() }).ToList();
@@ -59,7 +59,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     if (string.IsNullOrEmpty(idHotel)==false)
                     {
                         int idHotel1 = Convert.ToInt32(DL_Habitacion.SelectedItem.Value);
-                        using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                        using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
                         {
                             var lista_Habitaciones = new List<ListItem>();
                             lista_Habitaciones = db.spConsultar_Habitaciones().Where(h => h.numeroHabitacion == Numero_Habi && h.idHotel == idHotel1).Select(h => new ListItem { Value = h.idHabitacion.ToString() }).ToList();
@@ -76,7 +76,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                         }
                         if (Hotel == true)
                         {
-                            using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
+                            using (PV_ProyectoFinalEntities2 db1 = new PV_ProyectoFinalEntities2())
                             {
                                 db1.spCrear_Habitacion(idHotel1, Numero_Habi, Cantidad_Max, Descripcion, estado);
                                 Response.Redirect("~/Pages/Afirmaciones/Afirmacion_Crear_Habi.aspx",false);

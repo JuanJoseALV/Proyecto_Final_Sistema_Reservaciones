@@ -32,7 +32,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
                 try
                 {
-                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
                     {
                         if (Usu.Rol == true)
                         {
@@ -150,7 +150,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             bool Continuar = false;
             Usuarios Usu = (Usuarios)Session["Usuario_Res"];
             int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
-            using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+            using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
             {
                 List<spConsultar_Reservaciones_ID_Result> Reservaciones = db.spConsultar_Reservaciones_ID(idReservacion).ToList();
                 foreach (spConsultar_Reservaciones_ID_Result reserva in Reservaciones)
@@ -177,7 +177,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     }
                 }
             }
-            using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
+            using (PV_ProyectoFinalEntities2 db1 = new PV_ProyectoFinalEntities2())
             {
                 db1.spCrear_Bitacora(idReservacion, Usu.Id, "CANCELADA", fecha_actual);
                 Response.Redirect("~/Pages/Afirmaciones/Afirmacion_Eli.aspx");

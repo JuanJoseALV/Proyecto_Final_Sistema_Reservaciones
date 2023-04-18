@@ -33,28 +33,6 @@ BEGIN
 	order by ho.nombre asc
 END
 
-/*************************************************************************** SP Consultar  habitaciones Id*****************************************************************/
-
-Create PROCEDURE [dbo].[spConsultar_Habitaciones_Id]
-@id_Habitacion int
-AS
-BEGIN
-	SELECT
-		h.idHabitacion,
-		h.idHotel,
-		h.numeroHabitacion,
-		h.capacidadMaxima,
-		h.descripcion,
-		h.estado,
-		ho.nombre,
-		ho.direccion,
-		r.fechaEntrada,
-		r.fechaSalida
-	FROM dbo.Habitacion h inner join Hotel ho on h.idHotel=ho.idHotel
-	inner join Reservacion r on h.idHabitacion=r.idHabitacion
-	where h.idHabitacion = @id_Habitacion;
-END
-
 /*************************************************************************** SP Consultar Hoteles *****************************************************************/
 
 
@@ -108,7 +86,32 @@ BEGIN
 	
 END
 
-/*************************************************************************** SP Consultar Reservaciones Id *****************************************************************/
+
+/*************************************************************************** SP Consultar Reservaciones ID *****************************************************************/
+
+CREATE PROCEDURE [dbo].[spConsultar_Reservaciones_ID]
+    @id_Reservacion INT
+AS    
+BEGIN
+    SELECT
+        r.idReservacion,
+        ho.nombre,
+        h.numeroHabitacion,
+        pe.nombreCompleto,
+        r.fechaEntrada,
+        r.fechaSalida,
+        r.numeroNinhos,
+        r.numeroAdultos,
+        r.costoTotal,
+        r.estado
+
+    FROM Persona pe INNER JOIN Reservacion r on pe.idPersona = r.idPersona
+                        INNER JOIN Habitacion h on r.idHabitacion = h.idHabitacion
+                        INNER JOIN Hotel ho on h.idHotel = ho.idHotel     
+    WHERE r.idReservacion = @id_Reservacion
+END
+
+/*************************************************************************** SP Consultar Habitaciones Id *****************************************************************/
 
 CREATE PROCEDURE [dbo].[spConsultar_Habitaciones_Id]
 @id_Habitacion int

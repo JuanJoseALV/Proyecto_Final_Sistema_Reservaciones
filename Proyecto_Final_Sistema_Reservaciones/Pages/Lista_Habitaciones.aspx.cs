@@ -21,7 +21,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             try
             {
                 Usuarios Usu = (Usuarios)Session["Usuario_Res"];
-                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
                 {
                     ObjectResult<spConsultar_Habitaciones_Result> Reservaciones = db.spConsultar_Habitaciones();
                     GVW_Habitaciones.DataSource = Reservaciones;

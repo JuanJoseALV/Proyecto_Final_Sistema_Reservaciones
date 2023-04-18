@@ -23,7 +23,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             if (Page.IsPostBack == false)
             {
                 int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion1"]);
-                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
                 {
                     if (Usu.Rol == true)
                     {
@@ -109,7 +109,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     decimal costoPorCadaNinho = 0;
                     decimal costoTotal = 0;
 
-                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
+                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
                     {
                         string nombre_hotel = "";
 
@@ -144,7 +144,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     }
                     if (Hotel == true)
                     {
-                        using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
+                        using (PV_ProyectoFinalEntities2 db1 = new PV_ProyectoFinalEntities2())
                         {
                             Usuarios Usu = (Usuarios)Session["Usuario_Res"];
                             db1.spCrear_Bitacora(idReservacion, Usu.Id, "CORREGIDA", fechaModificacion);

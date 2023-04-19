@@ -29,7 +29,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             if (Page.IsPostBack == false)
             {
                 int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion1"]);
-                using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                 {
                     if (Usu.Rol == true)
                     {
@@ -74,7 +74,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
         {
             // Toma el id de la habitacion 
             int idHabitacion = Convert.ToInt32(Request.QueryString["idHabitacion"]);
-            using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+            using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
             {
                 Usuarios Usu = (Usuarios)Session["Usuario_Res"];
                 if (Usu.Rol == true)
@@ -147,7 +147,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     int Cantidad_Max = Convert.ToInt32(INP_Cantidad_Max.Value);
                     string Descripcion = INP_Descripcion.Value;
                   
-                        using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                        using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                         {
                             var lista_Habitaciones = new List<ListItem>();
                             lista_Habitaciones = db.spConsultar_Habitaciones().Where(h => h.numeroHabitacion == Numero_Habi && h.nombre == nombre).Select(h => new ListItem { Value = h.idHabitacion.ToString() }).ToList();
@@ -167,7 +167,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                         }
                         if (Hotel == true)
                         {
-                            using (PV_ProyectoFinalEntities2 db1 = new PV_ProyectoFinalEntities2())
+                            using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
                             {
                             
                             // Ejecuta el update 

@@ -36,7 +36,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
                     string email = Txt_Email.Text;
                     string clave = Txt_Contraseña.Text;
-                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                     {
                         spLogin_Result Usuario = db.spLogin(email, clave).FirstOrDefault();
                         if (Usuario != null)

@@ -32,7 +32,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 {
                     // Este proceso carga la lista de hoteles al dropdown de DL_Habitacion
 
-                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                     {
                         var lista_Hoteles = new List<ListItem>();
                         lista_Hoteles = db.spConsultar_Hoteles().Select(_ => new ListItem { Text = _.nombre, Value = _.idHotel.ToString() }).ToList();
@@ -81,7 +81,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     if (string.IsNullOrEmpty(idHotel)==false)
                     {
                         int idHotel1 = Convert.ToInt32(DL_Hotel.SelectedItem.Value);
-                        using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                        using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                         {
 
                             /* Este proceso valida por medio de una comsulta en la base de datos que no exista una habitacion dentro del hotel*
@@ -103,7 +103,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                         // Este proceso es el de insercion en la base de datos se ejecuta unicamente si el proceso anterior se cumple sastifactoriamente 
                         if (Hotel == true)
                         {
-                            using (PV_ProyectoFinalEntities2 db1 = new PV_ProyectoFinalEntities2())
+                            using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
                             {
                                 db1.spCrear_Habitacion(idHotel1, Numero_Habi, Cantidad_Max, Descripcion, estado);
                                 Response.Redirect("~/Pages/Afirmaciones/Afirmacion_Crear_Habi.aspx",false);

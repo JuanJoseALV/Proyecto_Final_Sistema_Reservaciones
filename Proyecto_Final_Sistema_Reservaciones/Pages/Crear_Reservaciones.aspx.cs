@@ -41,7 +41,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     /* Este proceso valida si es un empleado o no lo que diferencia el uno del otro es la variable de nombre del usuario
                        en el caso del empleado se llena con el nombre del cliente que el eligio y si es usuario normal se llena con el nombre 
                        del usuario logueado*/
-                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                     {
                         if (Usu.Rol == true)
                         {
@@ -127,7 +127,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                             decimal costoPorCadaNinho = 0;
                             decimal costoTotal = 0;
 
-                            using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                            using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                             {
                                 /* Este procedimiento valida por medio de una consulta si existe una habitacion con la capacidad suficiete
                                    en el caso que no exista se le pide al usuario seleccionar otro Hotel*/
@@ -165,7 +165,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
 
                             if (Hotel == true)
                             {
-                                using (PV_ProyectoFinalEntities2 db1 = new PV_ProyectoFinalEntities2())
+                                using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
                                 {
                                     // Este proceso toma el id de la reservacion mas reciente en la base de datos 
 

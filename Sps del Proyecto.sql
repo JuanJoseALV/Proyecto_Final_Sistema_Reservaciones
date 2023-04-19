@@ -293,7 +293,7 @@ BEGIN
 	FROM Persona pe inner JOIN Reservacion r on pe.idPersona = r.idPersona
 						inner JOIN Habitacion h on r.idHabitacion = h.idHabitacion
 						inner JOIN Hotel ho on h.idHotel = ho.idHotel 	
-	WHERE pe.nombreCompleto = @Nombre_Persona or r.fechaEntrada BETWEEN @Fecha_Entrada AND @Fecha_Salida And r.fechaSalida BETWEEN @Fecha_Entrada AND @Fecha_Salida
+	WHERE pe.nombreCompleto = @Nombre_Persona or r.fechaEntrada >= @Fecha_Entrada And r.fechaSalida <= @Fecha_Salida
 	order by r.idReservacion desc;
 END
 

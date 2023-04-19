@@ -41,8 +41,8 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
 
                 try
-                {
-                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                {   
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                     {
                         /* Valida si es un empleado o no, si lo es se le permite modificar el link y buscar cualquier otra reservacion*/
                         if (Usu.Rol == true)
@@ -195,7 +195,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
             bool Continuar = false;
             Usuarios Usu = (Usuarios)Session["Usuario_Res"];
             int idReservacion = Convert.ToInt32(Request.QueryString["idReservacion"]);
-            using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+            using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
             {
                 // Se toman los datos por medio de un procedimiento que consulta la reservacion a eliminar
 
@@ -229,7 +229,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     }
                 }
             }
-            using (PV_ProyectoFinalEntities2 db1 = new PV_ProyectoFinalEntities2())
+            using (PV_ProyectoFinalEntities db1 = new PV_ProyectoFinalEntities())
             {
                 // Crea un nuevo registro en el historial de la reservacion con la accion de eliminada 
 

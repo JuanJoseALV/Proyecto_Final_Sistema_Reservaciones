@@ -36,7 +36,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     Usuarios Usu = (Usuarios)Session["Usuario_Res"];
                     var lista = new List<ListItem>();
                     
-                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                     {
                         lista = db.spConsultar_Usuarios().Select(_ => new ListItem { Text = _.nombreCompleto, Value = _.idPersona.ToString() }).ToList();
                     }
@@ -45,7 +45,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     DL_Clientes.DataSource = lista;
                     DL_Clientes.DataBind();
 
-                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                     {
                         ObjectResult<spGestionar_Reservaciones_ID_Result> Reservaciones = db.spGestionar_Reservaciones_ID(Usu.Id);
                         GVW_Gestionar.DataSource = Reservaciones;
@@ -106,7 +106,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                     DateTime Fecha_Entrada = Convert.ToDateTime(INP_Fecha_Entrada.Value);
                     DateTime Fecha_Salida = Convert.ToDateTime(INP_Fecha_Salida.Value);
                     string Nombre = DL_Clientes.SelectedItem.Text;
-                    using (PV_ProyectoFinalEntities2 db = new PV_ProyectoFinalEntities2())
+                    using (PV_ProyectoFinalEntities db = new PV_ProyectoFinalEntities())
                     {
                         ObjectResult<spFiltro_Gestionar_Reservaciones_Result> Filtro = db.spFiltro_Gestionar_Reservaciones(Nombre, Fecha_Entrada, Fecha_Salida);
                         GVW_Gestionar.DataSource = Filtro;

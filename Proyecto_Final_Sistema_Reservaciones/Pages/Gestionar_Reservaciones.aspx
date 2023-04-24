@@ -11,9 +11,9 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Campo necesario" Width="175" ControlToValidate="INP_Fecha_Salida" CssClass="alert-danger"></asp:RequiredFieldValidator>
         </div>
         <div>
-            <asp:Label ID="Label2" runat="server" Text="Nombre" style="display: inline-block;" Width="190px"></asp:Label>
-            <asp:Label ID="Label3" runat="server" Text="Fecha Entrada" style="display: inline-block;" Width="175px"></asp:Label>
-            <asp:Label ID="Label4" runat="server" Text="Fecha Salida " style="display: inline-block;" Width="133px"></asp:Label>
+            <asp:Label ID="Label2" runat="server" Text="Nombre" ForeColor="Aqua" Width="122px"></asp:Label>
+            <asp:Label ID="Label3" runat="server" Text="Fecha Entrada" ForeColor="Aqua" Width="122px"></asp:Label>
+            <asp:Label ID="Label4" runat="server" Text="Fecha Salida" ForeColor="Aqua" ></asp:Label>
         </div>
         <div>
             <asp:DropDownList ID="DL_Clientes" runat="server" DataTextField="Text" DataValueField="Value"></asp:DropDownList>
@@ -97,9 +97,12 @@
             font-size:xx-large;
         }
       
+        
          a:hover{
-             color: aqua;
+              color: aqua;
+            text-decoration: none;
             text-shadow: 1px 1px 2px black, 0 0 25px aqua, 0 0 8px white;
+            transition: .5s;
         }
            #<%= GVW_Gestionar.ClientID %> {
               border-color:chartreuse;

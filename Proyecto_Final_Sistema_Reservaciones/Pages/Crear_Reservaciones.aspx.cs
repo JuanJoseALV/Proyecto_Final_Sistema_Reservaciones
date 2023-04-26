@@ -259,7 +259,7 @@ namespace Proyecto_Final_Sistema_Reservaciones.Pages
                 {
                     
                     args.IsValid = false;
-                    CV_Fecha_En.ErrorMessage = "La fecha de entrada debe ser menor que la fecha actual.";
+                    CV_Fecha_En.ErrorMessage = "La fecha de entrada debe ser mayor que la fecha actual.";
                 }
                 else
                 {
